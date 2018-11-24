@@ -39,7 +39,7 @@ class Ujian extends Component {
                     required
                     id="date"
                     label='Jadwal'
-                    type='date'
+                    type='datetime-local'
                     defaultValue='a'
                     margin="normal"
                     variant="outlined"
@@ -47,6 +47,7 @@ class Ujian extends Component {
                         shrink: true,
                       }}
                     style={{minWidth: "300px", marginTop:'20px' }}
+                    name="tanggal_ujian" onChange={e => this.props.setField(e)}
                   />
                   {/* Input Jadwal Ujian (end) */}
             </form>
@@ -56,8 +57,8 @@ class Ujian extends Component {
         {/* Section Input Text (end) */}
 
         {/* select */}
-        <div style={{ margin: "10px" }}>
-          <select class="form-control">
+        <div style={{ margin: "10px" }} >
+          <select className="form-control" name="jumlah_soal" onChange={e => this.props.setField(e)}> 
             <option>Jumlah Soal</option>
             <option value="10">10</option>
             <option value="15">15</option>
@@ -73,7 +74,10 @@ class Ujian extends Component {
         {/* select end */}
 
         {/* Button Mulai Buat Soal */}
-        <Button
+        <Link className="btn btn-primary" to='/edit-soal/1' onClick={() => this.props.postNewUjian()}>
+            Mulai Buat Soal
+        </Link>
+        {/* <Button
           variant="contained"
           color="primary"
           style={{
@@ -85,7 +89,7 @@ class Ujian extends Component {
           }}
         >
           Mulai Buat Soal
-        </Button>
+        </Button> */}
       {/* Button Mulai Buat Soal (end) */}
       
       </div>

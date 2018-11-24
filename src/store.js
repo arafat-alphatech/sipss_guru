@@ -8,7 +8,10 @@ const initialState = {
   id_kelas: "",
   id_mapel: "",
   listMapel: [],
-  listNamaKelas:[]
+  listNamaKelas: [],
+  tanggal_ujian: "",
+  kode_soal: "",
+  jumlah_soal:""
 }
 
 const store =
@@ -24,7 +27,6 @@ const actions = store => ({
     return { [event.target.name]: event.target.value };
   },
   getMaPel: async state => {
-    // alert(id_kelas)
     const url = 'http://13.251.97.170:5001/kelas-mapel/' + state.id_kelas;
     await axios
       .get(url)
@@ -48,6 +50,24 @@ const actions = store => ({
           listNamaKelas: response.data.data
         });
         console.log("List Kelas: ", response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  postNewUjian: async state => {
+    const url = 'http://13.251.97.170:5001/ujian';
+    const data = {
+      id_kelas: state.id_kelas,
+      kode_soal: state.kode_soal,
+      id_mapel: state.id_mapel,
+      tanggal_ujian: state.tanggal_ujian
+    };
+    console.log("data yang dikirim ke API",data);
+    await axios
+      .post(url,data)
+      .then(response => {
+        console.log("Response dari API: ", response);
       })
       .catch(err => {
         console.log(err);

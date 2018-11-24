@@ -46,7 +46,7 @@ const MainRoute = () => {
       <Route exact path="/" component={Home} />
       <Route exact path="/tambah-ujian" component={TambahUjian} />
       <Route exact path="/review-info-ujian" component={Ujian} />
-      <Route exact path="/edit-soal" component={HalamanEdit} />
+      <Route exact path="/edit-soal/:id" component={HalamanEdit} />
       <Route exact path="/edit-soal-last" component={HalamanEditLast} />
       <Route exact path="/review" component={ReviewSoal} />
       {/* <Route component={NotMatch} /> */}
