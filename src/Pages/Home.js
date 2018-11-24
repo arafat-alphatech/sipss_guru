@@ -3,16 +3,18 @@ import Button from "@material-ui/core/Button";
 import "../Styles/Home.css";
 import { connect } from "unistore/react";
 import { actions } from "../store";
+import { Link } from "react-router-dom";
+import axios from 'axios'
 
 class Home extends Component {
   componentDidMount = () => {
     this.props.getKelas();
     this.props.getMaPel();
   };
-
   render() {
     const listNamaKelas = this.props.listNamaKelas;
     const listMapel = this.props.listMapel;
+    console.log("local state di home",this.state)
     return (
       <div>
         <h1 style={{ textAlign: "center" }}> INI HOME BOSS</h1>
@@ -31,10 +33,10 @@ class Home extends Component {
 
         {/* Piih Kelas */}
         <div style={{ margin: "10px" }}>
-          <select class="form-control">
+          <select className="form-control" value={listNamaKelas.id_kelas} name="id_kelas" onChange={e => this.props.changeKelas(e)} onClick={() => this.props.getMaPel()}>
             <option>Pilih Kelas</option>
             {listNamaKelas.map((item, key) => {
-              return <option value={item.id_kelas}>{item.nama_kelas}</option>;
+              return <option value={item.id_kelas} key={key}>{item.nama_kelas}</option>;
             })}
           </select>
         </div>
@@ -46,15 +48,15 @@ class Home extends Component {
           style={{ marginLeft: "10px", marginRight: "10px" }}
         >
           <div className="card-body">
-            <h5 className="card-title">Kelas VII A </h5>
+            <h5 className="card-title">Mata Pelajaran</h5>
 
             {/* Piih Mata Pelajaran */}
             <div style={{ margin: "10px" }}>
-              <select class="form-control">
+              <select className="form-control" value={listMapel.id_mapel} name="id_mapel" onChange={e => this.props.changeKelas(e)} >
                 <option>Pilih Mata Pelajaran</option>
                 {listMapel.map((item, key) => {
                   return (
-                    <option value={item.id_mapel}>{item['mapel.nama_mapel']}</option>
+                    <option key={key} value={item.id_mapel}>{item['mapel.nama_mapel']}</option>
                   );
                 })}
               </select>
@@ -77,7 +79,10 @@ class Home extends Component {
             {/* Button Menu Siswa (End) */}
             
             {/* Button Menu Ujian */}
-            <Button
+            <Link className="btn btn-primary" to='/tambah-ujian'>
+            Ujian
+                </Link>
+            {/* <Button
               variant="contained"
               color="primary"
               style={{
@@ -87,7 +92,7 @@ class Home extends Component {
               }}
             >
               Ujian
-            </Button>
+            </Button> */}
             <br />
             {/* Button Menu Ujian (End) */}
               
@@ -161,6 +166,6 @@ class Home extends Component {
 }
 
 export default connect(
-  "listNamaKelas, listMapel",
+  "id_kelas,listMapel,listNamaKelas",
   actions
 )(Home);
