@@ -35,7 +35,7 @@ class Ujian extends Component {
                     id="date"
                     label='Jadwal'
                     type='date'
-                    defaultValue='a'
+                    defaultValue=''
                     margin="normal"
                     variant="outlined"
                     InputLabelProps={{
@@ -52,7 +52,7 @@ class Ujian extends Component {
 
         {/* select */}
         <div style={{ margin: "10px" }}>
-          <select class="form-control">
+          <select className="form-control">
             <option>Jumlah Soal</option>
             <option value="10">10</option>
             <option value="15">15</option>

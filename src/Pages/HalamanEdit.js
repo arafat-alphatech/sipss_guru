@@ -24,7 +24,6 @@ class HalamanEdit extends Component {
   
   render() {
     const listNamaKelas = this.props.listNamaKelas;
-    
     return (
       <div className="Halaman Edit">
 
@@ -64,7 +63,7 @@ class HalamanEdit extends Component {
 
         {/* Piih Jawaban Benar */}
         <div style={{ margin: "20px" }}>
-          <select class="form-control">
+          <select className="form-control">
             <option>Pilih Jawaban Benar</option>
             {listNamaKelas.map((item, key) => {
               return <option value={item.id_kelas}>{item.nama_kelas}</option>;
@@ -92,7 +91,7 @@ class HalamanEdit extends Component {
 
         {/* Navigasi Soal */}
         <div style={{ margin: "20px" }}>
-          <select class="form-control">
+          <select className="form-control">
             <option>Navigasi Soal</option>
             {listNamaKelas.map((item, key) => {
               return <option value={item.id_kelas}>{item.nama_kelas}</option>;
