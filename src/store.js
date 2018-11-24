@@ -5,8 +5,10 @@ import persistStore from 'unissist'
 import localStorageAdapter from 'unissist/integrations/localStorageAdapter'
 
 const initialState = {
-    listNamaKelas: [],
-    listMapel: []
+  id_kelas: "",
+  id_mapel: "",
+  listMapel: [],
+  listNamaKelas:[]
 }
 
 const store =
@@ -18,35 +20,39 @@ const adapter = localStorageAdapter();
 persistStore(store, adapter);
 
 const actions = store => ({
-    getKelas: async state => {
-        // const url = `${process.env.DB_HOST}/kelas`;
-        const url = 'http://13.251.97.170:5001/kelas';
-        await axios
-          .get(url)
-          .then(response => {
-            store.setState({
-              listNamaKelas: response.data.data
-            });
-            console.log("Kelas: ", response);
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      },
-    getMaPel: async state => {
-        const url = 'http://13.251.97.170:5001/kelas-mapel/2';
-        await axios
-          .get(url)
-          .then(response => {
-            store.setState({
-              listMapel: response.data.data
-            });
-            console.log("Kelas: ", response);
-          })
-          .catch(err => {
-            console.log(err);
-          });
-    }
+  changeKelas: (state, event) => {
+    return { [event.target.name]: event.target.value };
+  },
+  getMaPel: async state => {
+    // alert(id_kelas)
+    const url = 'http://13.251.97.170:5001/kelas-mapel/' + state.id_kelas;
+    await axios
+      .get(url)
+      .then(response => {
+        store.setState({
+          listMapel: response.data.data
+        });
+        console.log("Kelas: ", response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  getKelas() {
+    // const url = `${process.env.DB_HOST}/kelas`;
+    const url = 'http://13.251.97.170:5001/kelas';
+    axios
+      .get(url)
+      .then(response => {
+        store.setState({
+          listNamaKelas: response.data.data
+        });
+        console.log("List Kelas: ", response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
 })
 
