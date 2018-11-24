@@ -6,7 +6,7 @@ import localStorageAdapter from 'unissist/integrations/localStorageAdapter'
 
 const initialState = {
     listNamaKelas: [],
-    listMataPelajaran: []
+    listMapel: []
 }
 
 const store =
@@ -19,7 +19,8 @@ persistStore(store, adapter);
 
 const actions = store => ({
     getKelas: async state => {
-        const url = "http://172.11.111.14:5000/kelas";
+        // const url = `${process.env.DB_HOST}/kelas`;
+        const url = 'http://13.251.97.170:5001/kelas';
         await axios
           .get(url)
           .then(response => {
@@ -31,7 +32,21 @@ const actions = store => ({
           .catch(err => {
             console.log(err);
           });
-      }
+      },
+    getMaPel: async state => {
+        const url = 'http://13.251.97.170:5001/kelas-mapel/2';
+        await axios
+          .get(url)
+          .then(response => {
+            store.setState({
+              listMapel: response.data.data
+            });
+            console.log("Kelas: ", response);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+    }
 
 })
 

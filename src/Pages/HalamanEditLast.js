@@ -24,10 +24,10 @@ class HalamanEdit extends Component {
   
   render() {
     const listNamaKelas = this.props.listNamaKelas;
-    
+
     return (
       <div className="Halaman Edit">
-
+      
         <h3 style={{ marginLeft: "20px" }}>Soal Nomor 1</h3>
 
         {/* Editor Soal */}
@@ -36,7 +36,7 @@ class HalamanEdit extends Component {
           <Divider light />
         </div>
         {/* Editor Soal (end) */}
-
+        
         {/* Edit Pilihan Jawaban */}
         <form>
           {listNamaKelas.map((item, key) => {
@@ -79,7 +79,7 @@ class HalamanEdit extends Component {
           color="primary"
           style={{ minWidth: "320px", margin: "20px", marginBottom: "0px" }}
         >
-          Simpan dan Lanjutkan
+          Selesai dan Review
         </Button>
         <Button
           variant="contained"

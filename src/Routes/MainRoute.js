@@ -19,6 +19,21 @@ const HalamanEdit = Loadable({
     loading: () => <Loading />
 });
 
+const HalamanEditLast = Loadable({
+  loader: () => import(/* webpackChunkName: "home"*/ "../Pages/HalamanEditLast"),
+  loading: () => <Loading />
+});
+
+const TambahUjian = Loadable({
+  loader: () => import(/* webpackChunkName: "home"*/ "../Pages/TambahUjian"),
+  loading: () => <Loading />
+});
+
+const ReviewSoal = Loadable({
+  loader: () => import(/* webpackChunkName: "home"*/ "../Pages/ReviewSoal"),
+  loading: () => <Loading />
+});
+
 // const NotMatch = Loadable({
 //     loader: () => import(/* webpackChunkName: "404"*/ "../Pages/NotMatch"),
 //     loading: () => <Loading />
@@ -29,8 +44,11 @@ const MainRoute = () => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/ujian" component={Ujian} />
-      <Route exact path="/edit" component={HalamanEdit} />
+      <Route exact path="/tambah-ujian" component={TambahUjian} />
+      <Route exact path="/review-info-ujian" component={Ujian} />
+      <Route exact path="/edit-soal" component={HalamanEdit} />
+      <Route exact path="/edit-soal-last" component={HalamanEditLast} />
+      <Route exact path="/review" component={ReviewSoal} />
       {/* <Route component={NotMatch} /> */}
     </Switch>
   );

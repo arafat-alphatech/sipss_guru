@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "unistore/react";
 import { store } from "./store";
+// require('dotenv').config()
 
 ReactDOM.render(
     <Provider store={store}>
