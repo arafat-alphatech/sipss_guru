@@ -11,7 +11,9 @@ const initialState = {
   listNamaKelas: [],
   tanggal_ujian: "",
   kode_soal: "",
-  jumlah_soal:""
+  jumlah_soal:"",
+  id_paket_soal: "",
+  current_all_soal: []
 }
 
 const store =
@@ -26,6 +28,7 @@ const actions = store => ({
   setField: (state, event) => {
     return { [event.target.name]: event.target.value };
   },
+
   getMaPel: async state => {
     const url = 'http://13.251.97.170:5001/kelas-mapel/' + state.id_kelas;
     await axios
@@ -63,15 +66,29 @@ const actions = store => ({
       id_mapel: state.id_mapel,
       tanggal_ujian: state.tanggal_ujian
     };
+    alert("yaahaaa")
     console.log("data yang dikirim ke API",data);
     await axios
       .post(url,data)
       .then(response => {
+        store.setState({
+          id_paket_soal: response.data.id_paket_soal
+        })
+        alert('Tambah ujian berhasil')
         console.log("Response dari API: ", response);
       })
       .catch(err => {
         console.log(err);
       });
+  },
+
+  addNewSoal: (state, data) => {
+    let cur_soal = state.current_all_soal
+    console.log(cur_soal)
+    cur_soal.push(data)
+    store.setState({
+      current_all_soal: cur_soal
+    })
   }
 })
 

@@ -74,7 +74,7 @@ class Ujian extends Component {
         {/* select end */}
 
         {/* Button Mulai Buat Soal */}
-        <Link className="btn btn-primary" to='/edit-soal/1' onClick={() => this.props.postNewUjian()}>
+        <Link className="btn btn-primary" to='/post-soal/1' onClick={() => this.props.postNewUjian()}>
             Mulai Buat Soal
         </Link>
         {/* <Button

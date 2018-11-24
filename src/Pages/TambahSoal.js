@@ -93,34 +93,47 @@ class HalamanEdit extends Component {
   }
 
   postNewSoal = () => {
-      const url = 'http://13.251.97.170:5001/soal';
-      const data = {
-          narasi : this.state.deskripsi_soal,
-          optionA : this.state.optionA,
-          optionB : this.state.optionB,
-          optionC : this.state.optionC,
-          optionD : this.state.optionD,
-          optionE : this.state.optionE,
-          jawaban : this.state.jawaban
+      const {deskripsi_soal, optionA, optionB, optionC, optionD, optionE, jawaban} = this.state
+      if(deskripsi_soal == "" || optionA == "" || optionB == "" || optionC == "" || optionD == "" || optionE == "" || jawaban == "" ){
+        alert("OOOO tidak bisaa....")
+        this.props.history.push('#')
+        // console.log(this.props.history)
       }
-      axios
+      else {  
+        const url = 'http://13.251.97.170:5001/soal';
+        const data = {
+          id_paket_soal: this.props.id_paket_soal,
+          narasi : this.state.deskripsi_soal,
+          option_A : this.state.optionA,
+          option_B : this.state.optionB,
+          option_C : this.state.optionC,
+          option_D : this.state.optionD,
+          option_E : this.state.optionE,
+          jawaban : this.state.jawaban,
+          no_soal : parseInt(this.props.match.params.id)
+        }
+        axios
         .post(url, data)
         .then(response => {
-            console.log('Res post new soal', response)
+          alert('Berhasil menambah soal')
+          this.props.addNewSoal(data)
+          console.log('Res post new soal', response)
         })
         .catch(err => {
-            console.log(err)
+          console.log(err)
         })
-  }
+      }
+    }
 
   render() {
     // console.log(this.state)
-    const route = "/soal/" + this.props.match.params.id;
+    const no_soal = this.props.match.params.id
+    const route = "/post-soal/" + (parseInt(no_soal) + 1);
     const listNamaKelas = this.props.listNamaKelas;
     let choice = ["A", "B", "C", "D", "E"];
     return (
       <div className="Halaman Edit">
-        <h3 style={{ marginLeft: "20px" }}>Soal Nomor 1</h3>
+        <h3 style={{ marginLeft: "20px" }}>Soal Nomor {no_soal}</h3>
 
         {/* Editor Soal */}
         <div style={{ margin: "20px" }}>
@@ -233,6 +246,6 @@ class HalamanEdit extends Component {
 }
 
 export default connect(
-  "listNamaKelas, listMapel",
+  "listNamaKelas, listMapel, id_paket_soal",
   actions
 )(HalamanEdit);
