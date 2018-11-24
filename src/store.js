@@ -47,7 +47,7 @@ const actions = store => ({
         store.setState({
           listNamaKelas: response.data.data
         });
-        console.log("List Kelas: ", response);
+        // console.log("List Kelas: ", response);
       })
       .catch(err => {
         console.log(err);
