@@ -4,7 +4,7 @@ import "../Styles/Home.css";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import { Link } from "react-router-dom";
-import axios from 'axios'
+
 
 class Home extends Component {
   componentDidMount = () => {
@@ -33,7 +33,7 @@ class Home extends Component {
 
         {/* Piih Kelas */}
         <div style={{ margin: "10px" }}>
-          <select className="form-control" value={listNamaKelas.id_kelas} name="id_kelas" onChange={e => this.props.changeKelas(e)} onClick={() => this.props.getMaPel()}>
+          <select className="form-control" value={listNamaKelas.id_kelas} name="id_kelas" onChange={e => this.props.setField(e)} onClick={() => this.props.getMaPel()}>
             <option>Pilih Kelas</option>
             {listNamaKelas.map((item, key) => {
               return <option value={item.id_kelas} key={key}>{item.nama_kelas}</option>;
@@ -52,7 +52,7 @@ class Home extends Component {
 
             {/* Piih Mata Pelajaran */}
             <div style={{ margin: "10px" }}>
-              <select className="form-control" value={listMapel.id_mapel} name="id_mapel" onChange={e => this.props.changeKelas(e)} >
+              <select className="form-control" value={listMapel.id_mapel} name="id_mapel" onChange={e => this.props.setField(e)} >
                 <option>Pilih Mata Pelajaran</option>
                 {listMapel.map((item, key) => {
                   return (

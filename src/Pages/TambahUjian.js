@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
+import { connect } from "unistore/react";
+import { actions } from "../store";
+import { Link } from "react-router-dom";
+
 
 class Ujian extends Component {
   render() {
@@ -26,6 +30,7 @@ class Ujian extends Component {
                     margin="normal"
                     variant="outlined"
                     style={{minWidth: "300px" }}
+                    name="kode_soal" onChange={e => this.props.setField(e)}
                   />
                   {/* Input Kode Soal (end) */}
 
@@ -88,4 +93,7 @@ class Ujian extends Component {
   }
 }
 
-export default Ujian;
+export default connect(
+  "id_kelas,listMapel,listNamaKelas",
+  actions
+)(Ujian);

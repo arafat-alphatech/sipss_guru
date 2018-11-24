@@ -20,7 +20,7 @@ const adapter = localStorageAdapter();
 persistStore(store, adapter);
 
 const actions = store => ({
-  changeKelas: (state, event) => {
+  setField: (state, event) => {
     return { [event.target.name]: event.target.value };
   },
   getMaPel: async state => {
