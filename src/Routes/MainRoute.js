@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Loadable from "react-loadable";
 import '../Styles/loading.css'
 
-const Loading = () => <html className='loading'>Loading . . .</html>;
+const Loading = () => <div className='loading'>Loading . . .</div>;
 
 const Home = Loadable({
   loader: () => import(/* webpackChunkName: "home"*/ "../Pages/Home"),

@@ -217,21 +217,21 @@ class HalamanEdit extends Component {
         <div style={{ margin: "20px" }}>
           <div className="rdw-storybook-root">
             <Editor
-              toolbarClassName="rdw-storybook-toolbar"
-              wrapperClassName="rdw-storybook-wrapper"
-              editorClassName="rdw-storybook-editor"
+              // toolbarClassName="rdw-storybook-toolbar"
+              // wrapperClassName="rdw-storybook-wrapper"
+              // editorClassName="rdw-storybook-editor"
               editorState={this.state.editorState}
-              toolbar={{
-                inline: { inDropdown: true },
-                list: { inDropdown: true },
-                textAlign: { inDropdown: true },
-                link: { inDropdown: true },
-                history: { inDropdown: true },
-                image: {
-                  uploadCallback: this.uploadImageCallBack,
-                  alt: { present: true, mandatory: false }
-                }
-              }}
+              // toolbar={{
+              //   inline: { inDropdown: true },
+              //   list: { inDropdown: true },
+              //   textAlign: { inDropdown: true },
+              //   link: { inDropdown: true },
+              //   history: { inDropdown: true },
+              //   image: {
+              //     uploadCallback: this.uploadImageCallBack,
+              //     alt: { present: true, mandatory: false }
+              //   }
+              // }}
               onEditorStateChange={this.onEditorStateChange}
             />
           </div>
