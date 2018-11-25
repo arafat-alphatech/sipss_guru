@@ -1,8 +1,9 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Loadable from "react-loadable";
+import '../Styles/loading.css'
 
-const Loading = () => <div>Loading Pak Boss!!!</div>;
+const Loading = () => <html className='loading'>Loading . . .</html>;
 
 const Home = Loadable({
   loader: () => import(/* webpackChunkName: "home"*/ "../Pages/Home"),
@@ -62,15 +63,15 @@ const Intro = Loadable({
 const MainRoute = () => {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/ujian" component={Home} />
       <Route exact path="/tambah-ujian" component={TambahUjian} />
       <Route exact path="/review-info-ujian" component={Ujian} />
       <Route exact path="/edit-soal/:id" component={HalamanEdit} />
       <Route exact path="/edit-soal-last" component={HalamanEditLast} />
       <Route exact path="/post-soal/:id" component={TambahSoal} />
       <Route exact path="/review" component={ReviewSoal} />
-      <Route exact path="/login" component={SignIn} />
-      <Route exact path="/intro-dash" component={Intro} />
+      <Route exact path="/" component={SignIn} />
+      <Route exact path="/intro" component={Intro} />
       <Route exact path="/dashboard" component={Dashboard} />
       {/* <Route component={NotMatch} /> */}
     </Switch>
