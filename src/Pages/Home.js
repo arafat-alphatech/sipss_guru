@@ -14,7 +14,6 @@ class Home extends Component {
   render() {
     const listNamaKelas = this.props.listNamaKelas;
     const listMapel = this.props.listMapel;
-    console.log("local state di home",this.state)
     return (
       <div>
         <h1 style={{ textAlign: "center" }}> INI HOME BOSS</h1>
@@ -166,6 +165,6 @@ class Home extends Component {
 }
 
 export default connect(
-  "id_kelas,listMapel,listNamaKelas",
+  "id_kelas, listMapel, listNamaKelas, id_mapel",
   actions
 )(Home);
