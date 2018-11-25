@@ -2,3 +2,32 @@
     margin-left: 190px;
     margin-right: auto;
 }
+
+.btn-primary {
+  color: #fff;
+  background-color: #39C2C9;
+  border-color: #39C2C9;
+  min-width: 200px;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #29f1c3;
+  border-color: #7befb2;
+}
+.btn-primary:focus, .btn-primary.focus {
+  color: #fff;
+  background-color: #29f1c3;
+  border-color: #7befb2;
+}
+.btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #29f1c3;
+  border-color: #7befb2;
+  background-image: none;
+}
+
+.btn-primary:active:focus {
+    color: #ffffff !important; 
+    background-color: #29f1c3 !important;
+    border-color: #7befb2 !important; 
+  }
