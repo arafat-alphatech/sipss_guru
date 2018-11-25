@@ -307,7 +307,7 @@ class HalamanEdit extends Component {
           style={{ minWidth: "320px", margin: "20px", marginBottom: "0px" }}
           onClick={() => this.postNewSoal()}
         >
-          Simpan dan Lanjutkan
+          Simpan dan Lanjutkan boss
         </Link>
         <br />
         <Link
