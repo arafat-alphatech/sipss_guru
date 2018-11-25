@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { actions } from "../store";
 import { connect } from "unistore/react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import axios from 'axios'
 //Import untuk component2 editor soal
 import { EditorState, convertToRaw, ContentState, convertFromHTML } from "draft-js";
@@ -126,11 +126,11 @@ class HalamanEdit extends Component {
       const no_soal = parseInt(this.props.match.params.id)
       if(deskripsi_soal == "" || optionA == "" || optionB == "" || optionC == "" || optionD == "" || optionE == "" || jawaban == "" ){
         alert("OOOO tidak bisaa....")
-        this.props.history.push('#')
+        // this.props.history.push('#')
         console.log(this.state)
       }
       else {  
-        const url = 'http://13.251.97.170:5000/soal';
+        const url = 'http://13.251.97.170:5001/soal';
         const data = {
           id_paket_soal: this.props.id_paket_soal,
           narasi : this.state.deskripsi_soal,
@@ -142,6 +142,7 @@ class HalamanEdit extends Component {
           jawaban : this.state.jawaban,
           no_soal : no_soal
         }
+        // jika user mengedit paket soal yang sudah pernah ada
         if(this.state.isEdit){
           axios
           .put(url, data)
@@ -150,11 +151,16 @@ class HalamanEdit extends Component {
             this.props.editSoal(no_soal, data)       
             this.setState(this.InitialState)
             console.log('Res edit soal', response)
+            const no_soal = this.props.match.params.id
+            const route = "/post-soal/" + (parseInt(no_soal) + 1);
+            this.props.history.push(route)
           })
           .catch(err => {
             console.log(err)
           })
-        } else {
+        } 
+        // jika user membuat soal dari paket soal baru
+        else {
           axios
           .post(url, data)
           .then(response => {
@@ -162,11 +168,23 @@ class HalamanEdit extends Component {
             this.props.addNewSoal(data)
             this.setState(this.InitialState)
             console.log('Res post new soal', response)
+            const no_soal = this.props.match.params.id
+            if(this.props.current_jumlah_soal < this.props.jumlah_soal){
+              const route = "/post-soal/" + (parseInt(no_soal) + 1);
+              this.props.history.push(route)
+            }
+            else{
+              alert("selesai membuat soal:)")
+              const route = "/";
+              this.props.history.push(route)
+            } 
+            
           })
           .catch(err => {
             console.log(err)
           })
         }
+
       }
   }
 
@@ -253,7 +271,7 @@ class HalamanEdit extends Component {
         {/* Kumpulan Button Navigasi */}
         <Link
           className="btn btn-primary"
-          to={route}
+          to="#"
           style={{ minWidth: "320px", margin: "20px", marginBottom: "0px" }}
           onClick={() => this.postNewSoal()}
         >
@@ -291,6 +309,6 @@ class HalamanEdit extends Component {
 }
 
 export default connect(
-  "listNamaKelas, listMapel, id_paket_soal, current_all_soal",
+  "listNamaKelas, listMapel, id_paket_soal, current_all_soal, jumlah_soal, current_jumlah_soal",
   actions
-)(HalamanEdit);
+)(withRouter(HalamanEdit) );

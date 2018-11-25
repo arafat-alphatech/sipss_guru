@@ -19,7 +19,8 @@ const initialState = {
   data:[],
   listPaketSoal: [],
   id_paket_soal: "",
-  current_all_soal: []
+  current_all_soal: [],
+  current_jumlah_soal: ""
 }
 
 const store =
@@ -36,7 +37,7 @@ const actions = store => ({
   },
 
   getMaPel: async state => {
-    const url = 'http://13.251.97.170:5000/kelas-mapel/' + state.id_kelas;
+    const url = 'http://13.251.97.170:5001/kelas-mapel/' + state.id_kelas;
     await axios
       .get(url)
       .then(response => {
@@ -51,7 +52,7 @@ const actions = store => ({
   },
   getKelas() {
     // const url = `${process.env.DB_HOST}/kelas`;
-    const url = 'http://13.251.97.170:5000/kelas';
+    const url = 'http://13.251.97.170:5001/kelas';
     axios
       .get(url)
       .then(response => {
@@ -65,7 +66,7 @@ const actions = store => ({
       });
   },
   getUjian: async (state, id_kelas, id_mapel) => {
-    const url = 'http://13.251.97.170:5000/paket-kelas?id_kelas='+id_kelas+'&id_mapel='+id_mapel;
+    const url = 'http://13.251.97.170:5001/paket-kelas?id_kelas='+id_kelas+'&id_mapel='+id_mapel;
       await axios
       .get(url)
       .then(response => {
@@ -79,28 +80,30 @@ const actions = store => ({
       });
   },
   getCurrentSoal: async (state, id_paket_soal) => {
-    const url = 'http://13.251.97.170:5000/soal?id_paket_soal='+id_paket_soal;
+    const url = 'http://13.251.97.170:5001/soal?id_paket_soal='+id_paket_soal;
     await axios
     .get(url)
     .then(response => {
       store.setState({
-        current_all_soal: response.data.data
+        current_all_soal: response.data.data,
+        jumlah_soal: response.data.jumlah_soal
       });
-      console.log("List current soal: ", response);
+      console.log("List current soal: ", response.data);
     })
     .catch(err => {
       console.log(err);
     });
   },
   postNewUjian: async state => {
-    const url = 'http://13.251.97.170:5000/ujian';
+    const url = 'http://13.251.97.170:5001/ujian';
     const data = {
       id_kelas: state.id_kelas,
       kode_soal: state.kode_soal,
       id_mapel: state.id_mapel,
+      jumlah_soal:state.jumlah_soal,
       tanggal_ujian: state.tanggal_ujian
     };
-    // console.log("data yang dikirim ke API",data);
+    console.log("data yang dikirim ke API buat ujian",data);
     await axios
       .post(url,data)
       .then(response => {
@@ -158,6 +161,13 @@ const actions = store => ({
     cur_soal.push(data)
     store.setState({
       current_all_soal: cur_soal
+    })
+    let n=0
+    cur_soal.map((item,key)=>{
+      n+=1
+    })
+    store.setState({
+      current_jumlah_soal: n
     })
   },
 
