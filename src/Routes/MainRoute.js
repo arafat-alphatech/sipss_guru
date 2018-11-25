@@ -38,6 +38,11 @@ const Dashboard = Loadable({
   loading: () => <Loading />
 });
 
+const TambahSoal = Loadable({
+  loader: () => import(/* webpackChunkName: "home"*/ "../Pages/TambahSoal"),
+  loading: () => <Loading />
+});
+
 // const NotMatch = Loadable({
 //     loader: () => import(/* webpackChunkName: "404"*/ "../Pages/NotMatch"),
 //     loading: () => <Loading />
@@ -52,6 +57,7 @@ const MainRoute = () => {
       <Route exact path="/review-info-ujian" component={Ujian} />
       <Route exact path="/edit-soal/:id" component={HalamanEdit} />
       <Route exact path="/edit-soal-last" component={HalamanEditLast} />
+      <Route exact path="/post-soal/:id" component={TambahSoal} />      
       <Route exact path="/review" component={ReviewSoal} />
       <Route exact path="/dashboard" component={Dashboard} />
       {/* <Route component={NotMatch} /> */}

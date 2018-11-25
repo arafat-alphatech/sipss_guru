@@ -1,13 +1,21 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import { Link } from "react-router-dom";
+import axios from 'axios'
 
 
 class Ujian extends Component {
+
+  componentWillMount(){
+    const {id_kelas, id_mapel} = this.props
+    this.props.getUjian(id_kelas, id_mapel)
+  }
+  
   render() {
+    const {id_kelas, id_mapel, listMapel, listNamaKelas, listUjian} = this.props
+    // console.log(listUjian)
     return (
       <div>
         <h3 style={{ textAlign: "center" }}>Ini Setelah Pilih Ujian</h3>
@@ -15,7 +23,25 @@ class Ujian extends Component {
         <div
           className="card mb-3"
           style={{ marginLeft: "10px", marginRight: "10px" }}
-        >
+        > 
+        &nbsp;
+          {
+            listNamaKelas.map((item, key) => {
+              if(item.id_kelas == id_kelas){
+                return item.nama_kelas
+              }
+            })
+          }
+        &nbsp;
+          -
+        &nbsp;
+          {
+            listMapel.map((item, key) => {
+              if(item.id_mapel == id_mapel){
+                return item['mapel.nama_mapel']
+              }
+            })
+          } 
           <div className="card-body">
 
             {/* Form Input Text */}
@@ -74,9 +100,33 @@ class Ujian extends Component {
         {/* select end */}
 
         {/* Button Mulai Buat Soal */}
-        <Link className="btn btn-primary" to='/edit-soal/1' onClick={() => this.props.postNewUjian()}>
+        <Link className="btn btn-primary" to='/post-soal/1' onClick={() => this.props.postNewUjian()}>
             Mulai Buat Soal
         </Link>
+        {
+          listUjian.map((item, key) => {
+            return (
+
+              <div key={key}>
+                <Link 
+                  to='/post-soal/1' onClick={() => this.props.getCurrentSoal(item.id_paket_soal)}>
+                  {item['paket_soal.kode_soal']}
+                  -
+                  {item.id_paket_soal}
+                </Link>
+                {/* <button 
+                  // className='btn btn-primary btn-sm'
+                  // // onClick={() => this.buildLjk(item.id_kelas, item.id_paket_soal)}
+                  // disabled={false}                
+                  // >
+                  // </button> */}
+                  <a href={'http://0.0.0.0:5000/build?id_paket_soal='+item.id_paket_soal+'&id_kelas='+item.id_kelas} className='btn btn-primary'>
+                    Cetak LJK
+                  </a>
+              </div>
+            )
+          })
+        }
         {/* <Button
           variant="contained"
           color="primary"
@@ -91,13 +141,12 @@ class Ujian extends Component {
           Mulai Buat Soal
         </Button> */}
       {/* Button Mulai Buat Soal (end) */}
-      
       </div>
     );
   }
 }
 
 export default connect(
-  "id_kelas,listMapel,listNamaKelas",
+  "id_kelas, id_mapel, listMapel, listNamaKelas, listUjian",
   actions
 )(Ujian);

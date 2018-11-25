@@ -2,6 +2,7 @@ import React from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 
 function uploadImageCallBack(file) {
+  
   return new Promise(
     (resolve, reject) => {
       const xhr = new XMLHttpRequest(); // eslint-disable-line no-undef
@@ -39,6 +40,7 @@ const EditorSoal = () =>
           alt: { present: true, mandatory: false },
         },
       }}
+      // onEditorStateChange={ this.onEditorStateChange }
     />
   </div>);
 
