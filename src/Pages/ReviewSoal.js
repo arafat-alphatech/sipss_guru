@@ -26,6 +26,7 @@ class ReviewSoal extends Component {
             <div className="isi-soal">
               Perhatikan alat pengukuran jangka sorong berikut!
               <img
+                alt=''
                 src="https://i2.wp.com/www.studiobelajar.com/wp-content/uploads/2017/02/contoh-soal-cara-membaca.jpeg?"
                 style={{ maxWidth: "280px", maxHeight: "100px" }}
               />

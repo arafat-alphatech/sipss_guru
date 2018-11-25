@@ -161,6 +161,6 @@ class Home extends Component {
 }
 
 export default connect(
-  "id_kelas,listMapel,listNamaKelas",
+  "id_kelas, listMapel, listNamaKelas, id_mapel",
   actions
 )(Home);
