@@ -164,6 +164,7 @@ class HalamanEdit extends Component {
 
         {/* Edit Pilihan Jawaban */}
         <form>
+          <div className='row'>
           {choice.map((item, key) => {
             let option = [
               "Pilihan A",
@@ -172,8 +173,7 @@ class HalamanEdit extends Component {
               "Pilihan D",
               "Pilihan E"
             ];
-
-            return (
+            return (<div className='col-12'>
               <TextField
                 key={key}
                 required
@@ -183,14 +183,15 @@ class HalamanEdit extends Component {
                 defaultValue={item.id_kelas}
                 margin="normal"
                 variant="outlined"
-                style={{ marginLeft: "20px", minWidth: "320px" }}
-              />
-            );
+                style={{ marginLeft: "20px", minWidth: "320px", width:'95%', marginRight:'20px'}}
+                /></div>
+              );
           })}
+                </div>
           {/* Edit Pilihan Jawaban (end) */}
 
           {/* Piih Jawaban Benar */}
-          <div style={{ margin: "20px" }}>
+          <div style={{ margin: "20px", width:'95%', marginRight:'20px' }}>
             <select name="jawaban" className="form-control" onChange={(e) => this.onJawabanChange(e)}>
               <option>Pilih Jawaban Benar</option>
               {choice.map((item, key) => {
@@ -209,7 +210,7 @@ class HalamanEdit extends Component {
         <Link
           className="btn btn-primary  "
           to={route}
-          style={{ minWidth: "320px", margin: "20px", marginBottom: "0px"}}
+          style={{ minWidth: "340px", margin: "20px", marginBottom: "0px"}}
           onClick={() => this.postNewSoal()}
         >
           Simpan dan Lanjutkan
@@ -217,7 +218,7 @@ class HalamanEdit extends Component {
         <br></br>
         <Link
           className='btn btn-primary'
-          style={{ minWidth: "320px", margin: "20px" }}
+          style={{ minWidth: "340px", margin: "20px" }}
           to='#'
         >
           Kembali ke Menu Sebelumnya
@@ -225,7 +226,7 @@ class HalamanEdit extends Component {
         {/* Kumpulan Button Navigasi (end) */}
 
         {/* Navigasi Soal */}
-        <div style={{ margin: "20px" }}>
+        <div style={{ minWidth: "340px", margin: "20px" }}>
           <select className="form-control">
             <option>Navigasi Soal</option>
             {listNamaKelas.map((item, key) => {

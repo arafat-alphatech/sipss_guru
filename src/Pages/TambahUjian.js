@@ -16,7 +16,7 @@ class Ujian extends Component {
           className="card mb-3"
           style={{ marginLeft: "10px", marginRight: "10px" }}
         >
-          <div className="card-body" style={{marginLeft:'auto', marginRight:'auto'}}>
+          <div className="card-body" style={{marginLeft:'auto', marginRight:'auto', width:'100%'}}>
 
             {/* Form Input Text */}
             <form>
@@ -29,7 +29,7 @@ class Ujian extends Component {
                     defaultValue=''
                     margin="normal"
                     variant="outlined"
-                    style={{minWidth: "300px", maxWidth: '800px'}}
+                    style={{minWidth: "300px", width: '100%'}}
                     name="kode_soal" onChange={e => this.props.setField(e)}
                   />
                   <br></br>
@@ -41,24 +41,20 @@ class Ujian extends Component {
                     id="date"
                     label='Jadwal'
                     type='datetime-local'
-                    defaultValue='a'
+                    defaultValue='2018-11-25T10:30'
                     margin="normal"
                     variant="outlined"
                     InputLabelProps={{
                         shrink: true,
                       }}
-                    style={{minWidth: "300px", marginTop:'20px' }}
+                    style={{minWidth: "300px", marginTop:'20px', width:'100%'}}
                     name="tanggal_ujian" onChange={e => this.props.setField(e)}
                   />
                   {/* Input Jadwal Ujian (end) */}
             </form>
 
-          </div>
-        </div>
-        {/* Section Input Text (end) */}
-
         {/* select */}
-        <div style={{ margin: "10px" }} >
+        <div style={{ marginTop: "20px", marginBottom:'20px' }} >
           <select className="form-control" name="jumlah_soal" onChange={e => this.props.setField(e)}> 
             <option>Jumlah Soal</option>
             <option value="10">10</option>
@@ -74,13 +70,18 @@ class Ujian extends Component {
         </div>
         {/* select end */}
 
+          </div>
+        </div>
+        {/* Section Input Text (end) */}
+
+
         {/* Button Mulai Buat Soal */}
         <Link className="btn btn-primary" to='/post-soal/1' onClick={() => this.props.postNewUjian()}
             style={{minWidth: "340px",
             maxWidth: "800px",
             marginBottom: "10px",
             marginLeft: "10px",
-            marginTop: "40px"}}>
+            marginTop: "20px"}}>
             Mulai Buat Soal
         </Link>
         {/* <Button

@@ -51,7 +51,7 @@ class Home extends Component {
             <h5 className="card-title">Mata Pelajaran</h5>
 
             {/* Piih Mata Pelajaran */}
-            <div style={{ margin: "10px" }}>
+            <div style={{ marginBottom: "10px" }}>
               <select className="form-control" value={listMapel.id_mapel} name="id_mapel" onChange={e => this.props.setField(e)} >
                 <option>Pilih Mata Pelajaran</option>
                 {listMapel.map((item, key) => {

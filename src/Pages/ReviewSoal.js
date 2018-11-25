@@ -51,6 +51,7 @@ class ReviewSoal extends Component {
         >
           Cetak
         </Link>
+        <br></br>
         <Link
           className='btn btn-primary'
           style={{
