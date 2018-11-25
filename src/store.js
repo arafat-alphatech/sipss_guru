@@ -13,7 +13,10 @@ const initialState = {
   kode_soal: "",
   jumlah_soal:"",
   id_paket_soal: "",
-  current_all_soal: []
+  current_all_soal: [],
+  token: '',
+  type:'',
+  is_login: false
 }
 
 const store =
@@ -89,7 +92,28 @@ const actions = store => ({
     store.setState({
       current_all_soal: cur_soal
     })
-  }
+  },
+  signInHandle: async (state, username, password) => {
+    const url = "http://13.251.97.170:5001/login";
+
+    const body = {
+      username: username,
+      password: password
+    };
+    await axios
+      .post(url, body)
+      .then(response => {
+        store.setState({
+          token: response.data.token,
+          is_login: true
+        });
+        console.log("Response: ", response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
 })
+
 
 export { store, actions };

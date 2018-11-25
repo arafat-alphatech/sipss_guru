@@ -39,6 +39,16 @@ const TambahSoal = Loadable({
   loading: () => <Loading />
 });
 
+const SignIn = Loadable({
+  loader: () => import(/* webpackChunkName: "login"*/ "../Pages/SignIn"),
+  loading: () => <Loading />
+});
+
+const Intro = Loadable({
+  loader: () => import(/* webpackChunkName: "intro"*/ "../Pages/Intro"),
+  loading: () => <Loading />
+});
+
 // const NotMatch = Loadable({
 //     loader: () => import(/* webpackChunkName: "404"*/ "../Pages/NotMatch"),
 //     loading: () => <Loading />
@@ -55,6 +65,8 @@ const MainRoute = () => {
       <Route exact path="/edit-soal-last" component={HalamanEditLast} />
       <Route exact path="/post-soal/:id" component={TambahSoal} />      
       <Route exact path="/review" component={ReviewSoal} />
+      <Route exact path="/login" component={SignIn} />
+      <Route exact path="/intro-dash" component={Intro} />
       {/* <Route component={NotMatch} /> */}
     </Switch>
   );

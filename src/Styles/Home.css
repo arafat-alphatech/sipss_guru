@@ -7,6 +7,7 @@
   color: #fff;
   background-color: #39C2C9;
   border-color: #39C2C9;
+  min-width: 200px;
 }
 .btn-primary:hover {
   color: #fff;
