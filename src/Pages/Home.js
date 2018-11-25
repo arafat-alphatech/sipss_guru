@@ -14,11 +14,11 @@ class Home extends Component {
   render() {
     const listNamaKelas = this.props.listNamaKelas;
     const listMapel = this.props.listMapel;
-    console.log("local state di home",this.state)
+    console.log("local state di home", this.state)
     return (
       <div>
         <h1 style={{ textAlign: "center" }}> INI HOME BOSS</h1>
-        
+
         {/* Section Data Guru */}
         <div style={{ textAlign: "center" }}>
           <img
@@ -41,7 +41,7 @@ class Home extends Component {
           </select>
         </div>
         {/* Pilih Kelas (end) */}
-          
+
         {/* div Card Kelas */}
         <div
           className="card mb-3"
@@ -62,82 +62,77 @@ class Home extends Component {
               </select>
             </div>
             {/* Pilih Mata Pelajaran (end) */}
-            
+
             {/* Button Menu Siswa */}
-            <Button
-              variant="contained"
-              color="primary"
+            <Link
+              className='btn btn-primary'
+              to='tambah-ujian'
               style={{
                 minWidth: "300px",
                 maxWidth: "800px",
-                marginBottom: "10px"
+                marginBottom: "10px",
+                // backgroundColor: '#39C2C9',
+                // borderColor: '#39C2C9'
               }}
-            >
+              >
               Siswa
-            </Button>
+              </Link>
             <br />
             {/* Button Menu Siswa (End) */}
-            
+
             {/* Button Menu Ujian */}
-            <Link className="btn btn-primary" to='/tambah-ujian'>
-            Ujian
-                </Link>
-            {/* <Button
-              variant="contained"
-              color="primary"
-              style={{
-                minWidth: "300px",
-                maxWidth: "800px",
-                marginBottom: "10px"
-              }}
-            >
+            <Link
+              className="btn btn-primary"
+              to='/tambah-ujian'
+              style={{minWidth:'300px', maxWidth:'800px', marginBottom:'10px'}}
+              >
               Ujian
-            </Button> */}
+                </Link>
             <br />
             {/* Button Menu Ujian (End) */}
-              
+
             {/* Button Menu Jadwal */}
-            <Button
-              variant="contained"
-              color="primary"
+            <Link
+              className='btn btn-primary'
               style={{
                 minWidth: "300px",
                 maxWidth: "800px",
                 marginBottom: "10px"
               }}
+              to='/'
             >
               Jadwal
-            </Button>
+            </Link>
             <br />
             {/* Button Menu Jadwal (end) */}
-              
+
             {/* Button Menu Rapor */}
-            <Button
-              variant="contained"
-              color="primary"
+            <Link
+              className='btn btn-primary'
               style={{
                 minWidth: "300px",
                 maxWidth: "800px",
                 marginBottom: "10px"
               }}
+              to='/'
             >
               Rapor
-            </Button>
+            </Link>
             <br />
             {/* Button Menu Rapor (end) */}
 
             {/* Button Mata Pelajaran */}
-            <Button
-              variant="contained"
-              color="primary"
+            <Link
+              className='btn btn-primary'
               style={{
                 minWidth: "300px",
                 maxWidth: "800px",
                 marginBottom: "10px"
               }}
+              to='/'
             >
               Tambah Mata Pelajaran
-            </Button>
+            </Link>
           </div>
           {/* Button Mata Pelajaran (end) */}
 
@@ -146,17 +141,17 @@ class Home extends Component {
 
         {/* Menu Tambah Kelas */}
         <div className="tambah-kelas">
-          <Button
-            variant="contained"
-            color="primary"
+          <Link
+            className='btn btn-primary'
             style={{
               minWidth: "20px",
               maxWidth: "800px",
               marginBottom: "50px"
             }}
+            to='/'
           >
             Tambah Kelas
-          </Button>
+          </Link>
         </div>
         {/* Menu Tambah Kelas (end) */}
 

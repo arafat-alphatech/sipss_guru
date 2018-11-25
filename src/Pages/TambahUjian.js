@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import { Link } from "react-router-dom";
-
+import '../Styles/Home.css'
 
 class Ujian extends Component {
   render() {
@@ -16,7 +16,7 @@ class Ujian extends Component {
           className="card mb-3"
           style={{ marginLeft: "10px", marginRight: "10px" }}
         >
-          <div className="card-body">
+          <div className="card-body" style={{marginLeft:'auto', marginRight:'auto'}}>
 
             {/* Form Input Text */}
             <form>
@@ -29,9 +29,10 @@ class Ujian extends Component {
                     defaultValue=''
                     margin="normal"
                     variant="outlined"
-                    style={{minWidth: "300px" }}
+                    style={{minWidth: "300px", maxWidth: '800px'}}
                     name="kode_soal" onChange={e => this.props.setField(e)}
                   />
+                  <br></br>
                   {/* Input Kode Soal (end) */}
 
                   {/* Input Jadwal Ujian */}
@@ -74,7 +75,12 @@ class Ujian extends Component {
         {/* select end */}
 
         {/* Button Mulai Buat Soal */}
-        <Link className="btn btn-primary" to='/post-soal/1' onClick={() => this.props.postNewUjian()}>
+        <Link className="btn btn-primary" to='/post-soal/1' onClick={() => this.props.postNewUjian()}
+            style={{minWidth: "340px",
+            maxWidth: "800px",
+            marginBottom: "10px",
+            marginLeft: "10px",
+            marginTop: "40px"}}>
             Mulai Buat Soal
         </Link>
         {/* <Button

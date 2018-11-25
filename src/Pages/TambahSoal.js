@@ -14,6 +14,7 @@ import draftToHtml from 'draftjs-to-html';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Divider from "@material-ui/core/Divider";
+import '../Styles/Home.css'
 
 class HalamanEdit extends Component {
   uploadImageCallBack = (file) => {
@@ -206,20 +207,21 @@ class HalamanEdit extends Component {
 
         {/* Kumpulan Button Navigasi */}
         <Link
-          className="btn btn-primary"
+          className="btn btn-primary  "
           to={route}
-          style={{ minWidth: "320px", margin: "20px", marginBottom: "0px" }}
+          style={{ minWidth: "320px", margin: "20px", marginBottom: "0px"}}
           onClick={() => this.postNewSoal()}
         >
           Simpan dan Lanjutkan
         </Link>
-        <Button
-          variant="contained"
-          color="primary"
+        <br></br>
+        <Link
+          className='btn btn-primary'
           style={{ minWidth: "320px", margin: "20px" }}
+          to='#'
         >
           Kembali ke Menu Sebelumnya
-        </Button>
+        </Link>
         {/* Kumpulan Button Navigasi (end) */}
 
         {/* Navigasi Soal */}

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { actions } from "../store";
 import { connect } from "unistore/react";
-import Button from "@material-ui/core/Button";
+import {Link} from 'react-router-dom'
+import '../Styles/Home.css'
 
 class ReviewSoal extends Component {
   componentDidMount = () => {
@@ -39,29 +40,29 @@ class ReviewSoal extends Component {
             </div>
           </div>
         </div>
-        <Button
-          variant="contained"
-          color="primary"
+        <Link
+          className='btn btn-primary'
           style={{
             minWidth: "320px",
             maxWidth: "800px",
             margin: "20px"
           }}
+          to='#'
         >
           Cetak
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
+        </Link>
+        <Link
+          className='btn btn-primary'
           style={{
             minWidth: "320px",
             maxWidth: "800px",
             margin: "20px",
             marginTop: "0px"
           }}
+          to='#'
         >
           Simpan
-        </Button>
+        </Link>
       </div>
     );
   }
