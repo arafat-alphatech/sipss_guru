@@ -31,7 +31,7 @@ const actions = store => ({
   },
 
   getMaPel: async state => {
-    const url = 'http://0.0.0.0:5000/kelas-mapel/' + state.id_kelas;
+    const url = 'http://13.251.97.170:5000/kelas-mapel/' + state.id_kelas;
     await axios
       .get(url)
       .then(response => {
@@ -46,7 +46,7 @@ const actions = store => ({
   },
   getKelas() {
     // const url = `${process.env.DB_HOST}/kelas`;
-    const url = 'http://0.0.0.0:5000/kelas';
+    const url = 'http://13.251.97.170:5000/kelas';
     axios
       .get(url)
       .then(response => {
@@ -60,7 +60,7 @@ const actions = store => ({
       });
   },
   getUjian: async (state, id_kelas, id_mapel) => {
-    const url = 'http://0.0.0.0:5000/paket-kelas?id_kelas='+id_kelas+'&id_mapel='+id_mapel;
+    const url = 'http://13.251.97.170:5000/paket-kelas?id_kelas='+id_kelas+'&id_mapel='+id_mapel;
       await axios
       .get(url)
       .then(response => {
@@ -74,7 +74,7 @@ const actions = store => ({
       });
   },
   getCurrentSoal: async (state, id_paket_soal) => {
-    const url = 'http://0.0.0.0:5000/soal?id_paket_soal='+id_paket_soal;
+    const url = 'http://13.251.97.170:5000/soal?id_paket_soal='+id_paket_soal;
     await axios
     .get(url)
     .then(response => {
@@ -88,7 +88,7 @@ const actions = store => ({
     });
   },
   postNewUjian: async state => {
-    const url = 'http://0.0.0.0:5000/ujian';
+    const url = 'http://13.251.97.170:5000/ujian';
     const data = {
       id_kelas: state.id_kelas,
       kode_soal: state.kode_soal,

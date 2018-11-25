@@ -130,7 +130,7 @@ class HalamanEdit extends Component {
         console.log(this.state)
       }
       else {  
-        const url = 'http://0.0.0.0:5000/soal';
+        const url = 'http://13.251.97.170:5000/soal';
         const data = {
           id_paket_soal: this.props.id_paket_soal,
           narasi : this.state.deskripsi_soal,
