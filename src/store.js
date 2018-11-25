@@ -7,11 +7,16 @@ import localStorageAdapter from 'unissist/integrations/localStorageAdapter'
 const initialState = {
   id_kelas: "",
   id_mapel: "",
+  id_paket_soal: "",
   listMapel: [],
   listNamaKelas: [],
   tanggal_ujian: "",
   kode_soal: "",
-  jumlah_soal:""
+  jumlah_soal:"",
+  no_soal:"",
+  labels:[],
+  data:[],
+  listPaketSoal: []
 }
 
 const store =
@@ -72,8 +77,44 @@ const actions = store => ({
       .catch(err => {
         console.log(err);
       });
+  },
+  getChartData: async (state, id_paket_soal, id_kelas) => {
+    const url = 'http://13.251.97.170:5001/dashboard';
+        const data_kirim = {
+            id_paket_soal: state.id_paket_soal,
+            id_kelas: state.id_kelas
+        };
+        await axios
+            .post(url, data_kirim)
+            .then(response => {
+                store.setState({
+                    labels: response.data.no_soal,
+                    data: response.data.persentase
+                });
+                console.log("data response dari api: ", response.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+  },
+  getPaketByMapel: async (state) => {
+    const url = 'http://13.251.97.170:5001/mapel' ;
+    const data_kirim = {
+      id_mapel: state.id_mapel,
+      id_kelas: state.id_kelas
+    };
+    await axios
+      .post(url,data_kirim)
+      .then(response => {
+        store.setState({
+          listPaketSoal: response.data.data
+        });
+        console.log("List Paket Soal response api: ", response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
-
 })
 
 export { store, actions };
