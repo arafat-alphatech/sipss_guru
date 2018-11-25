@@ -15,7 +15,7 @@ code {
 
 /* setting footbar hilang ketika layar besar */
 @media only screen and (min-width: 600px) {
-  .footer{
+  .footer {
     display: none
   }
 }

@@ -10,17 +10,18 @@ const Home = Loadable({
 });
 
 const Ujian = Loadable({
-    loader: () => import(/* webpackChunkName: "home"*/ "../Pages/Ujian"),
-    loading: () => <Loading />
+  loader: () => import(/* webpackChunkName: "home"*/ "../Pages/Ujian"),
+  loading: () => <Loading />
 });
 
 const HalamanEdit = Loadable({
-    loader: () => import(/* webpackChunkName: "home"*/ "../Pages/HalamanEdit"),
-    loading: () => <Loading />
+  loader: () => import(/* webpackChunkName: "home"*/ "../Pages/HalamanEdit"),
+  loading: () => <Loading />
 });
 
 const HalamanEditLast = Loadable({
-  loader: () => import(/* webpackChunkName: "home"*/ "../Pages/HalamanEditLast"),
+  loader: () =>
+    import(/* webpackChunkName: "home"*/ "../Pages/HalamanEditLast"),
   loading: () => <Loading />
 });
 
@@ -58,7 +59,6 @@ const Intro = Loadable({
 //     loading: () => <Loading />
 // });
 
-
 const MainRoute = () => {
   return (
     <Switch>
@@ -67,7 +67,7 @@ const MainRoute = () => {
       <Route exact path="/review-info-ujian" component={Ujian} />
       <Route exact path="/edit-soal/:id" component={HalamanEdit} />
       <Route exact path="/edit-soal-last" component={HalamanEditLast} />
-      <Route exact path="/post-soal/:id" component={TambahSoal} />      
+      <Route exact path="/post-soal/:id" component={TambahSoal} />
       <Route exact path="/review" component={ReviewSoal} />
       <Route exact path="/login" component={SignIn} />
       <Route exact path="/intro-dash" component={Intro} />
