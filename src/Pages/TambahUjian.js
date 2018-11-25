@@ -120,7 +120,7 @@ class Ujian extends Component {
                   // disabled={false}                
                   // >
                   // </button> */}
-                  <a href={'http://0.0.0.0:5000/build?id_paket_soal='+item.id_paket_soal+'&id_kelas='+item.id_kelas} className='btn btn-primary'>
+                  <a href={'http://13.251.97.170:5000/build?id_paket_soal='+item.id_paket_soal+'&id_kelas='+item.id_kelas} className='btn btn-primary'>
                     Cetak LJK
                   </a>
               </div>
