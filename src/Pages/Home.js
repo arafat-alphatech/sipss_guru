@@ -4,7 +4,8 @@ import "../Styles/Home.css";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import { Link, Redirect } from "react-router-dom";
-
+import MenuBawah from "../Components/MenuBawah";
+import '../Styles/Home.css'
 
 class Home extends Component {
   componentDidMount = () => {
@@ -16,8 +17,18 @@ class Home extends Component {
     const listNamaKelas = this.props.listNamaKelas;
     const listMapel = this.props.listMapel;
     return (
-      <div>
-        <h1 style={{ textAlign: "center", color:'#39C2C9', marginTop:'20px', marginBottom:'20px'}}> Pilih Kelas</h1>
+      <div className='Site'>
+        <h1
+          style={{
+            textAlign: "center",
+            color: "#39C2C9",
+            marginTop: "20px",
+            marginBottom: "20px"
+          }}
+        >
+          {" "}
+          Pilih Kelas
+        </h1>
 
         {/* Section Data Guru */}
         <div style={{ textAlign: "center" }}>
@@ -27,16 +38,26 @@ class Home extends Component {
             alt="..."
             className="img-thumbnail"
           />
-          <p style={{marginTop:'10px'}}>Tom Cruise, S.Pd</p>
+          <p style={{ marginTop: "10px" }}>Tom Cruise, S.Pd</p>
         </div>
         {/* Section Data Guru (end) */}
 
         {/* Piih Kelas */}
         <div style={{ margin: "10px" }}>
-          <select className="form-control" value={listNamaKelas.id_kelas} name="id_kelas" onChange={e => this.props.setField(e)} onClick={() => this.props.getMaPel()}>
+          <select
+            className="form-control"
+            value={listNamaKelas.id_kelas}
+            name="id_kelas"
+            onChange={e => this.props.setField(e)}
+            onClick={() => this.props.getMaPel()}
+          >
             <option>Pilih Kelas</option>
             {listNamaKelas.map((item, key) => {
-              return <option value={item.id_kelas} key={key}>{item.nama_kelas}</option>;
+              return (
+                <option value={item.id_kelas} key={key}>
+                  {item.nama_kelas}
+                </option>
+              );
             })}
           </select>
         </div>
@@ -52,38 +73,48 @@ class Home extends Component {
 
             {/* Piih Mata Pelajaran */}
             <div style={{ marginBottom: "10px" }}>
-              <select className="form-control" value={listMapel.id_mapel} name="id_mapel" onChange={e => this.props.setField(e)} >
+              <select
+                className="form-control"
+                value={listMapel.id_mapel}
+                name="id_mapel"
+                onChange={e => this.props.setField(e)}
+              >
                 <option>Pilih Mata Pelajaran</option>
                 {listMapel.map((item, key) => {
                   return (
-                    <option key={key} value={item.id_mapel}>{item['mapel.nama_mapel']}</option>
+                    <option key={key} value={item.id_mapel}>
+                      {item["mapel.nama_mapel"]}
+                    </option>
                   );
                 })}
               </select>
             </div>
             {/* Pilih Mata Pelajaran (end) */}
 
-
             {/* Button Menu Ujian */}
             <Link
               className="btn btn-primary"
-              to='/tambah-ujian'
-              style={{minWidth:'300px', maxWidth:'800px', marginBottom:'10px'}}
-              >
-              Ujian
-                </Link>
-            <br />
-            {/* Button Menu Ujian (End) */}
-
-            {/* Button Menu Jadwal */}
-            <Link
-              className='btn btn-primary'
+              to="/tambah-ujian"
               style={{
                 minWidth: "300px",
                 maxWidth: "800px",
                 marginBottom: "10px"
               }}
-              to='/'
+            >
+              Ujian
+            </Link>
+            <br />
+            {/* Button Menu Ujian (End) */}
+
+            {/* Button Menu Jadwal */}
+            <Link
+              className="btn btn-primary"
+              style={{
+                minWidth: "300px",
+                maxWidth: "800px",
+                marginBottom: "10px"
+              }}
+              to="/"
             >
               Jadwal
             </Link>
@@ -92,13 +123,13 @@ class Home extends Component {
 
             {/* Button Menu Rapor */}
             <Link
-              className='btn btn-primary'
+              className="btn btn-primary"
               style={{
                 minWidth: "300px",
                 maxWidth: "800px",
                 marginBottom: "10px"
               }}
-              to='/'
+              to="/"
             >
               Tambah Mata Pelajaran
             </Link>
@@ -107,38 +138,35 @@ class Home extends Component {
 
             {/* Button Mata Pelajaran */}
             <Link
-              className='btn btn-primary'
+              className="btn btn-primary"
               style={{
                 minWidth: "300px",
                 maxWidth: "800px",
                 marginBottom: "10px"
               }}
-              to='/'
+              to="/"
             >
               Bantuan
             </Link>
           </div>
           {/* Button Mata Pelajaran (end) */}
 
+
+         
+        
+        
         </div>
         {/* div card Kelas (end) */}
-
-        {/* Menu Tambah Kelas */}
-        <div className="tambah-kelas">
-          <Link
-            className='btn btn-primary'
-            style={{
-              minWidth: "20px",
-              maxWidth: "800px",
-              marginBottom: "50px"
-            }}
-            to='/'
-          >
-            Tambah Kelas
-          </Link>
+        <div style={{height:'50px'}}></div>
+        <div>
+        <footer
+            className="footer"
+            style={{ position: "fixed", height: "55px", top:'auto', bottom: "0", width:'500px', marginLeft:'auto', marginRight:'auto'}}
+            >
+            <MenuBawah />
+          </footer>
         </div>
-        {/* Menu Tambah Kelas (end) */}
-
+         
       </div>
     );
   }

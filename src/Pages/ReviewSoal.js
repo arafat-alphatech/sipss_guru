@@ -6,6 +6,7 @@ import '../Styles/Home.css'
 import { ContentState, convertFromRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 
+import MenuBawah from '../Components/MenuBawah'
 
 class ReviewSoal extends Component {
   componentDidMount = () => {
@@ -75,6 +76,22 @@ class ReviewSoal extends Component {
         >
           Back
         </Link>
+
+        {/* Footer */}
+        <div style={{marginTop:'80px'}}></div>
+        <footer
+          className="footer"
+          style={{
+            position: "fixed",
+            height: "55px",
+            bottom: "0",
+            width: "500px"
+          }}
+        >
+          <MenuBawah />
+        </footer>
+        {/* Footer (end) */}
+
       </div>
     );
   }
