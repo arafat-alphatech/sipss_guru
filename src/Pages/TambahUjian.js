@@ -21,26 +21,40 @@ class Ujian extends Component {
     }
     return (
       <div>
-        <h3 style={{ textAlign: "center" }}>Ini Setelah Pilih Ujian</h3>
+        <h3
+          style={{
+            textAlign: "center",
+            marginBottom: "20px",
+            marginTop: "20px",
+            color:'#39C2C9'
+          }}
+        >
+          Tambah Ujian
+        </h3>
 
         <div
           className="card mb-3"
           style={{ marginLeft: "10px", marginRight: "10px" }}
         >
-          &nbsp;
-          {listNamaKelas.map((item, key) => {
-            if (item.id_kelas == id_kelas) {
-              return item.nama_kelas;
-            }
-          })}
-          &nbsp; - &nbsp;
-          {listMapel.map((item, key) => {
-            if (item.id_mapel == id_mapel) {
-              return item["mapel.nama_mapel"];
-            }
-          })}
-          <div className="card-body">
+          <h5 style={{ textAlign: "center", marginTop:'20px'}}>
+            Kelas &nbsp;
+            {listNamaKelas.map((item, key) => {
+              if (item.id_kelas == id_kelas) {
+                return item.nama_kelas;
+              }
+            })}
+          </h5>
 
+          <h5 style={{ textAlign: "center" }}>
+            &nbsp;
+            {listMapel.map((item, key) => {
+              if (item.id_mapel == id_mapel) {
+                return item["mapel.nama_mapel"];
+              }
+            })}{" "}
+          </h5>
+
+          <div className="card-body">
             {/* Form Input Text */}
             <form>
               {/* Input Kode Soal */}
@@ -109,42 +123,100 @@ class Ujian extends Component {
           style={{
             minWidth: "340px",
             maxWidth: "800px",
-            marginBottom: "10px",
             marginLeft: "10px",
-            marginTop: "20px"
+            marginTop: "0px"
           }}
         >
           Mulai Buat Soal
         </Link>
-        {listUjian.map((item, key) => {
-          return (
-            <div key={key}>
-              <Link
-                to="/post-soal/1"
-                onClick={() => this.props.getCurrentSoal(item.id_paket_soal)}
-              >
-                {item["paket_soal.kode_soal"]}-{item.id_paket_soal}
-              </Link>
-              {/* <button 
-                  // className='btn btn-primary btn-sm'
-                  // // onClick={() => this.buildLjk(item.id_kelas, item.id_paket_soal)}
-                  // disabled={false}                
-                  // >
-                  // </button> */}
-              <a
-                href={
-                  "http://13.251.97.170:5001/build?id_paket_soal=" +
-                  item.id_paket_soal +
-                  "&id_kelas=" +
-                  item.id_kelas
-                }
-                className="btn btn-primary"
-              >
-                Cetak LJK
-              </a>
+
+        <div
+          className="card mb-3"
+          style={{ marginLeft: "10px", marginRight: "10px", marginTop:'30px' }}
+        >
+          {/* Isi card riwayat ujian */}
+          <div className="card-body">
+            <h5 style={{ textAlign: "center", marginBottom: "20px" }}>
+              Riwayat Ujian
+              <h6>
+                &nbsp;
+                {listNamaKelas.map((item, key) => {
+                  if (item.id_kelas == id_kelas) {
+                    return item.nama_kelas;
+                  }
+                })}
+                &nbsp; - &nbsp;
+                {listMapel.map((item, key) => {
+                  if (item.id_mapel == id_mapel) {
+                    return item["mapel.nama_mapel"];
+                  }
+                })}
+              </h6>
+            </h5>
+            
+            <div className='row' style={{marginBottom:'20px'}}>
+                <div className='col-7'><strong>Kode Soal</strong></div>
+                <div className='col-5'><i class="fas fa-print" style={{color:'#39C2C9'}}></i>&nbsp;<strong>Cetak</strong></div>
             </div>
-          );
-        })}
+
+            {listUjian.map((item, key) => {
+              return (
+                <div className='row' 
+                style={{marginBottom:'10px'}}
+                key={key}>
+                <div className='col-5'>
+                  <Link
+                    to="/post-soal/1"
+                    onClick={() =>
+                      this.props.getCurrentSoal(item.id_paket_soal)
+                    }
+                    style={{color:'#39C2C9'}}
+                  >
+                    {item["paket_soal.kode_soal"]}-{item.id_paket_soal}
+                  </Link>
+                  </div>
+                  <div className='col-7'>
+                    <div className='row'>
+                      <div className='col-6'>
+                  <a
+                    href={
+                      "http://13.251.97.170:5001/build?id_paket_soal=" +
+                      item.id_paket_soal +
+                      "&id_kelas=" +
+                      item.id_kelas
+                    }
+                    className="btn btn-primary"
+                    style={{minWidth:'80px'}}
+                  >
+                    Soal
+                  </a>
+                      
+                      </div>
+                      <div className='col-6'>
+                      <a
+                    href={
+                      "http://13.251.97.170:5001/build?id_paket_soal=" +
+                      item.id_paket_soal +
+                      "&id_kelas=" +
+                      item.id_kelas
+                    }
+                    className="btn btn-primary"
+                    style={{minWidth:'80px'}}
+                  >
+                    LJK
+                  </a>
+                      </div>
+                    </div>
+
+                  
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* Isi card riwayat ujian (end) */}
+          </div>
+        </div>
       </div>
     );
   }

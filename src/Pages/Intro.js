@@ -12,7 +12,7 @@ class Intro extends Component {
     console.log(this.props.is_login)
     return (
       <div>
-        <h1 style={{ textAlign: "center" }}>Ini Home Sebenarnya</h1>
+        <h1 style={{ textAlign: "center", color:'#39C2C9', marginTop:'20px' }}>Home</h1>
         <div
           className="row container-fluid"
           style={{ width: "100%", margin: "0px" }}
@@ -42,7 +42,7 @@ class Intro extends Component {
                 >
                 <h5
                   className="card-title"
-                  style={{ padding: "0px", margin: "0px", textAlign: "center" }}
+                  style={{ padding: "0px", margin: "0px", textAlign: "center", color:'#39C2C9' }}
                   >
                   Ujian
                 </h5>
@@ -77,7 +77,7 @@ class Intro extends Component {
                 >
                 <h5
                   className="card-title"
-                  style={{ padding: "0px", margin: "0px", textAlign: "center" }}
+                  style={{ padding: "0px", margin: "0px", textAlign: "center", color:'#39C2C9'}}
                   >
                   Statistik
                 </h5>
@@ -116,7 +116,7 @@ class Intro extends Component {
               >
                 <h5
                   className="card-title"
-                  style={{ padding: "0px", margin: "0px", textAlign: "center" }}
+                  style={{ padding: "0px", margin: "0px", textAlign: "center", color:'#39C2C9'}}
                 >
                   Rapor
                 </h5>
@@ -147,9 +147,9 @@ class Intro extends Component {
               >
                 <h5
                   className="card-title"
-                  style={{ padding: "0px", margin: "0px", textAlign: "center" }}
+                  style={{ padding: "0px", margin: "0px", textAlign: "center", color:'#39C2C9'}}
                 >
-                  Atur Siswa
+                  Atur Kelas
                 </h5>
               </div>
             </div>
