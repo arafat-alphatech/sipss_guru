@@ -7,6 +7,9 @@ import Icon from "@material-ui/core/Icon";
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import Fullscreen from "@material-ui/icons/Fullscreen";
 import PowerSettingsNew from "@material-ui/icons/PowerSettingsNew";
+import {withRouter} from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../store";
 
 const styles = {
   root: {
@@ -23,10 +26,14 @@ class MenuBawah extends React.Component {
     this.setState({ value });
   };
 
+  logout = () => {
+    this.props.signOutHandle()
+    this.props.history.replace('/signin')
+  }
+
   render() {
     const { classes } = this.props;
     const { value } = this.state;
-
     return (
       <BottomNavigation
         value={value}
@@ -46,6 +53,7 @@ class MenuBawah extends React.Component {
         <BottomNavigationAction
           label="Keluar"
           value="favorites"
+          onClick={() => this.logout()}
           icon={<PowerSettingsNew />}
         />
         <BottomNavigationAction
@@ -62,4 +70,4 @@ MenuBawah.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(MenuBawah);
+export default connect("token, is_login, type",actions)(withStyles(styles)(withRouter(MenuBawah)));

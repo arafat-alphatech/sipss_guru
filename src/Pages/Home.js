@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import "../Styles/Home.css";
 import { connect } from "unistore/react";
 import { actions } from "../store";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 
 class Home extends Component {
@@ -11,10 +11,10 @@ class Home extends Component {
     this.props.getKelas();
     this.props.getMaPel();
   };
+
   render() {
     const listNamaKelas = this.props.listNamaKelas;
     const listMapel = this.props.listMapel;
-    console.log("local state di home", this.state)
     return (
       <div>
         <h1 style={{ textAlign: "center" }}> INI HOME BOSS</h1>
@@ -161,6 +161,6 @@ class Home extends Component {
 }
 
 export default connect(
-  "id_kelas, listMapel, listNamaKelas, id_mapel",
+  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login",
   actions
 )(Home);

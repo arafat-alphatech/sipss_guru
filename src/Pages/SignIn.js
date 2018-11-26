@@ -18,8 +18,8 @@ class SignIn extends Component {
 
   render() {
     if (this.props.is_login) {
-      alert("Anda telah login !");
-      return <Redirect to={{ pathname: "/intro" }} />;
+      alert("Selamat datang !");
+      return <Redirect to={{ pathname: "/" }} />;
     }
     return (
       <div className="sign-in">
@@ -28,7 +28,6 @@ class SignIn extends Component {
           <div className="form-label-group" style={{ marginRight: "20px" }}>
             <TextField
               required
-              id="outlined-required"
               name="username"
               type="text"
               label="Username"
@@ -47,7 +46,6 @@ class SignIn extends Component {
           <div className="form-label-group" style={{ marginRight: "20px" }}>
             <TextField
               required
-              id="outlined-required"
               name="password"
               type="password"
               label="Password"
@@ -64,16 +62,16 @@ class SignIn extends Component {
             />
           </div>
 
-          <Link
-            to="/"
+          <button
             className="btn btn-primary"
             style={{ minWidth: "320px", marginBottom: "10px", margin: "20px" }}
-            onClick={() =>
+            onClick={() => {
               this.props.signInHandle(this.state.username, this.state.password)
+            }
             }
           >
             Masuk
-          </Link>
+          </button>
         </form>
       </div>
     );
