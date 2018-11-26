@@ -201,10 +201,9 @@ class Intro extends Component {
         <footer
           className="footer"
           style={{
-            position: "fixed",
             height: "55px",
             bottom: "0",
-            width: "500px"
+            width: "100%"
           }}
         >
           <MenuBawah />

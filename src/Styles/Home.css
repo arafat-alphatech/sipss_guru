@@ -5,8 +5,9 @@
 
 .btn-primary {
   color: #fff;
-  background-color: #39C2C9;
-  border-color: #39C2C9;
+  background-color: #00A2E5;
+  /* background-color: #39C2C9; */
+  border-color: rgb(4, 166, 236);
   min-width: 200px;
 }
 .btn-primary:hover {

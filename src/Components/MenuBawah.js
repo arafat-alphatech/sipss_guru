@@ -13,7 +13,8 @@ import { actions } from "../store";
 
 const styles = {
   root: {
-    width: 360
+    width: '100%',
+    position:'fixed'
   }
 };
 
