@@ -70,8 +70,8 @@ const MainRoute = () => {
       <Route exact path="/edit-soal-last" component={HalamanEditLast} />
       <Route exact path="/post-soal/:id" component={TambahSoal} />
       <Route exact path="/review" component={ReviewSoal} />
-      <Route exact path="/" component={SignIn} />
-      <Route exact path="/intro" component={Intro} />
+      <Route exact path="/signin" component={SignIn} />
+      <Route exact path="/" component={Intro} />
       <Route exact path="/dashboard" component={Dashboard} />
       {/* <Route component={NotMatch} /> */}
     </Switch>
