@@ -20,6 +20,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Divider from "@material-ui/core/Divider";
 import "../Styles/Home.css";
+import MenuBawah from '../Components/MenuBawah'
 
 class HalamanEdit extends Component {
   uploadImageCallBack = file => {
@@ -332,6 +333,22 @@ class HalamanEdit extends Component {
           </select>
         </div>
         {/* Navigasi Soal (end) */}
+
+        {/* Footer */}
+        <div style={{marginTop:'80px'}}></div>
+        <footer
+          className="footer"
+          style={{
+            position: "fixed",
+            height: "55px",
+            bottom: "0",
+            width: "500px"
+          }}
+        >
+          <MenuBawah />
+        </footer>
+        {/* Footer (end) */}
+
       </div>
     );
   }

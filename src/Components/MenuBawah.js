@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import Icon from "@material-ui/core/Icon";
-import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
+import Home from "@material-ui/icons/Home";
 import Fullscreen from "@material-ui/icons/Fullscreen";
 import PowerSettingsNew from "@material-ui/icons/PowerSettingsNew";
 import {withRouter} from "react-router-dom";
@@ -26,6 +26,10 @@ class MenuBawah extends React.Component {
     this.setState({ value });
   };
 
+  backHome = () => {
+    this.props.history.push('/')
+  }
+
   logout = () => {
     this.props.signOutHandle()
     this.props.history.replace('/signin')
@@ -40,12 +44,13 @@ class MenuBawah extends React.Component {
         onChange={this.handleChange}
         showLabels
         className={classes.root}
-      >
+      > 
         <BottomNavigationAction
-          label="Kembali"
-          value="recents"
-          icon={<ArrowBackIos />}
-        />
+          label="Home"
+          value="home"
+          icon={<Home />}
+          onClick={() => this.backHome()}
+          />
         <BottomNavigationAction
           label="Fullscreen"
           value="fulscreen"

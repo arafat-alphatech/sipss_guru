@@ -12,13 +12,13 @@ class Intro extends Component {
     console.log(this.props.is_login);
     return (
       <div>
-        <h1
+        {/* <h1
           style={{ textAlign: "center", color: "#39C2C9", marginTop: "20px" }}
         >
           Home
-        </h1>
+        </h1> */}
         {/* Banner */}
-        <div class="card text-center" style={{backgroundColor:'#39C2C9', color:'white'}}>
+        <div class="card rounded-0 text-center" style={{backgroundColor:'#39C2C9', color:'white'}}>
           {/* <div class="card-header">Featured</div> */}
           <div class="card-body">
             <h5 class="card-title">Selamat Datang di SIPS</h5>

@@ -5,6 +5,7 @@ import { actions } from "../store";
 import { Link, Redirect } from "react-router-dom";
 import "../Styles/Home.css";
 import axios from "axios";
+import MenuBawah from "../Components/MenuBawah";
 
 class Ujian extends Component {
   componentWillMount() {
@@ -13,11 +14,17 @@ class Ujian extends Component {
   }
 
   render() {
-    const { id_kelas, id_mapel, listMapel, listNamaKelas, listUjian } = this.props;
+    const {
+      id_kelas,
+      id_mapel,
+      listMapel,
+      listNamaKelas,
+      listUjian
+    } = this.props;
     // console.log(listUjian)
-    if(id_kelas == '' || id_mapel == ''){
-      alert("Pilih kelas dan mata pelajaran dahulu")
-      return <Redirect to="/ujian" />
+    if (id_kelas == "" || id_mapel == "") {
+      alert("Pilih kelas dan mata pelajaran dahulu");
+      return <Redirect to="/ujian" />;
     }
     return (
       <div>
@@ -26,7 +33,7 @@ class Ujian extends Component {
             textAlign: "center",
             marginBottom: "20px",
             marginTop: "20px",
-            color:'#39C2C9'
+            color: "#39C2C9"
           }}
         >
           Tambah Ujian
@@ -36,7 +43,7 @@ class Ujian extends Component {
           className="card mb-3"
           style={{ marginLeft: "10px", marginRight: "10px" }}
         >
-          <h5 style={{ textAlign: "center", marginTop:'20px'}}>
+          <h5 style={{ textAlign: "center", marginTop: "20px" }}>
             Kelas &nbsp;
             {listNamaKelas.map((item, key) => {
               if (item.id_kelas == id_kelas) {
@@ -132,7 +139,7 @@ class Ujian extends Component {
 
         <div
           className="card mb-3"
-          style={{ marginLeft: "10px", marginRight: "10px", marginTop:'30px' }}
+          style={{ marginLeft: "10px", marginRight: "10px", marginTop: "30px" }}
         >
           {/* Isi card riwayat ujian */}
           <div className="card-body">
@@ -153,62 +160,62 @@ class Ujian extends Component {
                 })}
               </h6>
             </h5>
-            
-            <div className='row' style={{marginBottom:'20px'}}>
-                <div className='col-7'><strong>Kode Soal</strong></div>
-                <div className='col-5'><i class="fas fa-print" style={{color:'#39C2C9'}}></i>&nbsp;<strong>Cetak</strong></div>
+
+            <div className="row" style={{ marginBottom: "20px" }}>
+              <div className="col-7">
+                <strong>Kode Soal</strong>
+              </div>
+              <div className="col-5">
+                <i class="fas fa-print" style={{ color: "#39C2C9" }} />&nbsp;
+                <strong>Cetak</strong>
+              </div>
             </div>
 
             {listUjian.map((item, key) => {
               return (
-                <div className='row' 
-                style={{marginBottom:'10px'}}
-                key={key}>
-                <div className='col-5'>
-                  <Link
-                    to="/post-soal/1"
-                    onClick={() =>
-                      this.props.getCurrentSoal(item.id_paket_soal)
-                    }
-                    style={{color:'#39C2C9'}}
-                  >
-                    {item["paket_soal.kode_soal"]}-{item.id_paket_soal}
-                  </Link>
+                <div className="row" style={{ marginBottom: "10px" }} key={key}>
+                  <div className="col-5">
+                    <Link
+                      to="/post-soal/1"
+                      onClick={() =>
+                        this.props.getCurrentSoal(item.id_paket_soal)
+                      }
+                      style={{ color: "#39C2C9" }}
+                    >
+                      {item["paket_soal.kode_soal"]}-{item.id_paket_soal}
+                    </Link>
                   </div>
-                  <div className='col-7'>
-                    <div className='row'>
-                      <div className='col-6'>
-                  <a
-                    href={
-                      "http://13.251.97.170:5001/build?id_paket_soal=" +
-                      item.id_paket_soal +
-                      "&id_kelas=" +
-                      item.id_kelas
-                    }
-                    className="btn btn-primary"
-                    style={{minWidth:'80px'}}
-                  >
-                    Soal
-                  </a>
-                      
+                  <div className="col-7">
+                    <div className="row">
+                      <div className="col-6">
+                        <a
+                          href={
+                            "http://13.251.97.170:5001/build?id_paket_soal=" +
+                            item.id_paket_soal +
+                            "&id_kelas=" +
+                            item.id_kelas
+                          }
+                          className="btn btn-primary"
+                          style={{ minWidth: "80px" }}
+                        >
+                          Soal
+                        </a>
                       </div>
-                      <div className='col-6'>
-                      <a
-                    href={
-                      "http://13.251.97.170:5001/build?id_paket_soal=" +
-                      item.id_paket_soal +
-                      "&id_kelas=" +
-                      item.id_kelas
-                    }
-                    className="btn btn-primary"
-                    style={{minWidth:'80px'}}
-                  >
-                    LJK
-                  </a>
+                      <div className="col-6">
+                        <a
+                          href={
+                            "http://13.251.97.170:5001/build?id_paket_soal=" +
+                            item.id_paket_soal +
+                            "&id_kelas=" +
+                            item.id_kelas
+                          }
+                          className="btn btn-primary"
+                          style={{ minWidth: "80px" }}
+                        >
+                          LJK
+                        </a>
                       </div>
                     </div>
-
-                  
                   </div>
                 </div>
               );
@@ -217,6 +224,18 @@ class Ujian extends Component {
             {/* Isi card riwayat ujian (end) */}
           </div>
         </div>
+        <div style={{marginTop:'80px'}}></div>
+        <footer
+          className="footer"
+          style={{
+            position: "fixed",
+            height: "55px",
+            bottom: "0",
+            width: "500px"
+          }}
+        >
+          <MenuBawah />
+        </footer>
       </div>
     );
   }
