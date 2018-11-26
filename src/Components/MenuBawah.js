@@ -13,7 +13,7 @@ import { actions } from "../store";
 
 const styles = {
   root: {
-    width: 500
+    width: 360
   }
 };
 
@@ -38,6 +38,7 @@ class MenuBawah extends React.Component {
       <BottomNavigation
         value={value}
         onChange={this.handleChange}
+        showLabels
         className={classes.root}
       >
         <BottomNavigationAction
@@ -56,11 +57,7 @@ class MenuBawah extends React.Component {
           onClick={() => this.logout()}
           icon={<PowerSettingsNew />}
         />
-        <BottomNavigationAction
-          label="Folder"
-          value="folder"
-          icon={<Icon>folder</Icon>}
-        />
+       
       </BottomNavigation>
     );
   }

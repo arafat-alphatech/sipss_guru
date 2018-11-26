@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import MenuBawah from "../Components/MenuBawah";
-import {Link, Redirect} from "react-router-dom"
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 
@@ -9,54 +9,81 @@ class Intro extends Component {
     if (!this.props.is_login) {
       return <Redirect to={{ pathname: "/signin" }} />;
     }
-    console.log(this.props.is_login)
+    console.log(this.props.is_login);
     return (
       <div>
-        <h1 style={{ textAlign: "center", color:'#39C2C9', marginTop:'20px' }}>Home</h1>
+        <h1
+          style={{ textAlign: "center", color: "#39C2C9", marginTop: "20px" }}
+        >
+          Home
+        </h1>
+        {/* Banner */}
+        <div class="card text-center" style={{backgroundColor:'#39C2C9', color:'white'}}>
+          {/* <div class="card-header">Featured</div> */}
+          <div class="card-body">
+            <h5 class="card-title">Selamat Datang di SIPS</h5>
+            <p class="card-text">
+              With supporting text below as a natural lead-in to additional
+              content.
+            </p>
+            {/* <a href="#" class="btn btn-primary">
+              Go somewhere
+            </a> */}
+          </div>
+        </div>
+        {/* Banner (end) */}
         <div
           className="row container-fluid"
           style={{ width: "100%", margin: "0px" }}
         >
           <div className="col-6">
-        <Link to='/ujian'>
-            <div
-              className="card"
-              style={{
-                minWidth: "120px",
-                maxWidth: "100%",
-                margin: "20px",
-                marginRight: "0px",
-                marginLeft: "0px",
-                padding: "10px"
-            }}
-            >
-              <img
-                className="card-img-top"
-                src="https://i.ibb.co/84Mzb8H/ujian.png"
-                alt="Card image cap"
-                style={{maxWidth:"140px", maxHeight:'100px'}}
-                />
+            <Link to="/ujian">
               <div
-                className="card-body"
-                style={{ padding: "0px", margin: "0px", marginBottom: "10px" }}
+                className="card"
+                style={{
+                  minWidth: "120px",
+                  maxWidth: "100%",
+                  margin: "20px",
+                  marginRight: "0px",
+                  marginLeft: "0px",
+                  padding: "10px"
+                }}
+              >
+                <img
+                  className="card-img-top"
+                  src="https://i.ibb.co/84Mzb8H/ujian.png"
+                  alt="Card image cap"
+                  style={{ maxWidth: "140px", maxHeight: "100px" }}
+                />
+                <div
+                  className="card-body"
+                  style={{
+                    padding: "0px",
+                    margin: "0px",
+                    marginBottom: "10px"
+                  }}
                 >
-                <h5
-                  className="card-title"
-                  style={{ padding: "0px", margin: "0px", textAlign: "center", color:'#39C2C9' }}
+                  <h5
+                    className="card-title"
+                    style={{
+                      padding: "0px",
+                      margin: "0px",
+                      textAlign: "center",
+                      color: "#39C2C9"
+                    }}
                   >
-                  Ujian
-                </h5>
+                    Ujian
+                  </h5>
+                </div>
               </div>
-            </div>
-                  </Link>
+            </Link>
           </div>
 
-
           <div className="col-6">
-          <Link to='/dashboard'>
-            <div
-              className="card"
-              style={{
+            <Link to="/dashboard">
+              <div
+                className="card"
+                style={{
                   minWidth: "120px",
                   maxWidth: "100%",
                   margin: "20px",
@@ -64,33 +91,41 @@ class Intro extends Component {
                   marginRight: "0px",
                   padding: "10px"
                 }}
-                >
-              <img
-                className="card-img-top"
-                src="http://icons-for-free.com/free-icons/png/512/2136425.png"
-                alt="Card image cap"
-                style={{maxWidth:"140px", height:'100px'}}
+              >
+                <img
+                  className="card-img-top"
+                  src="http://icons-for-free.com/free-icons/png/512/2136425.png"
+                  alt="Card image cap"
+                  style={{ maxWidth: "140px", height: "100px" }}
                 />
-              <div
-                className="card-body"
-                style={{ padding: "0px", margin: "0px", marginBottom: "10px" }}
+                <div
+                  className="card-body"
+                  style={{
+                    padding: "0px",
+                    margin: "0px",
+                    marginBottom: "10px"
+                  }}
                 >
-                <h5
-                  className="card-title"
-                  style={{ padding: "0px", margin: "0px", textAlign: "center", color:'#39C2C9'}}
+                  <h5
+                    className="card-title"
+                    style={{
+                      padding: "0px",
+                      margin: "0px",
+                      textAlign: "center",
+                      color: "#39C2C9"
+                    }}
                   >
-                  Statistik
-                </h5>
+                    Statistik
+                  </h5>
+                </div>
               </div>
-            </div>
-                  </Link>
+            </Link>
           </div>
         </div>
 
-
         <div
           className="row container-fluid"
-          style={{ width: "100%", margin: "0px", marginBottom: "800px" }}
+          style={{ width: "100%", margin: "0px", marginBottom: "0px" }}
         >
           <div className="col-6">
             <div
@@ -108,7 +143,7 @@ class Intro extends Component {
                 className="card-img-top"
                 src="https://i.ibb.co/hWPJS61/summary-icon.png"
                 alt="Card image cap"
-                style={{width:'120px', height:'100px'}}
+                style={{ width: "120px", height: "100px" }}
               />
               <div
                 className="card-body"
@@ -116,7 +151,12 @@ class Intro extends Component {
               >
                 <h5
                   className="card-title"
-                  style={{ padding: "0px", margin: "0px", textAlign: "center", color:'#39C2C9'}}
+                  style={{
+                    padding: "0px",
+                    margin: "0px",
+                    textAlign: "center",
+                    color: "#39C2C9"
+                  }}
                 >
                   Rapor
                 </h5>
@@ -139,7 +179,7 @@ class Intro extends Component {
                 className="card-img-top"
                 src="https://i.ibb.co/rZNGTsV/storyblocks-teacher-in-the-classroom-with-students-vector-illustration-design-Bd-YUS3o9m-thumb.jpg"
                 alt="Card image cap"
-                style={{maxWidth:"140px", height:'100px'}}
+                style={{ maxWidth: "140px", height: "100px" }}
               />
               <div
                 className="card-body"
@@ -147,7 +187,12 @@ class Intro extends Component {
               >
                 <h5
                   className="card-title"
-                  style={{ padding: "0px", margin: "0px", textAlign: "center", color:'#39C2C9'}}
+                  style={{
+                    padding: "0px",
+                    margin: "0px",
+                    textAlign: "center",
+                    color: "#39C2C9"
+                  }}
                 >
                   Atur Kelas
                 </h5>
@@ -155,9 +200,15 @@ class Intro extends Component {
             </div>
           </div>
         </div>
+        <div style={{marginTop:'50px'}}></div>
         <footer
           className="footer"
-          style={{ position: "fixed", height: "60px", bottom: "0" }}
+          style={{
+            position: "fixed",
+            height: "55px",
+            bottom: "0",
+            width: "500px"
+          }}
         >
           <MenuBawah />
         </footer>
