@@ -18,11 +18,11 @@ class Intro extends Component {
           Home
         </h1> */}
         {/* Banner */}
-        <div class="card rounded-0 text-center" style={{backgroundColor:'#39C2C9', color:'white'}}>
-          {/* <div class="card-header">Featured</div> */}
-          <div class="card-body">
-            <h5 class="card-title">Selamat Datang di SIPS</h5>
-            <p class="card-text">
+        <div className="card rounded-0 text-center" style={{backgroundColor:'#39C2C9', color:'white'}}>
+          {/* <div className="card-header">Featured</div> */}
+          <div className="card-body">
+            <h5 className="card-title">Selamat Datang di SIPS</h5>
+            <p className="card-text">
               Permudah proses penilaian dengan SIPS, mulai hidup lebih produktif ! 
             </p>
 
