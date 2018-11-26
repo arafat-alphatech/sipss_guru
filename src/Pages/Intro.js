@@ -23,8 +23,7 @@ class Intro extends Component {
           <div class="card-body">
             <h5 class="card-title">Selamat Datang di SIPS</h5>
             <p class="card-text">
-              With supporting text below as a natural lead-in to additional
-              content.
+              Permudah proses penilaian dengan SIPS, mulai hidup lebih produktif ! 
             </p>
             {/* <a href="#" class="btn btn-primary">
               Go somewhere
