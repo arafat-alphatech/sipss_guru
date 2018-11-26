@@ -22,59 +22,85 @@ class SignIn extends Component {
       return <Redirect to={{ pathname: "/intro" }} />;
     }
     return (
-      <div className="sign-in">
+        
+    <div className="sign-in">
+        <div className="card mb-3"
+            style={{ 
+                margin: "175px auto 0 auto",
+                maxWidth: "500px"
+            }}
+        >
         <h1 style={{ textAlign: "center" }}>Sign In</h1>
-        <form onSubmit={e => e.preventDefault()}>
-          <div className="form-label-group" style={{ marginRight: "20px" }}>
-            <TextField
-              required
-              id="outlined-required"
-              name="username"
-              type="text"
-              label="Username"
-              defaultValue=""
-              margin="normal"
-              variant="outlined"
-              style={{
-                marginLeft: "20px",
-                minWidth: "320px",
-                width: "95%",
-                marginRight: "20px"
-              }}
-              onChange={e => this.inputChange(e)}
-            />
-          </div>
-          <div className="form-label-group" style={{ marginRight: "20px" }}>
-            <TextField
-              required
-              id="outlined-required"
-              name="password"
-              type="password"
-              label="Password"
-              defaultValue=""
-              margin="normal"
-              variant="outlined"
-              style={{
-                marginLeft: "20px",
-                minWidth: "320px",
-                width: "95%",
-                marginRight: "20px"
-              }}
-              onChange={e => this.inputChange(e)}
-            />
-          </div>
-
-          <Link
-            to="/"
-            className="btn btn-primary"
-            style={{ minWidth: "320px", marginBottom: "10px", margin: "20px" }}
-            onClick={() =>
-              this.props.signInHandle(this.state.username, this.state.password)
-            }
+          <div
+          className="card-body"
           >
-            Masuk
-          </Link>
-        </form>
+            <form onSubmit={e => e.preventDefault()}>
+              <div
+                className="form-label-group"
+                style={{
+                    maxWidth: "500px",
+                    margin: "0 auto"
+                }}
+              >
+                <TextField
+                  required
+                  name="username"
+                  type="text"
+                  label="Username"
+                  defaultValue=""
+                  margin="normal"
+                  variant="outlined"
+                  style={{
+                    width: "100%"
+                  }}
+                  onChange={e => this.inputChange(e)}
+                />
+              </div>
+
+              <div
+                className="form-label-group"
+                style={{
+                  marginRight: "auto",
+                  marginLeft: "auto",
+                  maxWidth: "500px"
+                }}
+              >
+                <TextField
+                  required
+                  name="password"
+                  type="password"
+                  label="Password"
+                  defaultValue=""
+                  margin="normal"
+                  variant="outlined"
+                  style={{
+                    width: "100%"
+                  }}
+                  onChange={e => this.inputChange(e)}
+                />
+              </div>
+
+              {/* <div className='form-label-group' style={{marginLeft:'auto', marginRight:'auto'}}> */}
+              <Link
+                to="/"
+                className="btn btn-primary"
+                style={{
+                    width: "100%",
+                    marginTop:'30px'
+                }}
+                onClick={() =>
+                  this.props.signInHandle(
+                    this.state.username,
+                    this.state.password
+                  )
+                }
+              >
+                Masuk
+              </Link>
+              {/* </div> */}
+            </form>
+          </div>
+        </div>
       </div>
     );
   }
