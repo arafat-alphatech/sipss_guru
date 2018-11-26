@@ -45,7 +45,7 @@ class MenuBawah extends React.Component {
         />
         <BottomNavigationAction
           label="Keluar"
-          value="favorites"
+          value="keluar"
           icon={<PowerSettingsNew />}
         />
         <BottomNavigationAction

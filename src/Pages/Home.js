@@ -17,7 +17,7 @@ class Home extends Component {
     console.log("local state di home", this.state)
     return (
       <div>
-        <h1 style={{ textAlign: "center" }}> INI HOME BOSS</h1>
+        <h1 style={{ textAlign: "center", color:'#39C2C9', marginTop:'20px', marginBottom:'20px'}}> Pilih Kelas</h1>
 
         {/* Section Data Guru */}
         <div style={{ textAlign: "center" }}>
@@ -27,7 +27,7 @@ class Home extends Component {
             alt="..."
             className="img-thumbnail"
           />
-          <p>Nama Guru</p>
+          <p style={{marginTop:'10px'}}>Tom Cruise, S.Pd</p>
         </div>
         {/* Section Data Guru (end) */}
 
@@ -63,22 +63,6 @@ class Home extends Component {
             </div>
             {/* Pilih Mata Pelajaran (end) */}
 
-            {/* Button Menu Siswa */}
-            <Link
-              className='btn btn-primary'
-              to='tambah-ujian'
-              style={{
-                minWidth: "300px",
-                maxWidth: "800px",
-                marginBottom: "10px",
-                // backgroundColor: '#39C2C9',
-                // borderColor: '#39C2C9'
-              }}
-              >
-              Siswa
-              </Link>
-            <br />
-            {/* Button Menu Siswa (End) */}
 
             {/* Button Menu Ujian */}
             <Link
@@ -116,7 +100,7 @@ class Home extends Component {
               }}
               to='/'
             >
-              Rapor
+              Tambah Mata Pelajaran
             </Link>
             <br />
             {/* Button Menu Rapor (end) */}
@@ -131,7 +115,7 @@ class Home extends Component {
               }}
               to='/'
             >
-              Tambah Mata Pelajaran
+              Bantuan
             </Link>
           </div>
           {/* Button Mata Pelajaran (end) */}
