@@ -60,10 +60,13 @@ const actions = store => ({
       });
   },
   getKelas:async state => {
-    // const url = `${process.env.DB_HOST}/kelas`;
+    const token = state.token        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
     const url = "http://13.251.97.170:5001/kelas/"+state.id_tingkat;
     await axios
-      .get(url)
+      .get(url,{headers})
       .then(response => {
         store.setState({
           listNamaKelas: response.data.data
@@ -75,13 +78,17 @@ const actions = store => ({
       });
   },
   getUjian: async (state, id_kelas, id_mapel) => {
+    const token = state.token        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
     const url =
       "http://13.251.97.170:5001/paket-kelas?id_kelas=" +
       id_kelas +
       "&id_mapel=" +
       id_mapel;
     await axios
-      .get(url)
+      .get(url,{headers})
       .then(response => {
         store.setState({
           listUjian: response.data.data
@@ -93,9 +100,13 @@ const actions = store => ({
       });
   },
   getSoalSiapCetak: async (state, id_paket_soal) => {
+    const token = state.token        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
     const url = "http://13.251.97.170:5001/soal?id_paket_soal=" + id_paket_soal;
     await axios
-      .get(url)
+      .get(url,{headers})
       .then(response => {
         store.setState({
           siap_cetak: response.data.data,
@@ -118,9 +129,13 @@ const actions = store => ({
     });
   },
   getCurrentSoal: async (state, id_paket_soal) => {
+    const token = state.token        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
     const url = "http://13.251.97.170:5001/soal?id_paket_soal=" + id_paket_soal;
     await axios
-      .get(url)
+      .get(url,{headers})
       .then(response => {
         store.setState({
           current_all_soal: response.data.data,
@@ -133,6 +148,10 @@ const actions = store => ({
       });
   },
   postNewUjian: async state => {
+    const token = state.token        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
     const url = "http://13.251.97.170:5001/ujian";
     const data = {
       id_kelas: state.id_kelas,
@@ -143,7 +162,7 @@ const actions = store => ({
     };
     console.log("data yang dikirim ke API buat ujian", data);
     await axios
-      .post(url, data)
+      .post(url, data,{headers})
       .then(response => {
         store.setState({
           id_paket_soal: response.data.id_paket_soal
@@ -156,13 +175,17 @@ const actions = store => ({
       });
   },
   getChartData: async (state, id_paket_soal, id_kelas) => {
+    const token = state.token        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
     const url = "http://13.251.97.170:5001/dashboard";
     const data_kirim = {
       id_paket_soal: state.id_paket_soal,
       id_kelas: state.id_kelas
     };
     await axios
-      .post(url, data_kirim)
+      .post(url, data_kirim,{headers})
       .then(response => {
         store.setState({
           labels: response.data.no_soal,
@@ -175,13 +198,17 @@ const actions = store => ({
       });
   },
   getPaketByMapel: async state => {
+    const token = state.token        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
     const url = "http://13.251.97.170:5001/mapel";
     const data_kirim = {
       id_mapel: state.id_mapel,
       id_kelas: state.id_kelas
     };
     await axios
-      .post(url, data_kirim)
+      .post(url, data_kirim, {headers})
       .then(response => {
         store.setState({
           listPaketSoal: response.data.data

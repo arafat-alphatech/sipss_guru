@@ -176,9 +176,13 @@ class HalamanEdit extends Component {
         no_soal: no_soal
       };
       // jika user mengedit paket soal yang sudah pernah ada
+      const token = this.props.token        
+      const headers = {
+          Authorization: "Bearer " + token
+      };
       if (this.state.isEdit) {
         axios
-          .put(url, data)
+          .put(url, data, {headers})
           .then(response => {
             alert("Berhasil mengubah soal");
             this.props.editSoal(no_soal, data)
@@ -195,7 +199,7 @@ class HalamanEdit extends Component {
       // jika user membuat soal dari paket soal baru
       else {
         axios
-          .post(url, data)
+          .post(url, data, {headers})
           .then(response => {
             alert("Berhasil menambah soal");
             this.props.addNewSoal(data);
@@ -372,6 +376,6 @@ class HalamanEdit extends Component {
 }
 
 export default connect(
-  "listNamaKelas, listMapel, id_paket_soal, current_all_soal, jumlah_soal, current_jumlah_soal",
+  "listNamaKelas, listMapel, id_paket_soal, current_all_soal, jumlah_soal, current_jumlah_soal,token",
   actions
 )(withRouter(HalamanEdit));
