@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import { connect } from "unistore/react";
 import { actions } from "../store";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "../Styles/Home.css";
 import axios from "axios";
 
@@ -13,14 +13,12 @@ class Ujian extends Component {
   }
 
   render() {
-    const {
-      id_kelas,
-      id_mapel,
-      listMapel,
-      listNamaKelas,
-      listUjian
-    } = this.props;
+    const { id_kelas, id_mapel, listMapel, listNamaKelas, listUjian } = this.props;
     // console.log(listUjian)
+    if(id_kelas == '' || id_mapel == ''){
+      alert("Pilih kelas dan mata pelajaran dahulu")
+      return <Redirect to="/ujian" />
+    }
     return (
       <div>
         <h3

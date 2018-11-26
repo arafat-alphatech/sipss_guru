@@ -1,9 +1,15 @@
 import React, { Component } from "react";
 import MenuBawah from "../Components/MenuBawah";
-import {Link} from "react-router-dom"
+import {Link, Redirect} from "react-router-dom"
+import { connect } from "unistore/react";
+import { actions } from "../store";
 
 class Intro extends Component {
   render() {
+    if (!this.props.is_login) {
+      return <Redirect to={{ pathname: "/signin" }} />;
+    }
+    console.log(this.props.is_login)
     return (
       <div>
         <h1 style={{ textAlign: "center", color:'#39C2C9', marginTop:'20px' }}>Home</h1>
@@ -160,4 +166,7 @@ class Intro extends Component {
   }
 }
 
-export default Intro;
+export default connect(
+  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login",
+  actions
+)(Intro);

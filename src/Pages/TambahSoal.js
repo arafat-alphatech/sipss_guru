@@ -43,6 +43,10 @@ class HalamanEdit extends Component {
 
   componentWillMount = () => {
     let id = this.props.match.params.id;
+    this.pindahSoalHandle(id)
+  };
+
+  pindahSoalHandle = (id) => {
     let cur_soal = this.props.current_all_soal.find((val, index) => {
       return val.no_soal == id;
     });
@@ -64,7 +68,7 @@ class HalamanEdit extends Component {
         isEdit: true
       });
     }
-  };
+  }
 
   componentDidMount = () => {
     this.props.getKelas();
@@ -197,6 +201,7 @@ class HalamanEdit extends Component {
   };
 
   onSwitchSoal = e => {
+    this.pindahSoalHandle(e.target.value)
     let route = "/post-soal/" + e.target.value;
     this.props.history.push(route);
   };
@@ -217,21 +222,21 @@ class HalamanEdit extends Component {
         <div style={{ margin: "20px" }}>
           <div className="rdw-storybook-root">
             <Editor
-              // toolbarClassName="rdw-storybook-toolbar"
-              // wrapperClassName="rdw-storybook-wrapper"
-              // editorClassName="rdw-storybook-editor"
+              toolbarClassName="rdw-storybook-toolbar"
+              wrapperClassName="rdw-storybook-wrapper"
+              editorClassName="rdw-storybook-editor"
               editorState={this.state.editorState}
-              // toolbar={{
-              //   inline: { inDropdown: true },
-              //   list: { inDropdown: true },
-              //   textAlign: { inDropdown: true },
-              //   link: { inDropdown: true },
-              //   history: { inDropdown: true },
-              //   image: {
-              //     uploadCallback: this.uploadImageCallBack,
-              //     alt: { present: true, mandatory: false }
-              //   }
-              // }}
+              toolbar={{
+                inline: { inDropdown: true },
+                list: { inDropdown: true },
+                textAlign: { inDropdown: true },
+                link: { inDropdown: true },
+                history: { inDropdown: true },
+                image: {
+                  uploadCallback: this.uploadImageCallBack,
+                  alt: { present: true, mandatory: false }
+                }
+              }}
               onEditorStateChange={this.onEditorStateChange}
             />
           </div>
@@ -242,21 +247,10 @@ class HalamanEdit extends Component {
         {/* Edit Pilihan Jawaban */}
         <form>
           <div className="row">
-            {choice.map((item, key) => {
-              let option = [
-                "Pilihan A",
-                "Pilihan B",
-                "Pilihan C",
-                "Pilihan D",
-                "Pilihan E"
-              ];
-              let optionName = [
-                "optionA",
-                "optionB",
-                "optionC",
-                "optionD",
-                "optionE"
-              ];
+            {
+              choice.map((item, key) => {
+              let option = [ "Pilihan A", "Pilihan B", "Pilihan C", "Pilihan D", "Pilihan E"];
+              let optionName = ["optionA","optionB","optionC","optionD","optionE"];
               return (
                 <TextField
                   key={key}
@@ -264,7 +258,7 @@ class HalamanEdit extends Component {
                   id="outlined-required"
                   label={option[key]}
                   onChange={e => this.onOptionChange(e, option[key])}
-                  defaultValue={this.state[optionName[key]]}
+                  value={this.state[optionName[key]]}
                   margin="normal"
                   variant="outlined"
                   style={{
@@ -312,7 +306,7 @@ class HalamanEdit extends Component {
         <br />
         <Link
           className="btn btn-primary"
-          style={{ minWidth: "340px", margin: "20px" }}
+          style={{ minWidth: "320px", margin: "20px", marginBottom: "0px" }}
           to="#"
         >
           Kembali ke Menu Sebelumnya
@@ -321,6 +315,7 @@ class HalamanEdit extends Component {
 
         {/* Navigasi Soal */}
         <div style={{ margin: "20px" }}>
+
           <select
             className="form-control"
             onChange={e => this.onSwitchSoal(e)}

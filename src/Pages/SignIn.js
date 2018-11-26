@@ -18,8 +18,8 @@ class SignIn extends Component {
 
   render() {
     if (this.props.is_login) {
-      alert("Anda telah login !");
-      return <Redirect to={{ pathname: "/intro" }} />;
+      alert("Selamat datang !");
+      return <Redirect to={{ pathname: "/" }} />;
     }
     return (
         

@@ -179,7 +179,6 @@ const actions = store => ({
   },
   signInHandle: async (state, username, password) => {
     const url = "http://13.251.97.170:5001/login";
-
     const body = {
       username: username,
       password: password
@@ -196,6 +195,14 @@ const actions = store => ({
       .catch(err => {
         console.log(err);
       });
+  },
+  signOutHandle: (state) => {
+    store.setState({
+      is_login: false,
+      token: ""
+    })
+    alert('Sampai jumpa kembali')
+    localStorage.clear()
   },
   editSoal: (state, no_soal, data) => {
     let cur_soal = state.current_all_soal;
