@@ -102,13 +102,15 @@ const actions = store => ({
       .catch(err => {
         console.log(err);
       });
-      let n = 0;
-      state.siap_cetak.map((item, key) => {
-        n += 1;
-      });
-      store.setState({
-        current_jumlah_soal: n
-      });
+  },
+  checkJumlahSoal: async state =>{
+    let n = 0;
+    state.siap_cetak.map((item, key) => {
+      n += 1;
+    });
+    store.setState({
+      current_jumlah_soal: n
+    });
   },
   getCurrentSoal: async (state, id_paket_soal) => {
     const url = "http://13.251.97.170:5001/soal?id_paket_soal=" + id_paket_soal;
