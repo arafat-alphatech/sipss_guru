@@ -22,7 +22,7 @@ class ReviewSoal extends Component {
       alert("mulai download soal")
       const input = document.getElementById('divToPrint');
       const pdf = new jsPDF("portrait", "mm", "a4");
-      pdf.fromHTML(input, 1, 1);
+      pdf.fromHTML(input, 10, 10, {'width': 180 } );
       pdf.save("download.pdf");
     }
   }
@@ -38,15 +38,16 @@ class ReviewSoal extends Component {
               <div key={key} className="card mb-3" style={{ margin: "20px" }} >
                 <div className="card-body">
                   <div className="isi-soal">
-                    [{item.no_soal}]
-                    {item.narasi}
+                      {/* [{item.no_soal}] */}
+                      <p dangerouslySetInnerHTML= {{__html: [item.narasi.slice(0, 3), item.no_soal + '. ', item.narasi.slice(3)].join('')}} >
+                      </p>
                   </div>
                   <div className="pilihan-jawaban">
                     <p style={{ marginBottom: "0px" }}>(a) {item.option_A}</p>
                     <p style={{ marginBottom: "0px" }}>(b) {item.option_B}</p>
                     <p style={{ marginBottom: "0px" }}>(c) {item.option_C}</p>
                     <p style={{ marginBottom: "0px" }}>(d) {item.option_D}</p>
-                    <p style={{ marginBottom: "0px" }}>(e) {item.option_E}</p>
+                    <p style={{ marginBottom: "20px" }}>(e) {item.option_E}</p>
                   </div>
                 </div>
               </div>
