@@ -69,7 +69,7 @@ const MainRoute = () => {
       <Route exact path="/edit-soal/:id" component={HalamanEdit} />
       <Route exact path="/edit-soal-last" component={HalamanEditLast} />
       <Route exact path="/post-soal/:id" component={TambahSoal} />
-      <Route exact path="/review" component={ReviewSoal} />
+      <Route exact path="/review/:id" component={ReviewSoal} />
       <Route exact path="/signin" component={SignIn} />
       <Route exact path="/" component={Intro} />
       <Route exact path="/dashboard" component={Dashboard} />

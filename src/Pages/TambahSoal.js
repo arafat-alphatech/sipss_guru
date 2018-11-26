@@ -95,7 +95,7 @@ class HalamanEdit extends Component {
       deskripsi_soal: draftToHtml(convertToRaw(editorState.getCurrentContent()))
     });
     // console.log(draftToHtml(convertToRaw(this.state.editorState.getCurrentContent())))
-    console.log(this.state);
+    console.log(this.state.deskripsi_soal);
   };
 
   onJawabanChange = e => {
@@ -164,8 +164,8 @@ class HalamanEdit extends Component {
           .then(response => {
             alert("Berhasil mengubah soal");
             this.props.editSoal(no_soal, data);
-            this.setState(this.InitialState);
-            console.log("Res edit soal", response);
+            // this.setState(this.InitialState);
+            console.log("body edit", data);
             const no_soal = this.props.match.params.id;
             const route = "/post-soal/" + (parseInt(no_soal) + 1);
             this.props.history.push(route);

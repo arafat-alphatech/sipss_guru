@@ -5,6 +5,7 @@ import { actions } from "../store";
 import { Link, Redirect } from "react-router-dom";
 import "../Styles/Home.css";
 import axios from "axios";
+import RiwayatUjian from '../Components/RiwayatUjian'
 
 class Ujian extends Component {
   componentWillMount() {
@@ -134,88 +135,11 @@ class Ujian extends Component {
           className="card mb-3"
           style={{ marginLeft: "10px", marginRight: "10px", marginTop:'30px' }}
         >
-          {/* Isi card riwayat ujian */}
-          <div className="card-body">
-            <h5 style={{ textAlign: "center", marginBottom: "20px" }}>
-              Riwayat Ujian
-              <h6>
-                &nbsp;
-                {listNamaKelas.map((item, key) => {
-                  if (item.id_kelas == id_kelas) {
-                    return item.nama_kelas;
-                  }
-                })}
-                &nbsp; - &nbsp;
-                {listMapel.map((item, key) => {
-                  if (item.id_mapel == id_mapel) {
-                    return item["mapel.nama_mapel"];
-                  }
-                })}
-              </h6>
-            </h5>
-            
-            <div className='row' style={{marginBottom:'20px'}}>
-                <div className='col-7'><strong>Kode Soal</strong></div>
-                <div className='col-5'><i class="fas fa-print" style={{color:'#39C2C9'}}></i>&nbsp;<strong>Cetak</strong></div>
-            </div>
-
-            {listUjian.map((item, key) => {
-              return (
-                <div className='row' 
-                style={{marginBottom:'10px'}}
-                key={key}>
-                <div className='col-5'>
-                  <Link
-                    to="/post-soal/1"
-                    onClick={() =>
-                      this.props.getCurrentSoal(item.id_paket_soal)
-                    }
-                    style={{color:'#39C2C9'}}
-                  >
-                    {item["paket_soal.kode_soal"]}-{item.id_paket_soal}
-                  </Link>
-                  </div>
-                  <div className='col-7'>
-                    <div className='row'>
-                      <div className='col-6'>
-                  <a
-                    href={
-                      "http://13.251.97.170:5001/build?id_paket_soal=" +
-                      item.id_paket_soal +
-                      "&id_kelas=" +
-                      item.id_kelas
-                    }
-                    className="btn btn-primary"
-                    style={{minWidth:'80px'}}
-                  >
-                    Soal
-                  </a>
-                      
-                      </div>
-                      <div className='col-6'>
-                      <a 
-                    href={
-                      "http://13.251.97.170:5001/build?id_paket_soal=" +
-                      item.id_paket_soal +
-                      "&id_kelas=" +
-                      item.id_kelas
-                    }
-                    
-                    
-                  > <button style={{minWidth:'80px'}} className="btn btn-primary" disabled={false}>LJK</button>
-                    
-                  </a>
-                      </div>
-                    </div>
-
-                  
-                  </div>
-                </div>
-              );
-            })}
-
-            {/* Isi card riwayat ujian (end) */}
-          </div>
+        <RiwayatUjian listNamaKelas={listNamaKelas}
+                       listMapel={listMapel}
+                       id_kelas={id_kelas}
+                       id_mapel={id_mapel}
+                       listUjian={listUjian}/>
         </div>
       </div>
     );

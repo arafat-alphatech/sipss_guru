@@ -23,7 +23,8 @@ const initialState = {
   token: "",
   type: "",
   is_login: false,
-  current_jumlah_soal: ""
+  current_jumlah_soal: "",
+  siap_cetak:[]
 };
 
 const store =
@@ -84,6 +85,29 @@ const actions = store => ({
       })
       .catch(err => {
         console.log(err);
+      });
+  },
+  getSoalSiapCetak: async (state, id_paket_soal) => {
+    const url = "http://13.251.97.170:5001/soal?id_paket_soal=" + id_paket_soal;
+    await axios
+      .get(url)
+      .then(response => {
+        store.setState({
+          siap_cetak: response.data.data,
+          jumlah_soal: response.data.jumlah_soal
+        });
+        console.log("Soal Siap Cetak: ", response.data.data);
+        console.log("Target jumlah soal: ",response.data.jumlah_soal)
+      })
+      .catch(err => {
+        console.log(err);
+      });
+      let n = 0;
+      state.siap_cetak.map((item, key) => {
+        n += 1;
+      });
+      store.setState({
+        current_jumlah_soal: n
       });
   },
   getCurrentSoal: async (state, id_paket_soal) => {
