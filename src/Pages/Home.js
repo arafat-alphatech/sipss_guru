@@ -42,7 +42,7 @@ class Home extends Component {
         </div>
         {/* Section Data Guru (end) */}
 
-        {/* Piih Kelas */}
+        {/* Piih Tingkat Kelas */}
         <div style={{ margin: "10px" }}>
           <select
             className="form-control"
@@ -51,7 +51,7 @@ class Home extends Component {
             onChange={e => this.props.setField(e)}
             onClick={() => this.props.getMaPel()}
           >
-            <option>Pilih Kelas</option>
+            <option>Tingkat Kelas</option>
             {listNamaKelas.map((item, key) => {
               return (
                 <option value={item.id_kelas} key={key}>
@@ -62,6 +62,27 @@ class Home extends Component {
           </select>
         </div>
         {/* Pilih Kelas (end) */}
+
+             {/* Piih Nama Kelas */}
+             <div style={{ margin: "10px" }}>
+          <select
+            className="form-control"
+            value={listNamaKelas.id_kelas}
+            name="id_kelas"
+            onChange={e => this.props.setField(e)}
+            onClick={() => this.props.getMaPel()}
+          >
+            <option>Nama Kelas</option>
+            {listNamaKelas.map((item, key) => {
+              return (
+                <option value={item.id_kelas} key={key}>
+                  {item.nama_kelas}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        {/* Pilih Nama Kelas (end) */}
 
         {/* div Card Kelas */}
         <div

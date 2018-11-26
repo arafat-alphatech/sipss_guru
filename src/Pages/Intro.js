@@ -25,9 +25,7 @@ class Intro extends Component {
             <p class="card-text">
               Permudah proses penilaian dengan SIPS, mulai hidup lebih produktif ! 
             </p>
-            {/* <a href="#" class="btn btn-primary">
-              Go somewhere
-            </a> */}
+
           </div>
         </div>
         {/* Banner (end) */}
