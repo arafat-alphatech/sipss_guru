@@ -4,7 +4,6 @@ import { connect } from "unistore/react";
 import { actions } from "../store";
 import { Link, Redirect } from "react-router-dom";
 import "../Styles/Home.css";
-import axios from "axios";
 import RiwayatUjian from '../Components/RiwayatUjian'
 import MenuBawah from "../Components/MenuBawah";
 
@@ -23,7 +22,7 @@ class Ujian extends Component {
       listUjian
     } = this.props;
     // console.log(listUjian)
-    if (id_kelas == "" || id_mapel == "") {
+    if (id_kelas === "" || id_mapel === "") {
       alert("Pilih kelas dan mata pelajaran dahulu");
       return <Redirect to="/ujian" />;
     }
@@ -47,7 +46,7 @@ class Ujian extends Component {
           <h5 style={{ textAlign: "center", marginTop: "20px" }}>
             Kelas &nbsp;
             {listNamaKelas.map((item, key) => {
-              if (item.id_kelas == id_kelas) {
+              if (item.id_kelas === id_kelas) {
                 return item.nama_kelas;
               }
             })}
@@ -56,7 +55,7 @@ class Ujian extends Component {
           <h5 style={{ textAlign: "center" }}>
             &nbsp;
             {listMapel.map((item, key) => {
-              if (item.id_mapel == id_mapel) {
+              if (item.id_mapel === id_mapel) {
                 return item["mapel.nama_mapel"];
               }
             })}{" "}

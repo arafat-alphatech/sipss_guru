@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
-import TextField from '@material-ui/core/TextField';
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import { Link } from "react-router-dom";
 import Chart from '../Components/Graph';
-import axios from 'axios';
 
 class Dashboard extends Component {
 

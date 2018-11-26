@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 // import NotFound from '../images.jpg'
-import NotFound from '../notFound.jpg'
 var ReactDOMServer = require('react-dom/server');
 var HtmlToReactParser = require('html-to-react').Parser;
 

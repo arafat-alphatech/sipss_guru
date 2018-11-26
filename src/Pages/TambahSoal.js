@@ -8,17 +8,14 @@ import {
   EditorState,
   convertToRaw,
   ContentState,
-  convertFromHTML,
-  convertFromRaw
+  convertFromHTML
 } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "../Styles/EditorSoal.css";
-import DraftPasteProcessor from 'draft-js/lib/DraftPasteProcessor';
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 
 //Import untuk Component UI
-import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Divider from "@material-ui/core/Divider";
 import "../Styles/Home.css";
@@ -56,11 +53,11 @@ class HalamanEdit extends Component {
 
   pindahSoalHandle = (no_soal) => {
     let cur_soal = this.props.current_all_soal.find((val, index) => {
-      return val.no_soal == no_soal;
+      return val.no_soal === no_soal;
     });
 
     // cek apakah no soal ada di global state, kalau ada muncul di component
-    if (cur_soal != undefined) {
+    if (cur_soal !== undefined) {
 
       const blocksFromHTML = convertFromHTML(cur_soal.narasi)
       let editorState = ContentState.createFromBlockArray(
@@ -154,13 +151,13 @@ class HalamanEdit extends Component {
       jawaban
     } = this.state;
     if (
-      deskripsi_soal == "" ||
-      optionA == "" ||
-      optionB == "" ||
-      optionC == "" ||
-      optionD == "" ||
-      optionE == "" ||
-      jawaban == ""
+      deskripsi_soal === "" ||
+      optionA === "" ||
+      optionB === "" ||
+      optionC === "" ||
+      optionD === "" ||
+      optionE === "" ||
+      jawaban === ""
     ) {
       alert("Pastikan semua kolom terisi");
       // this.props.history.push('#')
@@ -234,8 +231,6 @@ class HalamanEdit extends Component {
     // console.log(this.props.current_all_soal)
 
     const no_soal = this.props.match.params.no_soal;
-    const route = "/post-soal/" + (parseInt(no_soal) + 1);
-    const listNamaKelas = this.props.listNamaKelas;
     let choice = ["A", "B", "C", "D", "E"];
     return (
       <div className="Halaman Edit">

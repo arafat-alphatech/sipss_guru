@@ -24,13 +24,13 @@ class RiwayatUjian extends Component {
                 <h6>
                     &nbsp;
                     {this.props.listNamaKelas.map((item, key) => {
-                        if (item.id_kelas == this.props.id_kelas) {
+                        if (item.id_kelas === this.props.id_kelas) {
                             return item.nama_kelas;
                         }
                     })}
                     &nbsp; - &nbsp;
                     {this.props.listMapel.map((item, key) => {
-                        if (item.id_mapel == this.props.id_mapel) {
+                        if (item.id_mapel === this.props.id_mapel) {
                             return item["mapel.nama_mapel"];
                         }
                     })}
