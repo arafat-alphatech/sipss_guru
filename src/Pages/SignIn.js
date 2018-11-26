@@ -23,10 +23,10 @@ class SignIn extends Component {
     }
     return (
         
-    <div className="sign-in">
+    <div className="sign-in" style={{padding:'20px'}}>
         <div className="card mb-3"
             style={{ 
-                margin: "175px auto 0 auto",
+                margin: "50px auto 0 auto",
                 maxWidth: "500px"
             }}
         >
