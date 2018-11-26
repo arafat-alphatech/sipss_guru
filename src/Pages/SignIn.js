@@ -19,14 +19,14 @@ class SignIn extends Component {
   render() {
     if (this.props.is_login) {
       alert("Selamat datang !");
-      return <Redirect to={{ pathname: "/" }} />;
+      return <Redirect to="/" />;
     }
     return (
         
-    <div className="sign-in">
+    <div className="sign-in" style={{padding:'20px'}}>
         <div className="card mb-3"
             style={{ 
-                margin: "175px auto 0 auto",
+                margin: "50px auto 0 auto",
                 maxWidth: "500px"
             }}
         >
@@ -81,8 +81,7 @@ class SignIn extends Component {
               </div>
 
               {/* <div className='form-label-group' style={{marginLeft:'auto', marginRight:'auto'}}> */}
-              <Link
-                to="/"
+              <button
                 className="btn btn-primary"
                 style={{
                     width: "100%",
@@ -96,7 +95,7 @@ class SignIn extends Component {
                 }
               >
                 Masuk
-              </Link>
+              </button>
               {/* </div> */}
             </form>
           </div>

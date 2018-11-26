@@ -6,6 +6,7 @@ import { Link, Redirect } from "react-router-dom";
 import "../Styles/Home.css";
 import axios from "axios";
 import RiwayatUjian from '../Components/RiwayatUjian'
+import MenuBawah from "../Components/MenuBawah";
 
 class Ujian extends Component {
   componentWillMount() {
@@ -14,11 +15,17 @@ class Ujian extends Component {
   }
 
   render() {
-    const { id_kelas, id_mapel, listMapel, listNamaKelas, listUjian } = this.props;
+    const {
+      id_kelas,
+      id_mapel,
+      listMapel,
+      listNamaKelas,
+      listUjian
+    } = this.props;
     // console.log(listUjian)
-    if(id_kelas == '' || id_mapel == ''){
-      alert("Pilih kelas dan mata pelajaran dahulu")
-      return <Redirect to="/ujian" />
+    if (id_kelas == "" || id_mapel == "") {
+      alert("Pilih kelas dan mata pelajaran dahulu");
+      return <Redirect to="/ujian" />;
     }
     return (
       <div>
@@ -27,7 +34,7 @@ class Ujian extends Component {
             textAlign: "center",
             marginBottom: "20px",
             marginTop: "20px",
-            color:'#39C2C9'
+            color: "#39C2C9"
           }}
         >
           Tambah Ujian
@@ -37,7 +44,7 @@ class Ujian extends Component {
           className="card mb-3"
           style={{ marginLeft: "10px", marginRight: "10px" }}
         >
-          <h5 style={{ textAlign: "center", marginTop:'20px'}}>
+          <h5 style={{ textAlign: "center", marginTop: "20px" }}>
             Kelas &nbsp;
             {listNamaKelas.map((item, key) => {
               if (item.id_kelas == id_kelas) {
@@ -133,7 +140,7 @@ class Ujian extends Component {
 
         <div
           className="card mb-3"
-          style={{ marginLeft: "10px", marginRight: "10px", marginTop:'30px' }}
+          style={{ marginLeft: "10px", marginRight: "10px", marginTop: "30px" }}
         >
         <RiwayatUjian listNamaKelas={listNamaKelas}
                        listMapel={listMapel}
@@ -141,6 +148,18 @@ class Ujian extends Component {
                        id_mapel={id_mapel}
                        listUjian={listUjian}/>
         </div>
+        <div style={{marginTop:'80px'}}></div>
+        <footer
+          className="footer"
+          style={{
+            position: "fixed",
+            height: "55px",
+            bottom: "0",
+            width: "500px"
+          }}
+        >
+          <MenuBawah />
+        </footer>
       </div>
     );
   }
