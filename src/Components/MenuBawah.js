@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import Icon from "@material-ui/core/Icon";
-import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
+import Home from "@material-ui/icons/Home";
 import Fullscreen from "@material-ui/icons/Fullscreen";
 import PowerSettingsNew from "@material-ui/icons/PowerSettingsNew";
 import {withRouter} from "react-router-dom";
@@ -13,7 +13,7 @@ import { actions } from "../store";
 
 const styles = {
   root: {
-    width: 500
+    width: 360
   }
 };
 
@@ -25,6 +25,10 @@ class MenuBawah extends React.Component {
   handleChange = (event, value) => {
     this.setState({ value });
   };
+
+  backHome = () => {
+    this.props.history.push('/')
+  }
 
   logout = () => {
     this.props.signOutHandle()
@@ -38,13 +42,15 @@ class MenuBawah extends React.Component {
       <BottomNavigation
         value={value}
         onChange={this.handleChange}
+        showLabels
         className={classes.root}
-      >
+      > 
         <BottomNavigationAction
-          label="Kembali"
-          value="recents"
-          icon={<ArrowBackIos />}
-        />
+          label="Home"
+          value="home"
+          icon={<Home />}
+          onClick={() => this.backHome()}
+          />
         <BottomNavigationAction
           label="Fullscreen"
           value="fulscreen"
@@ -53,13 +59,10 @@ class MenuBawah extends React.Component {
         <BottomNavigationAction
           label="Keluar"
           value="keluar"
+          onClick={() => this.logout()}
           icon={<PowerSettingsNew />}
         />
-        <BottomNavigationAction
-          label="Folder"
-          value="folder"
-          icon={<Icon>folder</Icon>}
-        />
+       
       </BottomNavigation>
     );
   }

@@ -37,10 +37,7 @@ class RiwayatUjian extends Component {
                             key={key}>
                             <div className='col-5'>
                                 <Link
-                                    to="/post-soal/1"
-                                    onClick={() =>
-                                        this.props.getCurrentSoal(item.id_paket_soal)
-                                    }
+                                    to={ "/post-soal/" + item.id_paket_soal + '/1' }
                                     style={{ color: '#39C2C9' }}
                                 >
                                     {item["paket_soal.kode_soal"]}-{item.id_paket_soal}
