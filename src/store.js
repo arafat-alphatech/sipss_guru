@@ -3,10 +3,12 @@ import devtools from "unistore/devtools";
 import axios from "axios";
 import persistStore from "unissist";
 import localStorageAdapter from "unissist/integrations/localStorageAdapter";
+import { stat } from "fs";
 
 const initialState = {
   id_kelas: "",
   id_mapel: "",
+  id_tingkat: "",
   id_paket_soal: "",
   listMapel: [],
   listNamaKelas: [],
@@ -24,7 +26,8 @@ const initialState = {
   type: "",
   is_login: false,
   current_jumlah_soal: "",
-  siap_cetak:[]
+  siap_cetak:[],
+  listTingkat: [{"id_tingkat":1,"nama_tingkat":"VII"},{"id_tingkat":2,"nama_tingkat":"VIII"},{"id_tingkat":3,"nama_tingkat":"IX"}]
 };
 
 const store =
@@ -54,10 +57,10 @@ const actions = store => ({
         console.log(err);
       });
   },
-  getKelas() {
+  getKelas:async state => {
     // const url = `${process.env.DB_HOST}/kelas`;
-    const url = "http://13.251.97.170:5001/kelas";
-    axios
+    const url = "http://13.251.97.170:5001/kelas/"+state.id_tingkat;
+    await axios
       .get(url)
       .then(response => {
         store.setState({
@@ -216,9 +219,9 @@ const actions = store => ({
           token: response.data.token,
           is_login: true
         });
-        // console.log("Response: ", response);
       })
       .catch(err => {
+        alert("masukkan username dan password yang benar");
         console.log(err);
       });
   },
