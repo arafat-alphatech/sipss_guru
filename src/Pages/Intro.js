@@ -49,7 +49,7 @@ class Intro extends Component {
                 <img
                   className="card-img-top"
                   src="https://i.ibb.co/84Mzb8H/ujian.png"
-                  alt="Card image cap"
+                  alt="Card-cap"
                   style={{ maxWidth: "140px", maxHeight: "100px" }}
                 />
                 <div
@@ -92,7 +92,7 @@ class Intro extends Component {
                 <img
                   className="card-img-top"
                   src="http://icons-for-free.com/free-icons/png/512/2136425.png"
-                  alt="Card image cap"
+                  alt="Card-cap"
                   style={{ maxWidth: "140px", height: "100px" }}
                 />
                 <div
@@ -139,7 +139,7 @@ class Intro extends Component {
               <img
                 className="card-img-top"
                 src="https://i.ibb.co/hWPJS61/summary-icon.png"
-                alt="Card image cap"
+                alt="Card-cap"
                 style={{ width: "120px", height: "100px" }}
               />
               <div
@@ -175,7 +175,7 @@ class Intro extends Component {
               <img
                 className="card-img-top"
                 src="https://i.ibb.co/rZNGTsV/storyblocks-teacher-in-the-classroom-with-students-vector-illustration-design-Bd-YUS3o9m-thumb.jpg"
-                alt="Card image cap"
+                alt="Card-cap"
                 style={{ maxWidth: "140px", height: "100px" }}
               />
               <div

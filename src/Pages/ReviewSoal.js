@@ -3,8 +3,6 @@ import { actions } from "../store";
 import { connect } from "unistore/react";
 import { Link } from 'react-router-dom';
 import '../Styles/Home.css';
-import { ContentState, convertFromRaw } from "draft-js";
-import draftToHtml from "draftjs-to-html";
 import jsPDF from 'jspdf';
 
 import MenuBawah from '../Components/MenuBawah'

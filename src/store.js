@@ -7,7 +7,7 @@ import localStorageAdapter from "unissist/integrations/localStorageAdapter";
 const initialState = {
   id_kelas: "",
   id_mapel: "",
-  id_paket_soal: "",
+  id_tingkat: "",
   listMapel: [],
   listNamaKelas: [],
   listUjian: [],
@@ -24,7 +24,8 @@ const initialState = {
   type: "",
   is_login: false,
   current_jumlah_soal: "",
-  siap_cetak:[]
+  siap_cetak:[],
+  listTingkat: [{"id_tingkat":1,"nama_tingkat":"VII"},{"id_tingkat":2,"nama_tingkat":"VIII"},{"id_tingkat":3,"nama_tingkat":"IX"}]
 };
 
 const store =
@@ -41,9 +42,13 @@ const actions = store => ({
   },
 
   getMaPel: async state => {
+    const token = state.token        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
     const url = "http://13.251.97.170:5001/kelas-mapel/" + state.id_kelas;
     await axios
-      .get(url)
+      .get(url,{headers})
       .then(response => {
         store.setState({
           listMapel: response.data.data
@@ -54,10 +59,10 @@ const actions = store => ({
         console.log(err);
       });
   },
-  getKelas() {
+  getKelas:async state => {
     // const url = `${process.env.DB_HOST}/kelas`;
-    const url = "http://13.251.97.170:5001/kelas";
-    axios
+    const url = "http://13.251.97.170:5001/kelas/"+state.id_tingkat;
+    await axios
       .get(url)
       .then(response => {
         store.setState({
@@ -216,9 +221,9 @@ const actions = store => ({
           token: response.data.token,
           is_login: true
         });
-        // console.log("Response: ", response);
       })
       .catch(err => {
+        alert("masukkan username dan password yang benar");
         console.log(err);
       });
   },
@@ -233,7 +238,7 @@ const actions = store => ({
   editSoal: (state, no_soal, data) => {
     let cur_soal = state.current_all_soal;
     cur_soal.map((item, key) => {
-      if (item.no_soal == no_soal) {
+      if (item.no_soal === no_soal) {
         return (cur_soal[key] = data);
       }
     });

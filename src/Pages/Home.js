@@ -1,21 +1,21 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
 import "../Styles/Home.css";
 import { connect } from "unistore/react";
 import { actions } from "../store";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import MenuBawah from "../Components/MenuBawah";
 import '../Styles/Home.css'
 
 class Home extends Component {
-  componentDidMount = () => {
-    this.props.getKelas();
-    this.props.getMaPel();
-  };
+  // componentDidMount = () => {
+  //   this.props.getKelas();
+  //   this.props.getMaPel();
+  // };
 
   render() {
     const listNamaKelas = this.props.listNamaKelas;
     const listMapel = this.props.listMapel;
+    const listTingkat = this.props.listTingkat;
     return (
       <div className='Site'>
         <h1
@@ -46,16 +46,16 @@ class Home extends Component {
         <div style={{ margin: "10px" }}>
           <select
             className="form-control"
-            value={listNamaKelas.id_kelas}
-            name="id_kelas"
+            value={listTingkat.id_tingkat}
+            name="id_tingkat"
             onChange={e => this.props.setField(e)}
-            onClick={() => this.props.getMaPel()}
+            onClick={() => this.props.getKelas()}
           >
             <option>Tingkat Kelas</option>
-            {listNamaKelas.map((item, key) => {
+            {listTingkat.map((item, key) => {
               return (
-                <option value={item.id_kelas} key={key}>
-                  {item.nama_kelas}
+                <option value={item.id_tingkat} key={key}>
+                  {item.nama_tingkat}
                 </option>
               );
             })}
@@ -194,6 +194,6 @@ class Home extends Component {
 }
 
 export default connect(
-  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login",
+  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat",
   actions
 )(Home);

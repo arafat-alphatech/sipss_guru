@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import Icon from "@material-ui/core/Icon";
 import Home from "@material-ui/icons/Home";
 import Fullscreen from "@material-ui/icons/Fullscreen";
 import PowerSettingsNew from "@material-ui/icons/PowerSettingsNew";
