@@ -119,7 +119,7 @@ const actions = store => ({
           current_all_soal: response.data.data,
           jumlah_soal: response.data.jumlah_soal
         });
-        console.log("List current soal: ", response.data);
+        console.log("hasil get api current soal: ", response.data);
       })
       .catch(err => {
         console.log(err);

@@ -8,10 +8,12 @@ import {
   EditorState,
   convertToRaw,
   ContentState,
-  convertFromHTML
+  convertFromHTML,
+  convertFromRaw
 } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "../Styles/EditorSoal.css";
+import DraftPasteProcessor from 'draft-js/lib/DraftPasteProcessor';
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 
@@ -42,22 +44,38 @@ class HalamanEdit extends Component {
   };
 
   componentWillMount = () => {
-    let id = this.props.match.params.id;
-    this.pindahSoalHandle(id)
+    let id_paket_soal = this.props.match.params.id_paket_soal
+    this.props.getCurrentSoal(id_paket_soal).then((value) => {
+      let no_soal = this.props.match.params.no_soal;
+      this.pindahSoalHandle(no_soal)
+      // console.log("current all soal:", this.props.current_all_soal)
+    })
+
   };
 
-  pindahSoalHandle = (id) => {
+  pindahSoalHandle = (no_soal) => {
     let cur_soal = this.props.current_all_soal.find((val, index) => {
-      return val.no_soal == id;
+      return val.no_soal == no_soal;
     });
 
     // cek apakah no soal ada di global state, kalau ada muncul di component
     if (cur_soal != undefined) {
-      // console.log(cur_soal.option_B)
+
+      const blocksFromHTML = convertFromHTML(cur_soal.narasi)
+      let editorState = ContentState.createFromBlockArray(
+        blocksFromHTML.contentBlocks,
+        blocksFromHTML.entityMap
+      )
+      editorState = EditorState.createWithContent(editorState)
+
+      // const processedHTML = DraftPasteProcessor.processHTML(cur_soal.narasi);
+      // const contentState = ContentState.createFromBlockArray(processedHTML);
+      // //move focus to the end. 
+      // let editorState = EditorState.createWithContent(contentState);
+      // editorState = EditorState.moveFocusToEnd(editorState);
+
       this.setState({
-        editorState: EditorState.createWithContent(
-          ContentState.createFromBlockArray(convertFromHTML(cur_soal.narasi))
-        ),
+        editorState: editorState,
         deskripsi_soal: cur_soal.narasi,
         optionA: cur_soal.option_A,
         optionB: cur_soal.option_B,
@@ -67,6 +85,7 @@ class HalamanEdit extends Component {
         jawaban: cur_soal.jawaban,
         isEdit: true
       });
+
     }
   }
 
@@ -122,6 +141,8 @@ class HalamanEdit extends Component {
   };
 
   postNewSoal = () => {
+    let id_paket_soal = parseInt(this.props.match.params.id_paket_soal)
+    const no_soal = parseInt(this.props.match.params.no_soal);
     const {
       deskripsi_soal,
       optionA,
@@ -131,7 +152,6 @@ class HalamanEdit extends Component {
       optionE,
       jawaban
     } = this.state;
-    const no_soal = parseInt(this.props.match.params.id);
     if (
       deskripsi_soal == "" ||
       optionA == "" ||
@@ -141,13 +161,13 @@ class HalamanEdit extends Component {
       optionE == "" ||
       jawaban == ""
     ) {
-      alert("OOOO tidak bisaa....");
+      alert("Pastikan semua kolom terisi");
       // this.props.history.push('#')
       console.log(this.state);
     } else {
       const url = "http://13.251.97.170:5001/soal";
       const data = {
-        id_paket_soal: this.props.id_paket_soal,
+        id_paket_soal: id_paket_soal,
         narasi: this.state.deskripsi_soal,
         option_A: this.state.optionA,
         option_B: this.state.optionB,
@@ -163,12 +183,10 @@ class HalamanEdit extends Component {
           .put(url, data)
           .then(response => {
             alert("Berhasil mengubah soal");
-            this.props.editSoal(no_soal, data);
+            this.props.editSoal(no_soal, data)
             // this.setState(this.InitialState);
             console.log("body edit", data);
-            const no_soal = this.props.match.params.id;
-            const route = "/post-soal/" + (parseInt(no_soal) + 1);
-            this.props.history.push(route);
+            console.log('current soal di cmponent', this.props.current_all_soal)
           })
           .catch(err => {
             console.log(err);
@@ -183,7 +201,7 @@ class HalamanEdit extends Component {
             this.props.addNewSoal(data);
             this.setState(this.InitialState);
             console.log("Res post new soal", response);
-            const no_soal = this.props.match.params.id;
+            const no_soal = this.props.match.params.no_soal;
             if (this.props.current_jumlah_soal < this.props.jumlah_soal) {
               const route = "/post-soal/" + (parseInt(no_soal) + 1);
               this.props.history.push(route);
@@ -202,7 +220,9 @@ class HalamanEdit extends Component {
 
   onSwitchSoal = e => {
     this.pindahSoalHandle(e.target.value)
-    let route = "/post-soal/" + e.target.value;
+    
+    let id_paket_soal = parseInt(this.props.match.params.id_paket_soal)
+    let route = "/post-soal/" + id_paket_soal + "/" + e.target.value;
     this.props.history.push(route);
   };
 
@@ -210,7 +230,7 @@ class HalamanEdit extends Component {
     // console.log(this.state)
     // console.log(this.props.current_all_soal)
 
-    const no_soal = this.props.match.params.id;
+    const no_soal = this.props.match.params.no_soal;
     const route = "/post-soal/" + (parseInt(no_soal) + 1);
     const listNamaKelas = this.props.listNamaKelas;
     let choice = ["A", "B", "C", "D", "E"];
@@ -307,7 +327,7 @@ class HalamanEdit extends Component {
         <Link
           className="btn btn-primary"
           style={{ minWidth: "320px", margin: "20px", marginBottom: "0px" }}
-          to="#"
+          to="/tambah-ujian"
         >
           Kembali ke Menu Sebelumnya
         </Link>

@@ -2,8 +2,8 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Loadable from "react-loadable";
 import '../Styles/loading.css'
-
-const Loading = () => <div className='loading'>Loading . . .</div>;
+import Loading from '../Components/Loading'
+import NotMatch from '../Components/NotMatch'
 
 const Home = Loadable({
   loader: () => import(/* webpackChunkName: "home"*/ "../Pages/Home"),
@@ -55,11 +55,6 @@ const Intro = Loadable({
   loading: () => <Loading />
 });
 
-// const NotMatch = Loadable({
-//     loader: () => import(/* webpackChunkName: "404"*/ "../Pages/NotMatch"),
-//     loading: () => <Loading />
-// });
-
 const MainRoute = () => {
   return (
     <Switch>
@@ -68,12 +63,13 @@ const MainRoute = () => {
       <Route exact path="/review-info-ujian" component={Ujian} />
       <Route exact path="/edit-soal/:id" component={HalamanEdit} />
       <Route exact path="/edit-soal-last" component={HalamanEditLast} />
-      <Route exact path="/post-soal/:id" component={TambahSoal} />
+      <Route exact path="/post-soal/:id_paket_soal/:no_soal" component={TambahSoal} />
       <Route exact path="/review/:id" component={ReviewSoal} />
       <Route exact path="/signin" component={SignIn} />
       <Route exact path="/" component={Intro} />
+      <Route exact path="/loading" component={Loading} />
       <Route exact path="/dashboard" component={Dashboard} />
-      {/* <Route component={NotMatch} /> */}
+      <Route component={NotMatch} />
     </Switch>
   );
 };
