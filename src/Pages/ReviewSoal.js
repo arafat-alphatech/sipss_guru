@@ -21,7 +21,8 @@ class ReviewSoal extends Component {
       alert("mulai download soal")
       const input = document.getElementById('divToPrint');
       const pdf = new jsPDF("portrait", "mm", "a4");
-      pdf.fromHTML(input, 1, 1);
+      pdf.fromHTML(input, 10, 10, {'width': 190});
+      pdf.fromHTML(input.get)
       pdf.save("download.pdf");
     }
   }
