@@ -195,17 +195,17 @@ class Ujian extends Component {
                       
                       </div>
                       <div className='col-6'>
-                      <a
+                      <a 
                     href={
                       "http://13.251.97.170:5001/build?id_paket_soal=" +
                       item.id_paket_soal +
                       "&id_kelas=" +
                       item.id_kelas
                     }
-                    className="btn btn-primary"
-                    style={{minWidth:'80px'}}
-                  >
-                    LJK
+                    
+                    
+                  > <button style={{minWidth:'80px'}} className="btn btn-primary" disabled={false}>LJK</button>
+                    
                   </a>
                       </div>
                     </div>
