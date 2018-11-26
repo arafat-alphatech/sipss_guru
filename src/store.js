@@ -3,13 +3,11 @@ import devtools from "unistore/devtools";
 import axios from "axios";
 import persistStore from "unissist";
 import localStorageAdapter from "unissist/integrations/localStorageAdapter";
-import { stat } from "fs";
 
 const initialState = {
   id_kelas: "",
   id_mapel: "",
   id_tingkat: "",
-  id_paket_soal: "",
   listMapel: [],
   listNamaKelas: [],
   listUjian: [],
@@ -44,9 +42,13 @@ const actions = store => ({
   },
 
   getMaPel: async state => {
+    const token = state.token        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
     const url = "http://13.251.97.170:5001/kelas-mapel/" + state.id_kelas;
     await axios
-      .get(url)
+      .get(url,{headers})
       .then(response => {
         store.setState({
           listMapel: response.data.data
@@ -236,7 +238,7 @@ const actions = store => ({
   editSoal: (state, no_soal, data) => {
     let cur_soal = state.current_all_soal;
     cur_soal.map((item, key) => {
-      if (item.no_soal == no_soal) {
+      if (item.no_soal === no_soal) {
         return (cur_soal[key] = data);
       }
     });

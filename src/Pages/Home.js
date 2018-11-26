@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
 import "../Styles/Home.css";
 import { connect } from "unistore/react";
 import { actions } from "../store";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import MenuBawah from "../Components/MenuBawah";
 import '../Styles/Home.css'
 

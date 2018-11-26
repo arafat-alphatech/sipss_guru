@@ -3,7 +3,7 @@ import { actions } from "../store";
 import { connect } from "unistore/react";
 import { Link } from "react-router-dom";
 //Import untuk component2 editor soal
-import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
+import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "../Styles/EditorSoal.css";
 import { Editor } from 'react-draft-wysiwyg';
