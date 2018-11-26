@@ -63,6 +63,7 @@ const MainRoute = () => {
       <Route exact path="/review-info-ujian" component={Ujian} />
       <Route exact path="/edit-soal/:id" component={HalamanEdit} />
       <Route exact path="/edit-soal-last" component={HalamanEditLast} />
+      <Route exact path="/post-soal/:no_soal" component={TambahSoal} />
       <Route exact path="/post-soal/:id_paket_soal/:no_soal" component={TambahSoal} />
       <Route exact path="/review/:id" component={ReviewSoal} />
       <Route exact path="/signin" component={SignIn} />

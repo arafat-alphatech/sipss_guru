@@ -186,6 +186,8 @@ class HalamanEdit extends Component {
             alert("Berhasil mengubah soal");
             this.props.editSoal(no_soal, data)
             // this.setState(this.InitialState);
+            const route = "/post-soal/" + id_paket_soal + "/" + (parseInt(no_soal) + 1);
+            this.props.history.push(route);
             console.log("body edit", data);
             console.log('current soal di cmponent', this.props.current_all_soal)
           })

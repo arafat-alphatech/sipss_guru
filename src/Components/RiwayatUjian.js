@@ -1,9 +1,20 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 
 class RiwayatUjian extends Component {
+    checkSoal = (id_paket_soal) => {
+        this.props.getSoalSiapCetak(id_paket_soal).then(() => {
+            this.props.checkJumlahSoal()
+            let next_soal = this.props.current_jumlah_soal + 1
+            if(this.props.current_jumlah_soal < this.props.jumlah_soal){
+                this.props.history.push( "/post-soal/" + id_paket_soal + '/' + next_soal )
+            } else {
+                this.props.history.push( "/review/" + id_paket_soal)
+            }
+        })
+    } 
     render() {
         return (
             <div className="card-body">
@@ -37,8 +48,9 @@ class RiwayatUjian extends Component {
                             key={key}>
                             <div className='col-5'>
                                 <Link
-                                    to={ "/post-soal/" + item.id_paket_soal + '/1' }
+                                    to='#'
                                     style={{ color: '#39C2C9' }}
+                                    onClick={() => this.checkSoal(item.id_paket_soal)}
                                 >
                                     {item["paket_soal.kode_soal"]}-{item.id_paket_soal}
                                 </Link>
@@ -75,4 +87,4 @@ class RiwayatUjian extends Component {
 
 }
 
-export default connect("", actions)(RiwayatUjian);
+export default connect("current_jumlah_soal, jumlah_soal", actions)(withRouter(RiwayatUjian));

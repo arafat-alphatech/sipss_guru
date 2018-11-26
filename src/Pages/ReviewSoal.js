@@ -12,11 +12,15 @@ import MenuBawah from '../Components/MenuBawah'
 class ReviewSoal extends Component {
   componentDidMount = () => {
     const id = this.props.match.params.id
-    this.props.getSoalSiapCetak(id)
+    this.props.getSoalSiapCetak(id).then(()=>{
+      this.props.checkJumlahSoal()
+    })
+    
   };
   printDocument() {
-    if (this.props.current_jumlah_soal < this.props.jumlah_soal) {
-      alert("Soal tidak bisa dicetak karena belum selesai!")
+    const {current_jumlah_soal, jumlah_soal} = this.props
+    if (current_jumlah_soal < jumlah_soal) {
+      alert("Soal tidak bisa dicetak karena belum selesai! soal sekarang "+current_jumlah_soal+ " target soal " + jumlah_soal)
     }
     else {
       alert("mulai download soal")
