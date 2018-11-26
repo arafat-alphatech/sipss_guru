@@ -10,6 +10,8 @@
     "dotenv": "^6.1.0",
     "draft-js": "^0.10.5",
     "draftjs-to-html": "^0.8.4",
+    "html2canvas": "^1.0.0-alpha.12",
+    "jspdf": "^1.4.1",
     "react": "^16.6.3",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.6.3",
