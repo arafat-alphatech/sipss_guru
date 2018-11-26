@@ -190,7 +190,7 @@ const actions = store => ({
           token: response.data.token,
           is_login: true
         });
-        console.log("Response: ", response);
+        // console.log("Response: ", response);
       })
       .catch(err => {
         console.log(err);
