@@ -26,7 +26,10 @@ const initialState = {
   current_jumlah_soal: "",
   siap_cetak:[],
   listGuru:[],
-  listTingkat: [{"id_tingkat":1,"nama_tingkat":"VII"},{"id_tingkat":2,"nama_tingkat":"VIII"},{"id_tingkat":3,"nama_tingkat":"IX"}]
+  listSiswa:[],
+  listMapel:[],
+  listTingkat: [{"id_tingkat":1,"nama_tingkat":"VII"},{"id_tingkat":2,"nama_tingkat":"VIII"},{"id_tingkat":3,"nama_tingkat":"IX"}],
+  adminToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NDMzMjQxNDcsIm5iZiI6MTU0MzMyNDE0NywianRpIjoiNjFkMjc5YzMtZjMwNS00YmE0LWI3NTYtYzY1ZmUzZTA1MDc2IiwiZXhwIjoxNTQ1OTE2MTQ3LCJpZGVudGl0eSI6OTk5LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MiLCJ1c2VyX2NsYWltcyI6eyJpZF9hZG1pbiI6OTk5LCJuaXAiOjE3MDAwMX19.5m0P2mTpWqlEdTWLyqHpHfupJH5EMjVxHv7ZfxQW4r4" 
 };
 
 const store =
@@ -276,23 +279,82 @@ const actions = store => ({
       current_all_soal: cur_soal
     });
   },
-  // getAllGuru: async (state, username, password) => {
-  //   const token = state.token        
-  //   const headers = {
-  //       Authorization: "Bearer " + token
-  //   };
-  //   const url = "http://13.251.97.170:5001/admin/guru";
-  //   await axios
-  //     .get(url,{headers})
-  //     .then(response => {
-  //       store.setState({
-  //         listGuru: response.data.data
-  //       });
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }
+  getAllGuru: async (state) => {
+    const token = state.adminToken        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/guru";
+    console.log(headers)
+    await axios
+      .get(url,{headers})
+      .then(response => {
+        store.setState({
+          listGuru: response.data.data
+        });
+        console.log('data get guru', response.data.data)
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  getAllGuru: async (state) => {
+    const token = state.adminToken        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/guru";
+    console.log(headers)
+    await axios
+      .get(url,{headers})
+      .then(response => {
+        store.setState({
+          listGuru: response.data.data
+        });
+        console.log('data get guru', response.data.data)
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  getAllSiswa: async (state) => {
+    const token = state.adminToken        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/siswa";
+    console.log(headers)
+    await axios
+      .get(url,{headers})
+      .then(response => {
+        store.setState({
+          listSiswa: response.data.data
+        });
+        console.log('data get guru', response.data.data)
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  getAllMapel: async (state) => {
+    const token = state.adminToken        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/mapel";
+    console.log(headers)
+    await axios
+      .get(url,{headers})
+      .then(response => {
+        store.setState({
+          listMapel: response.data.data
+        });
+        console.log('data get guru', response.data.data)
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 });
 
 export { store, actions };

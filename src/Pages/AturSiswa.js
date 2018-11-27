@@ -1,8 +1,14 @@
 import React, { Component } from "react";
-import MenuBawah from '../Components/MenuBawah'
+import MenuBawah from "../Components/MenuBawah";
+import { connect } from "unistore/react";
+import { actions } from "../store";
 
 class AturSiswa extends Component {
+  componentDidMount = () => {
+    this.props.getAllSiswa(this.props.token);
+  };
   render() {
+    const listSiswa = this.props.listSiswa
     const namaSiswa = [
       {
         nama: "arafat",
@@ -27,17 +33,21 @@ class AturSiswa extends Component {
       <div style={{ padding: "20px" }}>
         {/* Table Guru */}
         <div className="card" style={{ margin: "0 auto" }}>
-        <h1 style={{ textAlign: "center", color: "#39C2C9", marginTop:'20px' }}>Daftar Siswa</h1>
-        <button className='btn' style={{margin: "20px 20px 0 auto"}}>
-        Tambah Siswa &nbsp;
-          <i
-            title="tambah data guru"
-            style={{ color: "#00e640" }}
-            className="fas fa-user-plus"
+          <h1
+            style={{ textAlign: "center", color: "#39C2C9", marginTop: "20px" }}
+          >
+            Daftar Siswa
+          </h1>
+          <button className="btn" style={{ margin: "20px 20px 0 auto" }}>
+            Tambah Siswa &nbsp;
+            <i
+              title="tambah data guru"
+              style={{ color: "#00e640" }}
+              className="fas fa-user-plus"
             >
-            <span style={{ marginRight: "20px" }} />
-          </i>
-            </button>
+              <span style={{ marginRight: "20px" }} />
+            </i>
+          </button>
           <div className="card-body">
             <div className="row">
               <div className="col-sm-10 offset-sm-1">
@@ -45,7 +55,7 @@ class AturSiswa extends Component {
                   <table
                     style={{
                       overflowX: "auto",
-                    //   display: "block",
+                      //   display: "block",
                       whiteSpace: "nowrap",
                       margin: "0 auto"
                     }}
@@ -59,22 +69,20 @@ class AturSiswa extends Component {
                         <th>Alamat</th>
                         <th>Jenis Kelamin</th>
                         <th>Telepon</th>
-                        <th>Nama Kelas</th>
                         <th style={{ color: "blue" }}>Edit</th>
                         <th style={{ color: "red" }}>Hapus</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {namaSiswa.map((item, key) => {
+                      {listSiswa.map((item, key) => {
                         return (
                           <tr key={key}>
                             <td>{key + 1}</td>
-                            <td>{item.nip}</td>
+                            <td>{item.nis}</td>
                             <td>{item.nama}</td>
                             <td>{item.alamat}</td>
-                            <td>{item.jk}</td>
+                            <td>{item.jenis_kelamin}</td>
                             <td>{item.telepon}</td>
-                            <td>{item.kelas}</td>
                             <td title="edit data guru">
                               <i
                                 onClick={() => alert("edit boss?")}
@@ -105,4 +113,7 @@ class AturSiswa extends Component {
   }
 }
 
-export default AturSiswa;
+export default connect(
+  "listSiswa, is_login",
+  actions
+)(AturSiswa);

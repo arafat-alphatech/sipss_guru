@@ -12,7 +12,14 @@ class App extends Component {
     }
     return (
       <div>
-        <Sidebar />
+        {
+          // this.props.type === "admin" ? 
+          1 == 1?
+          <Sidebar />
+          : 
+          ''
+          // <SidebarGuru/> 
+        }
         <MainRoute />
       </div>
     );

@@ -1,7 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "unistore/react";
+import { actions } from "../store";
 
 class AturMataPelajaran extends Component {
+  componentDidMount = () => {
+    this.props.getAllMapel(this.props.token)
+  }
   render() {
+    const listMapel = this.props.listMapel
     const dataMapel = [
       {
         nama: "Agama",
@@ -73,12 +79,12 @@ class AturMataPelajaran extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {dataMapel.map((item, key) => {
+                      {listMapel.map((item, key) => {
                         return (
                           <tr key={key}>
                             <td>{key + 1}</td>
-                            <td>{item.nama}</td>
-                            <td>{item.waliKelas}</td>
+                            <td>{item.nama_mapel}</td>
+                            <td>{item.jadwal}</td>
                             <td title="edit data guru">
                               <i
                                 onClick={() => alert("edit boss?")}
@@ -111,4 +117,7 @@ class AturMataPelajaran extends Component {
   }
 }
 
-export default AturMataPelajaran;
+export default connect(
+    "listMapel, is_login",
+    actions
+  )(AturMataPelajaran);

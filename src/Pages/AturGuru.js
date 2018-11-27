@@ -1,82 +1,13 @@
 import React, { Component } from "react";
-import MenuBawah from "../Components/MenuBawah";
+import { connect } from "unistore/react";
+import { actions } from "../store";
 
 class AturGuru extends Component {
-  render() {
-    const namaGuru = [
-      {
-        nama: "arafat",
-        nip: "1232132132",
-        alamat: "nganjuk",
-        jk: "lakik",
-        telepon: "23987123",
-        username: "haha",
-        password: "hihi"
-      },
-      {
-        nama: "kobar",
-        nip: "00000000000",
-        alamat: "jember",
-        jk: "lakik nemen",
-        telepon: "23987123",
-        username: "kobar",
-        password: "aku ganteng"
-      },
-      {
-        nama: "kobar",
-        nip: "00000000000",
-        alamat: "jember",
-        jk: "lakik nemen",
-        telepon: "23987123",
-        username: "kobar",
-        password: "aku ganteng"
-      },
-      {
-        nama: "kobar",
-        nip: "00000000000",
-        alamat: "jember",
-        jk: "lakik nemen",
-        telepon: "23987123",
-        username: "kobar",
-        password: "aku ganteng"
-      },
-      {
-        nama: "kobar",
-        nip: "00000000000",
-        alamat: "jember",
-        jk: "lakik nemen",
-        telepon: "23987123",
-        username: "kobar",
-        password: "aku ganteng"
-      },
-      {
-        nama: "kobar",
-        nip: "00000000000",
-        alamat: "jember",
-        jk: "lakik nemen",
-        telepon: "23987123",
-        username: "kobar",
-        password: "aku ganteng"
-      },
-      {
-        nama: "kobar",
-        nip: "00000000000",
-        alamat: "jember",
-        jk: "lakik nemen",
-        telepon: "23987123",
-        username: "kobar",
-        password: "aku ganteng"
-      },
-      {
-        nama: "kobar",
-        nip: "00000000000",
-        alamat: "jember",
-        jk: "lakik nemen",
-        telepon: "23987123",
-        username: "kobar",
-        password: "aku ganteng"
-      }
-    ];
+    componentDidMount = () => {
+        this.props.getAllGuru(this.props.token)
+    }
+    render() {
+    const dataGuru = this.props.listGuru
     return (
       <div style={{ padding: "20px" }}>
         {/* Table Guru */}
@@ -119,14 +50,14 @@ class AturGuru extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {namaGuru.map((item, key) => {
+                      {dataGuru.map((item, key) => {
                         return (
                           <tr key={key}>
                             <td>{key + 1}</td>
                             <td>{item.nip}</td>
                             <td>{item.nama}</td>
                             <td>{item.alamat}</td>
-                            <td>{item.jk}</td>
+                            <td>{item.jenis_kelamin}</td>
                             <td>{item.telepon}</td>
                             <td>{item.username}</td>
                             <td title="edit data guru">
@@ -161,4 +92,7 @@ class AturGuru extends Component {
   }
 }
 
-export default AturGuru;
+export default connect(
+    "listGuru, is_login",
+    actions
+  )(AturGuru);
