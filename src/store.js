@@ -25,6 +25,7 @@ const initialState = {
   is_login: false,
   current_jumlah_soal: "",
   siap_cetak:[],
+  listGuru:[],
   listTingkat: [{"id_tingkat":1,"nama_tingkat":"VII"},{"id_tingkat":2,"nama_tingkat":"VIII"},{"id_tingkat":3,"nama_tingkat":"IX"}]
 };
 
@@ -273,7 +274,24 @@ const actions = store => ({
     store.setState({
       current_all_soal: cur_soal
     });
-  }
+  },
+  // getAllGuru: async (state, username, password) => {
+  //   const token = state.token        
+  //   const headers = {
+  //       Authorization: "Bearer " + token
+  //   };
+  //   const url = "http://13.251.97.170:5001/admin/guru";
+  //   await axios
+  //     .get(url,{headers})
+  //     .then(response => {
+  //       store.setState({
+  //         listGuru: response.data.data
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
 });
 
 export { store, actions };
