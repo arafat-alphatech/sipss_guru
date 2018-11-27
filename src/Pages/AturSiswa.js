@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import Sidebar from '../Components/Sidebar'
 
-class Admin extends Component {
+class AturSiswa extends Component {
     render(){
         return(
             <div>
-                <Sidebar/>>
+                <h1>aaaaaaaaaaaaaa</h1>
             </div>
         )
     }
 }
 
-export default Admin
+export default AturSiswa

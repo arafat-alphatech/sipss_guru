@@ -1,10 +1,14 @@
-import React, { Component } from 'react';
-import MainRoute from './Routes/MainRoute'
+import React, { Component } from "react";
+import MainRoute from "./Routes/MainRoute";
+import Sidebar from "./Components/Sidebar";
 
 class App extends Component {
   render() {
     return (
-      <MainRoute />
+      <div>
+        <Sidebar />
+        <MainRoute />
+      </div>
     );
   }
 }

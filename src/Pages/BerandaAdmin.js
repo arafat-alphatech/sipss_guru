@@ -1,23 +1,18 @@
 import React, { Component } from "react";
-import MenuBawah from "../Components/MenuBawah";
-import { Link, Redirect } from "react-router-dom";
+import {Link} from 'react-router-dom'
+import MenuBawah from '../Components/MenuBawah'
 import { connect } from "unistore/react";
 import { actions } from "../store";
-import Sidebar from '../Components/Sidebar'
 
-class Intro extends Component {
+class BerandaAdmin extends Component {
+  state = {
+    open: false
+  };
   render() {
-    if (!this.props.is_login) {
-      return <Redirect to={{ pathname: "/signin" }} />;
-    }
-    console.log(this.props.is_login);
+    const { classes, theme } = this.props;
+
     return (
       <div>
-        {/* <h1
-          style={{ textAlign: "center", color: "#39C2C9", marginTop: "20px" }}
-        >
-          Home
-        </h1> */}
         {/* Banner */}
         <div className="card rounded-0 text-center" style={{backgroundColor:'#39C2C9', color:'white'}}>
           {/* <div className="card-header">Featured</div> */}
@@ -70,7 +65,7 @@ class Intro extends Component {
                       color: "#39C2C9"
                     }}
                   >
-                    Ujian
+                    Semua Guru
                   </h5>
                 </div>
               </div>
@@ -94,7 +89,7 @@ class Intro extends Component {
                   className="card-img-top"
                   src="http://icons-for-free.com/free-icons/png/512/2136425.png"
                   alt="Card-cap"
-                  style={{ maxWidth: "140px", height: "100px" }}
+                  style={{ maxWidth: "140px", maxHeight: "100px" }}
                 />
                 <div
                   className="card-body"
@@ -113,7 +108,7 @@ class Intro extends Component {
                       color: "#39C2C9"
                     }}
                   >
-                    Statistik
+                    Tambah
                   </h5>
                 </div>
               </div>
@@ -156,7 +151,7 @@ class Intro extends Component {
                     color: "#39C2C9"
                   }}
                 >
-                  Rapor
+                  Edit
                 </h5>
               </div>
             </div>
@@ -192,7 +187,7 @@ class Intro extends Component {
                     color: "#39C2C9"
                   }}
                 >
-                  Atur Kelas
+                  Hapus
                 </h5>
               </div>
             </div>
@@ -215,6 +210,6 @@ class Intro extends Component {
 }
 
 export default connect(
-  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login",
+  "",
   actions
-)(Intro);
+)(BerandaAdmin);
