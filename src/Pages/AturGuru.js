@@ -30,7 +30,6 @@ class AturGuru extends Component {
                   <table
                     style={{
                       overflowX: "auto",
-                      display: "block",
                       whiteSpace: "nowrap",
                       margin: "0 auto"
                     }}

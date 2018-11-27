@@ -9,26 +9,6 @@ class AturSiswa extends Component {
   };
   render() {
     const listSiswa = this.props.listSiswa
-    const namaSiswa = [
-      {
-        nama: "arafat",
-        nip: "1232132132",
-        alamat: "nganjuk",
-        jk: "lakik",
-        telepon: "23987123",
-        kelas: "VIIA",
-        password: "hihi"
-      },
-      {
-        nama: "kobar",
-        nip: "00000000000",
-        alamat: "jember",
-        jk: "lakik nemen",
-        telepon: "23987123",
-        kelas: "VIIB",
-        password: "aku ganteng"
-      }
-    ];
     return (
       <div style={{ padding: "20px" }}>
         {/* Table Guru */}
