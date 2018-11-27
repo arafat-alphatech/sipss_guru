@@ -42,20 +42,19 @@ class HalamanEdit extends Component {
   };
 
   componentWillMount = () => {
-    let id_paket_soal = this.props.match.params.id_paket_soal
+    let id_paket_soal = this.props.id_paket_soal
     this.props.getCurrentSoal(id_paket_soal).then((value) => {
       let no_soal = this.props.match.params.no_soal;
-      this.pindahSoalHandle(no_soal)
-      // console.log("current all soal:", this.props.current_all_soal)
+      this.pindahSoalHandle(parseInt(no_soal))
     })
 
   };
 
   pindahSoalHandle = (no_soal) => {
+    no_soal = parseInt(no_soal)
     let cur_soal = this.props.current_all_soal.find((val, index) => {
       return val.no_soal === no_soal;
     });
-
     // cek apakah no soal ada di global state, kalau ada muncul di component
     if (cur_soal !== undefined) {
 
@@ -141,6 +140,8 @@ class HalamanEdit extends Component {
   postNewSoal = () => {
     let id_paket_soal = parseInt(this.props.match.params.id_paket_soal)
     const no_soal = parseInt(this.props.match.params.no_soal);
+    console.log("id paket soal",id_paket_soal)
+    console.log("no_soal",no_soal)
     const {
       deskripsi_soal,
       optionA,
@@ -207,7 +208,8 @@ class HalamanEdit extends Component {
             console.log("Res post new soal", response);
             const no_soal = this.props.match.params.no_soal;
             if (this.props.current_jumlah_soal < this.props.jumlah_soal) {
-              const route = "/post-soal/" + (parseInt(no_soal) + 1);
+              const route = "/post-soal/" + this.props.id_paket_soal + "/" + (parseInt(no_soal) + 1);    
+
               this.props.history.push(route);
             } else {
               alert("selesai membuat soal:)");
@@ -223,8 +225,8 @@ class HalamanEdit extends Component {
   };
 
   onSwitchSoal = e => {
+    console.log("pindah navigasi",e.target.value)
     this.pindahSoalHandle(e.target.value)
-    
     let id_paket_soal = parseInt(this.props.match.params.id_paket_soal)
     let route = "/post-soal/" + id_paket_soal + "/" + e.target.value;
     this.props.history.push(route);

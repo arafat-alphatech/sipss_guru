@@ -12,7 +12,12 @@ class Ujian extends Component {
     const { id_kelas, id_mapel } = this.props;
     this.props.getUjian(id_kelas, id_mapel);
   }
-
+  postNewSoal = () => {
+    this.props.postNewUjian().then(() => {
+      const route = "/post-soal/" + this.props.id_paket_soal + "/1";
+      this.props.history.push(route);
+    })
+  }
   render() {
     const {
       id_kelas,
@@ -125,8 +130,8 @@ class Ujian extends Component {
         {/* Button Mulai Buat Soal */}
         <Link
           className="btn btn-primary"
-          to="/post-soal/1"
-          onClick={() => this.props.postNewUjian()}
+          to="#"
+          onClick={() => this.postNewSoal()}
           style={{
             minWidth: "340px",
             maxWidth: "800px",
@@ -168,6 +173,6 @@ class Ujian extends Component {
 }
 
 export default connect(
-  "id_kelas, id_mapel, listMapel, listNamaKelas, listUjian",
+  "id_kelas, id_mapel, id_paket_soal, listMapel, listNamaKelas, listUjian",
   actions
 )(Ujian);

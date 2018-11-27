@@ -5,6 +5,7 @@ import { actions } from "../store";
 
 class RiwayatUjian extends Component {
     checkSoal = (id_paket_soal) => {
+        console.log("id_paket_soal",id_paket_soal)
         this.props.getSoalSiapCetak(id_paket_soal).then(() => {
             this.props.checkJumlahSoal()
             let next_soal = this.props.current_jumlah_soal + 1
@@ -24,13 +25,13 @@ class RiwayatUjian extends Component {
                 <h6>
                     &nbsp;
                     {this.props.listNamaKelas.map((item, key) => {
-                        if (item.id_kelas === this.props.id_kelas) {
+                        if (item.id_kelas === parseInt(this.props.id_kelas)) {
                             return item.nama_kelas;
                         }
                     })}
                     &nbsp; - &nbsp;
                     {this.props.listMapel.map((item, key) => {
-                        if (item.id_mapel === this.props.id_mapel) {
+                        if (item.id_mapel === parseInt(this.props.id_mapel) ) {
                             return item["mapel.nama_mapel"];
                         }
                     })}
