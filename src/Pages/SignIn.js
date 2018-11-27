@@ -10,17 +10,18 @@ class SignIn extends Component {
     username: "",
     password: ""
   };
-
+  
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
     console.log(e.target.value);
   };
 
+  signInHandle = () => {
+    this.props.signInHandle( this.state.username, this.state.password )
+    this.props.history.push('/')
+  }
+  
   render() {
-    if (this.props.is_login) {
-      alert("Selamat datang !");
-      return <Redirect to="/" />;
-    }
     return (
         
     <div className="sign-in" style={{padding:'20px'}}>
@@ -88,10 +89,7 @@ class SignIn extends Component {
                     marginTop:'30px'
                 }}
                 onClick={() =>
-                  this.props.signInHandle(
-                    this.state.username,
-                    this.state.password
-                  )
+                  this.signInHandle()
                 }
               >
                 Masuk

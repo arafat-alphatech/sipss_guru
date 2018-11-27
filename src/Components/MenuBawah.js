@@ -31,8 +31,12 @@ class MenuBawah extends React.Component {
   }
 
   logout = () => {
+
     this.props.signOutHandle()
-    this.props.history.replace('/signin')
+    localStorage.removeItem('is_login')
+    localStorage.removeItem('unistorePersist')
+    this.props.history.push('/signin')
+
   }
 
   render() {

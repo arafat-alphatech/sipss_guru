@@ -11,7 +11,7 @@ const initialState = {
   listMapel: [],
   listNamaKelas: [],
   listUjian: [],
-  tanggal_ujian: "",
+  tanggal_ujian: "2018-11-25T10:30",
   kode_soal: "",
   jumlah_soal: "",
   no_soal: "",
@@ -110,7 +110,8 @@ const actions = store => ({
       .then(response => {
         store.setState({
           siap_cetak: response.data.data,
-          jumlah_soal: response.data.jumlah_soal
+          jumlah_soal: response.data.jumlah_soal,
+          id_paket_soal: id_paket_soal
         });
         console.log("Soal Siap Cetak: ", response.data.data);
         console.log("Target jumlah soal: ",response.data.jumlah_soal)
@@ -165,7 +166,9 @@ const actions = store => ({
       .post(url, data,{headers})
       .then(response => {
         store.setState({
-          id_paket_soal: response.data.id_paket_soal
+          id_paket_soal: response.data.id_paket_soal,
+          current_all_soal: [],
+          siap_cetak: []
         });
         alert("Tambah ujian berhasil");
         console.log("Response dari API: ", response);
@@ -246,8 +249,8 @@ const actions = store => ({
       .then(response => {
         store.setState({
           token: response.data.token,
-          is_login: true
         });
+        localStorage.setItem('is_login', true)
       })
       .catch(err => {
         alert("masukkan username dan password yang benar");
@@ -256,11 +259,9 @@ const actions = store => ({
   },
   signOutHandle: (state) => {
     store.setState({
-      is_login: false,
       token: ""
-    })
+    })    
     alert('Sampai jumpa kembali')
-    localStorage.clear()
   },
   editSoal: (state, no_soal, data) => {
     let cur_soal = state.current_all_soal;
