@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "unistore/react";
 import { actions } from "../store";
+import PopupKelas from "../Components/PopupKelas"
 
 class AturKelas extends Component {
   componentDidMount = () => {
@@ -12,21 +13,11 @@ class AturKelas extends Component {
       <div style={{ padding: "20px" }}>
         {/* Table Guru */}
         <div className="card" style={{ margin: "0 auto" }}>
-          <h1
-            style={{ textAlign: "center", color: "#39C2C9", marginTop: "20px" }}
-          >
-            Daftar Kelas
+          <h1 style={{ textAlign: "center", color: "#39C2C9", marginTop: "20px" }}>Daftar Kelas
           </h1>
-          <button className="btn" style={{ margin: "20px 20px 0 auto" }}>
-            Tambah Kelas &nbsp;
-            <i
-              title="tambah data guru"
-              style={{ color: "#00e640" }}
-              className="fas fa-user-plus"
-            >
-              <span style={{ marginRight: "20px" }} />
-            </i>
-          </button>
+          <div  style={{ margin: "20px 20px 0 auto" }}>
+        <PopupKelas/>
+        </div>
           <div className="card-body">
             <div className="row">
               <div className="col-sm-10 offset-sm-1">

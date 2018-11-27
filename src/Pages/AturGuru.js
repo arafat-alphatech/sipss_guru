@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "unistore/react";
 import { actions } from "../store";
+import PopupGuru from '../Components/PopupGuru'
 
 class AturGuru extends Component {
     componentDidMount = () => {
         this.props.getAllGuru(this.props.token)
     }
+    
     render() {
     const dataGuru = this.props.listGuru
     return (
@@ -13,16 +15,9 @@ class AturGuru extends Component {
         {/* Table Guru */}
         <div className="card" style={{ margin: "0 auto" }}>
         <h1 style={{ textAlign: "center", color: "#39C2C9", marginTop:'20px' }}>Daftar Guru</h1>
-          <button className="btn" style={{ margin: "20px 20px 0 auto" }}>
-            Tambah Guru &nbsp;
-            <i
-              title="tambah data guru"
-              style={{ color: "#00e640" }}
-              className="fas fa-user-plus"
-            >
-              <span style={{ marginRight: "20px" }} />
-            </i>
-          </button>
+        <div  style={{ margin: "20px 20px 0 auto" }}>
+        <PopupGuru/>
+        </div>
           <div className="card-body">
             <div className="row">
               <div className="col-sm-10 offset-sm-1">
