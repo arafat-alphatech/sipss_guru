@@ -3,7 +3,6 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { connect } from "unistore/react";
 import { actions } from "../store";
@@ -40,11 +39,10 @@ class PopupSiswa extends React.Component {
 
   render() {
     const listNamaKelas = this.props.listNamaKelas;
-    const listMapel = this.props.listMapel;
     return (
       <div>
         <Button onClick={this.handleClickOpen}>
-          Tambah Guru &nbsp;
+          Tambah Siswa &nbsp;
           <i
             title="tambah data guru"
             style={{ color: "#00e640" }}
@@ -64,33 +62,11 @@ class PopupSiswa extends React.Component {
             id="alert-dialog-title"
             style={{ marginLeft: "auto", marginRight: "auto" }}
           >
-            {"Tambah Guru"}
+            {"Tambah Siswa"}
           </DialogTitle>
           <DialogContent>
             <form onSubmit={e => e.preventDefault()}>
-              <div
-                className="form-label-group"
-                style={{
-                  marginRight: "auto",
-                  marginLeft: "auto",
-                  maxWidth: "500px"
-                }}
-              >
-                <TextField
-                  required
-                  name="username"
-                  type="text"
-                  label="Username"
-                  defaultValue=""
-                  margin="normal"
-                  variant="outlined"
-                  style={{
-                    width: "100%"
-                  }}
-                  onChange={e => this.inputChange(e)}
-                />
-              </div>
-
+              {/* Form isi NIS */}
               <div
                 className="form-label-group"
                 style={{
@@ -100,9 +76,9 @@ class PopupSiswa extends React.Component {
               >
                 <TextField
                   required
-                  name="namaGuru"
+                  name="nis"
                   type="text"
-                  label="Nama Guru"
+                  label="NIS"
                   defaultValue=""
                   margin="normal"
                   variant="outlined"
@@ -112,7 +88,9 @@ class PopupSiswa extends React.Component {
                   onChange={e => this.inputChange(e)}
                 />
               </div>
+              {/* Form isi NIS (end) */}
 
+              {/* Form isi nama Siswa */}
               <div
                 className="form-label-group"
                 style={{
@@ -122,9 +100,9 @@ class PopupSiswa extends React.Component {
               >
                 <TextField
                   required
-                  name="nip"
+                  name="namaSiswa"
                   type="text"
-                  label="NIP"
+                  label="Nama Siswa"
                   defaultValue=""
                   margin="normal"
                   variant="outlined"
@@ -134,9 +112,9 @@ class PopupSiswa extends React.Component {
                   onChange={e => this.inputChange(e)}
                 />
               </div>
+              {/* Form isi nama siswa (end) */}
 
               {/* Piih Jenis Kelamin */}
-
               <select
                 style={{ maxWidth: "93%", margin: "20px 20px 10px 20px" }}
                 className="form-control"
@@ -154,9 +132,9 @@ class PopupSiswa extends React.Component {
                   );
                 })}
               </select>
-
               {/* Pilih Jenis Kelamin (end) */}
 
+              {/* Form isi alamat */}
               <div
                 className="form-label-group"
                 style={{
@@ -178,7 +156,9 @@ class PopupSiswa extends React.Component {
                   onChange={e => this.inputChange(e)}
                 />
               </div>
+              {/* Form isi alamat (end) */}
 
+              {/* Form isi telepon */}
               <div
                 className="form-label-group"
                 style={{
@@ -188,7 +168,7 @@ class PopupSiswa extends React.Component {
               >
                 <TextField
                   required
-                  name="telepom"
+                  name="telepon"
                   type="text"
                   label="Telepon"
                   defaultValue=""
@@ -200,6 +180,7 @@ class PopupSiswa extends React.Component {
                   onChange={e => this.inputChange(e)}
                 />
               </div>
+              {/* Form isi telepon (end) */}
             </form>
           </DialogContent>
           <DialogActions>

@@ -3,7 +3,6 @@ import MenuBawah from "../Components/MenuBawah";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "unistore/react";
 import { actions } from "../store";
-import Sidebar from '../Components/Sidebar'
 
 class Intro extends Component {
   render() {

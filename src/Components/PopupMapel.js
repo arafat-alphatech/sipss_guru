@@ -8,7 +8,7 @@ import { connect } from "unistore/react";
 import { actions } from "../store";
 import TextField from "@material-ui/core/TextField";
 
-class Popup extends React.Component {
+class PopupMapel extends React.Component {
   state = {
     open: false,
     nip: "",
@@ -38,11 +38,10 @@ class Popup extends React.Component {
   // Buka tutup popup (end)
 
   render() {
-    const listNamaKelas = this.props.listNamaKelas;
     return (
       <div>
         <Button onClick={this.handleClickOpen}>
-          Tambah Guru &nbsp;
+          Tambah Mata Pelajaran &nbsp;
           <i
             title="tambah data guru"
             style={{ color: "#00e640" }}
@@ -62,7 +61,7 @@ class Popup extends React.Component {
             id="alert-dialog-title"
             style={{ marginLeft: "auto", marginRight: "auto" }}
           >
-            {"Tambah Guru"}
+            {"Tambah Mata Pelajaran"}
           </DialogTitle>
           <DialogContent>
             <form onSubmit={e => e.preventDefault()}>
@@ -76,9 +75,9 @@ class Popup extends React.Component {
               >
                 <TextField
                   required
-                  name="username"
+                  name="namaMapel"
                   type="text"
-                  label="Username"
+                  label="Mata Pelajaran"
                   defaultValue=""
                   margin="normal"
                   variant="outlined"
@@ -98,9 +97,9 @@ class Popup extends React.Component {
               >
                 <TextField
                   required
-                  name="namaGuru"
+                  name="namaWali"
                   type="text"
-                  label="Nama Guru"
+                  label="Wali Kelas"
                   defaultValue=""
                   margin="normal"
                   variant="outlined"
@@ -111,93 +110,6 @@ class Popup extends React.Component {
                 />
               </div>
 
-              <div
-                className="form-label-group"
-                style={{
-                  maxWidth: "500px",
-                  margin: "0 auto"
-                }}
-              >
-                <TextField
-                  required
-                  name="nip"
-                  type="text"
-                  label="NIP"
-                  defaultValue=""
-                  margin="normal"
-                  variant="outlined"
-                  style={{
-                    width: "100%"
-                  }}
-                  onChange={e => this.inputChange(e)}
-                />
-              </div>
-
-              {/* Piih Jenis Kelamin */}
-
-              <select
-                style={{ maxWidth: "93%", margin: "20px 20px 10px 20px" }}
-                className="form-control"
-                value={listNamaKelas.id_kelas}
-                name="id_kelas"
-                onChange={e => this.props.setField(e)}
-                onClick={() => this.props.getMaPel()}
-              >
-                <option>Jenis Kelamin</option>
-                {listNamaKelas.map((item, key) => {
-                  return (
-                    <option value={item.id_kelas} key={key}>
-                      {item.nama_kelas}
-                    </option>
-                  );
-                })}
-              </select>
-
-              {/* Pilih Jenis Kelamin (end) */}
-
-              <div
-                className="form-label-group"
-                style={{
-                  maxWidth: "500px",
-                  margin: "0 auto"
-                }}
-              >
-                <TextField
-                  required
-                  name="alamat"
-                  type="text"
-                  label="Alamat"
-                  defaultValue=""
-                  margin="normal"
-                  variant="outlined"
-                  style={{
-                    width: "100%"
-                  }}
-                  onChange={e => this.inputChange(e)}
-                />
-              </div>
-
-              <div
-                className="form-label-group"
-                style={{
-                  maxWidth: "500px",
-                  margin: "0 auto"
-                }}
-              >
-                <TextField
-                  required
-                  name="telepom"
-                  type="text"
-                  label="Telepon"
-                  defaultValue=""
-                  margin="normal"
-                  variant="outlined"
-                  style={{
-                    width: "100%"
-                  }}
-                  onChange={e => this.inputChange(e)}
-                />
-              </div>
             </form>
           </DialogContent>
           <DialogActions>
@@ -217,4 +129,4 @@ class Popup extends React.Component {
 export default connect(
   "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat",
   actions
-)(Popup);
+)(PopupMapel);

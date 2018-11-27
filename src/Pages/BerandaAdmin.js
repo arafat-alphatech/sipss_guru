@@ -9,7 +9,7 @@ class BerandaAdmin extends Component {
     open: false
   };
   render() {
-    const { classes, theme } = this.props;
+
 
     return (
       <div>

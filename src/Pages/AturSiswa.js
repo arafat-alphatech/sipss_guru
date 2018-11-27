@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import MenuBawah from "../Components/MenuBawah";
 import { connect } from "unistore/react";
 import { actions } from "../store";
+import PopupSiswa from '../Components/PopupSiswa'
 
 class AturSiswa extends Component {
   componentDidMount = () => {
@@ -13,21 +13,11 @@ class AturSiswa extends Component {
       <div style={{ padding: "20px" }}>
         {/* Table Guru */}
         <div className="card" style={{ margin: "0 auto" }}>
-          <h1
-            style={{ textAlign: "center", color: "#39C2C9", marginTop: "20px" }}
-          >
-            Daftar Siswa
+          <h1 style={{ textAlign: "center", color: "#39C2C9", marginTop: "20px" }}> Daftar Siswa
           </h1>
-          <button className="btn" style={{ margin: "20px 20px 0 auto" }}>
-            Tambah Siswa &nbsp;
-            <i
-              title="tambah data guru"
-              style={{ color: "#00e640" }}
-              className="fas fa-user-plus"
-            >
-              <span style={{ marginRight: "20px" }} />
-            </i>
-          </button>
+          <div  style={{ margin: "20px 20px 0 auto" }}>
+        <PopupSiswa/>
+        </div>
           <div className="card-body">
             <div className="row">
               <div className="col-sm-10 offset-sm-1">

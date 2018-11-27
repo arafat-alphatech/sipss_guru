@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import "../Styles/Home.css";
 import { connect } from "unistore/react";
 import { actions } from "../store";

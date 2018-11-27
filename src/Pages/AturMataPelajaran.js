@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "unistore/react";
 import { actions } from "../store";
+import PopupMapel from "../Components/PopupMapel"
 
 class AturMataPelajaran extends Component {
   componentDidMount = () => {
@@ -8,55 +9,14 @@ class AturMataPelajaran extends Component {
   }
   render() {
     const listMapel = this.props.listMapel
-    const dataMapel = [
-      {
-        nama: "Agama",
-        waliKelas: "Rawis"
-      },
-      {
-        nama: "Matematika",
-        waliKelas: "Rawis"
-      },
-      {
-        nama: "Matematika",
-        waliKelas: "Rawis"
-      },
-      {
-        nama: "Matematika",
-        waliKelas: "Rawis"
-      },
-      {
-        nama: "Matematika",
-        waliKelas: "Rawis"
-      },
-      {
-        nama: "Matematika",
-        waliKelas: "Rawis"
-      },
-      {
-        nama: "Matematika",
-        waliKelas: "Rawis"
-      },
-      {
-        nama: "Matematika",
-        waliKelas: "Rawis"
-      },
-    ];
     return (
       <div style={{ padding: "20px" }}>
         {/* Table Guru */}
         <div className="card" style={{ margin: "0 auto" }}>
         <h1 style={{ textAlign: "center", color: "#39C2C9", marginTop:'20px' }}>Daftar Mata Pelajaran</h1>
-        <button className='btn' style={{margin: "20px 20px 0 auto"}}>
-        Tambah Mapel &nbsp;
-          <i
-            title="tambah data guru"
-            style={{ color: "#00e640"}}
-            className="fas fa-user-plus"
-          >
-            <span style={{ marginRight: "20px" }} />
-          </i>
-          </button>
+        <div  style={{ margin: "20px 20px 0 auto" }}>
+        <PopupMapel/>
+        </div>
           <div className="card-body">
             <div className="row">
               <div className="col-sm-10 offset-sm-1">

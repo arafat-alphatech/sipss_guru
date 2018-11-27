@@ -27,7 +27,6 @@ const initialState = {
   siap_cetak:[],
   listGuru:[],
   listSiswa:[],
-  listMapel:[],
   listKelas:[],
   listTingkat: [{"id_tingkat":1,"nama_tingkat":"VII"},{"id_tingkat":2,"nama_tingkat":"VIII"},{"id_tingkat":3,"nama_tingkat":"IX"}],
   adminToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NDMzMjQxNDcsIm5iZiI6MTU0MzMyNDE0NywianRpIjoiNjFkMjc5YzMtZjMwNS00YmE0LWI3NTYtYzY1ZmUzZTA1MDc2IiwiZXhwIjoxNTQ1OTE2MTQ3LCJpZGVudGl0eSI6OTk5LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MiLCJ1c2VyX2NsYWltcyI6eyJpZF9hZG1pbiI6OTk5LCJuaXAiOjE3MDAwMX19.5m0P2mTpWqlEdTWLyqHpHfupJH5EMjVxHv7ZfxQW4r4" 
