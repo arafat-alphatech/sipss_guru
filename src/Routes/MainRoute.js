@@ -11,12 +11,12 @@ const Home = Loadable({
 });
 
 const Ujian = Loadable({
-  loader: () => import(/* webpackChunkName: "home"*/ "../Pages/Ujian"),
+  loader: () => import(/* webpackChunkName: "ujian"*/ "../Pages/Ujian"),
   loading: () => <Loading />
 });
 
 const HalamanEdit = Loadable({
-  loader: () => import(/* webpackChunkName: "home"*/ "../Pages/HalamanEdit"),
+  loader: () => import(/* webpackChunkName: "edit-soal"*/ "../Pages/HalamanEdit"),
   loading: () => <Loading />
 });
 
@@ -55,6 +55,11 @@ const Intro = Loadable({
   loading: () => <Loading />
 });
 
+const Admin = Loadable({
+  loader: () => import(/* webpackChunkName: "admin"*/ "../Pages/Admin"),
+  loading: () => <Loading />
+});
+
 const MainRoute = () => {
   return (
     <Switch>
@@ -70,6 +75,7 @@ const MainRoute = () => {
       <Route exact path="/" component={Intro} />
       <Route exact path="/loading" component={Loading} />
       <Route exact path="/dashboard" component={Dashboard} />
+      <Route exact path="/admin" component={Admin} />
       <Route component={NotMatch} />
     </Switch>
   );
