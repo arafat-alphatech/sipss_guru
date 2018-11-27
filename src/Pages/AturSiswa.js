@@ -3,7 +3,7 @@ import MenuBawah from '../Components/MenuBawah'
 
 class AturSiswa extends Component {
   render() {
-    const namaGuru = [
+    const namaSiswa = [
       {
         nama: "arafat",
         nip: "1232132132",
@@ -25,16 +25,19 @@ class AturSiswa extends Component {
     ];
     return (
       <div style={{ padding: "20px" }}>
-        <h1 style={{ textAlign: "center", color: "#39C2C9" }}>Daftar Siswa</h1>
         {/* Table Guru */}
         <div className="card" style={{ margin: "0 auto" }}>
+        <h1 style={{ textAlign: "center", color: "#39C2C9", marginTop:'20px' }}>Daftar Siswa</h1>
+        <button className='btn' style={{margin: "20px 20px 0 auto"}}>
+        Tambah Siswa &nbsp;
           <i
             title="tambah data guru"
-            style={{ color: "#00e640", margin: "20px 0 0 auto" }}
+            style={{ color: "#00e640" }}
             className="fas fa-user-plus"
-          >
+            >
             <span style={{ marginRight: "20px" }} />
           </i>
+            </button>
           <div className="card-body">
             <div className="row">
               <div className="col-sm-10 offset-sm-1">
@@ -42,7 +45,7 @@ class AturSiswa extends Component {
                   <table
                     style={{
                       overflowX: "auto",
-                      display: "block",
+                    //   display: "block",
                       whiteSpace: "nowrap",
                       margin: "0 auto"
                     }}
@@ -62,7 +65,7 @@ class AturSiswa extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {namaGuru.map((item, key) => {
+                      {namaSiswa.map((item, key) => {
                         return (
                           <tr key={key}>
                             <td>{key + 1}</td>
@@ -96,28 +99,7 @@ class AturSiswa extends Component {
               </div>
             </div>
           </div>
-          <i
-            style={{ marginLeft: "auto", marginBottom: "10px" }}
-            class="fas fa-angle-double-right"
-          >
-            <span style={{ marginRight: "10px" }} />
-          </i>
         </div>
-        
-        {/* footer */}
-        <footer
-          className="footer"
-          style={{
-            position: "fixed",
-            height: "55px",
-            bottom: "0",
-            width: "500px"
-          }}
-        >
-          <MenuBawah />
-        </footer>
-        {/* footer (end) */}
-
       </div>
     );
   }
