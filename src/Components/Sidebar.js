@@ -44,31 +44,31 @@ class TemporaryDrawer extends React.Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-            <ListItem button component={Link} to='/'>
+            <ListItem button component={Link} to='/beranda-admin'>
                 <ListItemIcon> <InboxIcon /> </ListItemIcon>
                 <ListItemText primary="Dashboard" />
             </ListItem>
         </List>
         <List>
-            <ListItem button component={Link} to='/'>
+            <ListItem button component={Link} to='/beranda-guru'>
                 <ListItemIcon> <Guru style={{color:'#00A2E5'}}/> </ListItemIcon>
                 <ListItemText primary="Guru" />
             </ListItem>
         </List>
         <List>
-            <ListItem button component={Link} to='/'>
+            <ListItem button component={Link} to='/beranda-siswa'>
                 <ListItemIcon> <Face style={{color:'#00A2E5'}}/> </ListItemIcon>
                 <ListItemText primary="Siswa" />
             </ListItem>
         </List>
         <List>
-            <ListItem button component={Link} to='/'>
+            <ListItem button component={Link} to='/beranda-kelas'>
                 <ListItemIcon> <Kelas style={{color:'#00A2E5'}}/> </ListItemIcon>
                 <ListItemText primary="Kelas" />
             </ListItem>
         </List>
         <List>
-            <ListItem button component={Link} to='/'>
+            <ListItem button component={Link} to='/beranda-mapel'>
                 <ListItemIcon> <Mapel style={{color:'#00A2E5'}}/> </ListItemIcon>
                 <ListItemText primary="Mata Pelajaran" />
             </ListItem>

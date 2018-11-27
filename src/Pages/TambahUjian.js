@@ -148,6 +148,8 @@ class Ujian extends Component {
                        listUjian={listUjian}/>
         </div>
         <div style={{marginTop:'80px'}}></div>
+        
+        {/* footer */}
         <footer
           className="footer"
           style={{
@@ -159,6 +161,7 @@ class Ujian extends Component {
         >
           <MenuBawah />
         </footer>
+        {/* footer (end) */}
       </div>
     );
   }
