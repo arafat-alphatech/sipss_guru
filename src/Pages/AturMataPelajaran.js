@@ -7,6 +7,11 @@ class AturMataPelajaran extends Component {
   componentDidMount = () => {
     this.props.getAllMapel(this.props.token)
   }
+  doDeleteMapel = (id) => {
+    this.props.deleteMapel(id).then(()=>{
+      this.props.getAllMapel(this.props.token)
+    })
+  }
   render() {
     const listMapel = this.props.listMapel
     return (
@@ -42,10 +47,10 @@ class AturMataPelajaran extends Component {
                       {listMapel.map((item, key) => {
                         return (
                           <tr key={key}>
-                            <td>{key + 1}</td>
-                            <td>{item.nama_mapel}</td>
-                            <td>{item.jadwal}</td>
-                            <td title="edit data guru">
+                            <td className='align-middle'>{key + 1}</td>
+                            <td className='align-middle'>{item.nama_mapel}</td>
+                            <td className='align-middle'>{item.jadwal}</td>
+                            <td className='align-middle' title="edit data guru">
                               <i
                                 onClick={() => alert("edit boss?")}
                                 className="fas fa-user-edit"
@@ -54,7 +59,7 @@ class AturMataPelajaran extends Component {
                             </td>
                             <td title="hapus data guru">
                               <i
-                                onClick={() => alert("hapus boss?")}
+                                onClick={() => this.doDeleteMapel(item.id_mapel)}
                                 className="fas fa-user-minus"
                                 style={{ color: "red" }}
                               />

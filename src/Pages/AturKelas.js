@@ -36,7 +36,6 @@ class AturKelas extends Component {
                         <th>Kelas</th>
                         <th>Wali Kelas</th>
                         <th>Edit</th>
-                        <th>Hapus</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -44,20 +43,13 @@ class AturKelas extends Component {
                         return (
                           <tr key={key}>
                             <td>{key + 1}</td>
-                            <td>{item.nama_kelas}</td>
-                            <td>{item.wali_kelas}</td>
+                            <td className='align-middle'>{item.nama_kelas}</td>
+                            <td className='align-middle'>{item.wali_kelas}</td>
                             <td title="edit data guru">
                               <i
                                 onClick={() => alert("edit boss?")}
                                 className="fas fa-user-edit"
                                 style={{ color: "blue" }}
-                              />
-                            </td>
-                            <td title="hapus data guru">
-                              <i
-                                onClick={() => alert("hapus boss?")}
-                                className="fas fa-user-minus"
-                                style={{ color: "red" }}
                               />
                             </td>
                           </tr>

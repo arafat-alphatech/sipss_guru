@@ -367,6 +367,21 @@ const actions = store => ({
         console.log(err);
       });
   },
+  deleteMapel : async (state,id) => {
+    const token = state.adminToken        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/mapel/"+id;
+    await axios
+    .delete(url,{headers})
+    .then(response => {
+      alert("Delete Mapel is Success!")
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  },
   getAllKelas: async (state) => {
     const token = state.adminToken        
     const headers = {

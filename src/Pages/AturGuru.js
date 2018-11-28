@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import PopupGuru from '../Components/PopupGuru'
+import PopupEditGuru from "../Components/PopupEditGuru";
+import Button from "@material-ui/core/Button";
+import swal from 'sweetalert'
 
 class AturGuru extends Component {
     componentDidMount = () => {
@@ -51,26 +54,24 @@ class AturGuru extends Component {
                       {dataGuru.map((item, key) => {
                         return (
                           <tr key={key}>
-                            <td>{key + 1}</td>
-                            <td>{item.nip}</td>
-                            <td>{item.nama}</td>
-                            <td>{item.alamat}</td>
-                            <td>{item.jenis_kelamin}</td>
-                            <td>{item.telepon}</td>
-                            <td>{item.username}</td>
+                            <td className='align-middle'>{key + 1}</td>
+                            <td className='align-middle'>{item.nip}</td>
+                            <td className='align-middle'>{item.nama}</td>
+                            <td className='align-middle'>{item.alamat}</td>
+                            <td className='align-middle'>{item.jenis_kelamin}</td>
+                            <td className='align-middle'>{item.telepon}</td>
+                            <td className='align-middle'>{item.username}</td>
                             <td title="edit data guru">
-                              <i
-                                onClick={() => alert("edit boss?")}
-                                className="fas fa-user-edit"
-                                style={{ color: "blue" }}
-                              />
+                                <PopupEditGuru id={item.id_guru}/>
                             </td>
                             <td title="hapus data guru">
+                              <Button>
                               <i
                                 onClick={() =>  this.doDeleteGuru(item.id_guru)}
                                 className="fas fa-user-minus"
                                 style={{ color: "red" }}
                               />
+                              </Button>
                             </td>
                           </tr>
                         );
