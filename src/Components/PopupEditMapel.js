@@ -12,8 +12,8 @@ import TextField from "@material-ui/core/TextField";
 class PopupEditMapel extends React.Component {
   state = {
     open: false,
-    nama_mapel:'',
-    jadwal:''
+    nama_mapel: "",
+    jadwal: ""
   };
 
   inputChange = e => {
@@ -24,22 +24,22 @@ class PopupEditMapel extends React.Component {
   // Buka tutup popup
 
   handleClickOpen = () => {
-    const token = this.props.adminToken        
+    const token = this.props.adminToken;
     const headers = {
-        Authorization: "Bearer " + token
+      Authorization: "Bearer " + token
     };
-    const url = "http://13.251.97.170:5001/admin/mapel-detail/" +  this.props.id;
+    const url = "http://13.251.97.170:5001/admin/mapel-detail/" + this.props.id;
     axios
-    .get(url,{headers})
-    .then((response) => {
-      this.setState({ nama_mapel: response.data.data[0].nip });
-      this.setState({ jadwal: response.data.data[0].nama });
-      console.log("from pop up edit mapel by id", response.data.data[0]);
-    })
-    .catch(function (error) {
-      //handle error
-      console.log(error);
-    });
+      .get(url, { headers })
+      .then(response => {
+        this.setState({ nama_mapel: response.data.data[0].nip });
+        this.setState({ jadwal: response.data.data[0].nama });
+        console.log("from pop up edit mapel by id", response.data.data[0]);
+      })
+      .catch(function(error) {
+        //handle error
+        console.log(error);
+      });
     this.setState({ open: true });
   };
 
@@ -57,8 +57,7 @@ class PopupEditMapel extends React.Component {
             title="edit mata pelajaran"
             style={{ color: "blue" }}
             className="fas fa-user-edit"
-          >
-          </i>
+          />
         </Button>
         <Dialog
           open={this.state.open}
@@ -98,7 +97,7 @@ class PopupEditMapel extends React.Component {
                 />
               </div>
 
-              <div
+              {/* <div
                 className="form-label-group"
                 style={{
                   maxWidth: "500px",
@@ -118,8 +117,25 @@ class PopupEditMapel extends React.Component {
                   }}
                   onChange={e => this.inputChange(e)}
                 />
-              </div>
+              </div> */}
 
+              {/* Input Jadwal Ujian */}
+              <TextField
+                required
+                id="date"
+                label="Jadwal"
+                type="datetime-local"
+                defaultValue="2018-11-25T10:30"
+                margin="normal"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true
+                }}
+                style={{ minWidth: "300px", marginTop: "20px", width: "100%", marginLeft:'20px' }}
+                name="tanggal_ujian"
+                onChange={e => this.props.setField(e)}
+              />
+              {/* Input Jadwal Ujian (end) */}
             </form>
           </DialogContent>
           <DialogActions>
