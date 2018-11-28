@@ -7,7 +7,11 @@ class AturGuru extends Component {
     componentDidMount = () => {
         this.props.getAllGuru(this.props.token)
     }
-    
+    doDeleteGuru = (id) => {
+      this.props.deleteGuru(id).then(()=>{
+        this.props.getAllGuru(this.props.token)
+      })
+    }
     render() {
     const dataGuru = this.props.listGuru
     return (
@@ -63,7 +67,7 @@ class AturGuru extends Component {
                             </td>
                             <td title="hapus data guru">
                               <i
-                                onClick={() => alert("hapus boss?")}
+                                onClick={() =>  this.doDeleteGuru(item.id_guru)}
                                 className="fas fa-user-minus"
                                 style={{ color: "red" }}
                               />

@@ -7,6 +7,11 @@ class AturSiswa extends Component {
   componentDidMount = () => {
     this.props.getAllSiswa(this.props.token);
   };
+  doDeleteSiswa = (id) => {
+    this.props.deleteSiswa(id).then(()=>{
+      this.props.getAllSiswa(this.props.token)
+    })
+  }
   render() {
     const listSiswa = this.props.listSiswa
     return (
@@ -62,7 +67,7 @@ class AturSiswa extends Component {
                             </td>
                             <td title="hapus data guru">
                               <i
-                                onClick={() => alert("hapus boss?")}
+                                onClick={() => this.doDeleteSiswa(item.id_siswa)}
                                 className="fas fa-user-minus"
                                 style={{ color: "red" }}
                               />
