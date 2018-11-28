@@ -70,7 +70,7 @@ class PopupEditSiswa extends React.Component {
     axios
       .patch(url, data, { headers })
       .then(response => {
-        swal("Tambah guru berhasil");
+        swal("Edit siswa berhasil");
         console.log("Response dari API: ", response);
         this.setState({ open: false });
       })
@@ -159,7 +159,7 @@ class PopupEditSiswa extends React.Component {
                   required
                   name="nama"
                   type="text"
-                  label="Nama Guru"
+                  label="Nama Siswa"
                   defaultValue=""
                   margin="normal"
                   variant="outlined"

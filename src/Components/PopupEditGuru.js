@@ -243,8 +243,8 @@ class PopupEditGuru extends React.Component {
                   required
                   name="username"
                   type="text"
-                  label={"Username: "+this.props.username}
-                  defaultValue={this.props.username}
+                  label={"Username: "+this.state.username}
+                  defaultValue={this.state.username}
                   margin="normal"
                   variant="outlined"
                   style={{
