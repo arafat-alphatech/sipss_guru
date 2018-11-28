@@ -161,7 +161,7 @@ class PopupEditKelas extends React.Component {
               Batal
             </Button>
             <Button onClick={() => this.doEditKelas()} color="primary" autoFocus>
-              simpan
+              Simpan
             </Button>
           </DialogActions>
         </Dialog>

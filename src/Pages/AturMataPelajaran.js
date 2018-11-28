@@ -41,7 +41,7 @@ class AturMataPelajaran extends Component {
                       <tr style={{ color: "#39C2C9" }}>
                         <th>No</th>
                         <th>Mata Pelajaran</th>
-                        <th>Wali Kelas</th>
+                        <th>Jadwal</th>
                         <th style={{color:'blue'}}>Edit</th>
                         <th style={{color:'red'}}>Hapus</th>
                       </tr>
