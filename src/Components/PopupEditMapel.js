@@ -131,7 +131,7 @@ class PopupEditMapel extends React.Component {
                 InputLabelProps={{
                   shrink: true
                 }}
-                style={{ minWidth: "300px", marginTop: "20px", width: "100%", marginLeft:'20px' }}
+                style={{ marginTop: "20px", width: "90%", marginLeft:'25px' }}
                 name="tanggal_ujian"
                 onChange={e => this.props.setField(e)}
               />
