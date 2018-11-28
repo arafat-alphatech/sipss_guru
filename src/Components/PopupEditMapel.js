@@ -7,45 +7,17 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import TextField from "@material-ui/core/TextField";
-import swal from 'sweetalert';
-import axios from 'axios'
 
-class PopupKelas extends React.Component {
+class PopupEditMapel extends React.Component {
   state = {
     open: false,
-    id_tingkat:'',
-    wali_kelas: "",
-    nama_kelas:''
+    nama_mapel:'',
+    jadwal:''
   };
-
-  // tambah kelas
-  postNewKelas = () => {
-    const token = this.props.adminToken;
-    const headers = {
-      Authorization: "Bearer " + token
-    };
-    const url = "http://13.251.97.170:5001/admin/kelas";
-    const data = {
-      id_tingkat: this.state.id_tingkat,
-      nama_kelas: this.state.nama_kelas,
-      wali_kelas: this.state.wali_kelas,
-    };
-    axios
-      .post(url, data, { headers })
-      .then(response => {
-        swal("Tambah data kelas berhasil");
-        console.log("Response dari API: ", response);
-        this.setState({ open: false });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-  // post siswa (end)
 
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-    // console.log(e.target.value);
+    console.log(e.target.value);
   };
 
   // Buka tutup popup
@@ -61,18 +33,14 @@ class PopupKelas extends React.Component {
   // Buka tutup popup (end)
 
   render() {
-    const listTingkat = this.props.listTingkat;
-    console.log('statenya kelas',this.state)
     return (
       <div>
         <Button onClick={this.handleClickOpen}>
-          Tambah Kelas &nbsp;
           <i
-            title="tambah data kelas"
-            style={{ color: "#00e640" }}
-            className="fas fa-user-plus"
+            title="edit mata pelajaran"
+            style={{ color: "blue" }}
+            className="fas fa-user-edit"
           >
-            <span style={{ marginRight: "20px" }} />
           </i>
         </Button>
         <Dialog
@@ -86,31 +54,10 @@ class PopupKelas extends React.Component {
             id="alert-dialog-title"
             style={{ marginLeft: "auto", marginRight: "auto" }}
           >
-            {"Tambah Kelas"}
+            {"Edit Mata Pelajaran"}
           </DialogTitle>
           <DialogContent>
             <form onSubmit={e => e.preventDefault()}>
-              {/* Piih Tingkat Kelas */}
-              <div style={{ margin: "10px" }}>
-                <select
-                  className="form-control"
-                  value={listTingkat.id_tingkat}
-                  name="id_tingkat"
-                  onChange={e => this.inputChange(e)}
-                >
-                  <option>Tingkat Kelas</option>
-                  {listTingkat.map((item, key) => {
-                    return (
-                      <option value={item.id_tingkat} key={key}>
-                        {item.nama_tingkat}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-              {/* Pilih Kelas (end) */}
-
-              {/* Tambah Nama Kelas */}
               <div
                 className="form-label-group"
                 style={{
@@ -121,9 +68,9 @@ class PopupKelas extends React.Component {
               >
                 <TextField
                   required
-                  name="nama_kelas"
+                  name="nama_mapel"
                   type="text"
-                  label="Nama Kelas"
+                  label="Mata Pelajaran"
                   defaultValue=""
                   margin="normal"
                   variant="outlined"
@@ -133,19 +80,17 @@ class PopupKelas extends React.Component {
                   onChange={e => this.inputChange(e)}
                 />
               </div>
-              {/* Tambah nama kelas (end) */}
 
               <div
                 className="form-label-group"
                 style={{
-                  marginRight: "auto",
-                  marginLeft: "auto",
-                  maxWidth: "500px"
+                  maxWidth: "500px",
+                  margin: "0 auto"
                 }}
               >
                 <TextField
                   required
-                  name="wali_kelas"
+                  name="jadwal"
                   type="text"
                   label="Wali Kelas"
                   defaultValue=""
@@ -157,13 +102,14 @@ class PopupKelas extends React.Component {
                   onChange={e => this.inputChange(e)}
                 />
               </div>
+
             </form>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
               Batal
             </Button>
-            <Button onClick={() => this.postNewKelas()} color="primary" autoFocus>
+            <Button onClick={this.handleClose} color="primary" autoFocus>
               Tambahkan
             </Button>
           </DialogActions>
@@ -174,6 +120,6 @@ class PopupKelas extends React.Component {
 }
 
 export default connect(
-  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat, adminToken",
+  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat",
   actions
-)(PopupKelas);
+)(PopupEditMapel);

@@ -2,10 +2,18 @@ import React, { Component } from "react";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import PopupMapel from "../Components/PopupMapel"
+import PopupEditMapel from "../Components/PopupEditMapel";
+import Button from "@material-ui/core/Button";
+import swal from 'sweetalert'
 
 class AturMataPelajaran extends Component {
   componentDidMount = () => {
     this.props.getAllMapel(this.props.token)
+  }
+  doDeleteMapel = (id) => {
+    this.props.deleteMapel(id).then(()=>{
+      this.props.getAllMapel(this.props.token)
+    })
   }
   render() {
     const listMapel = this.props.listMapel
@@ -34,30 +42,28 @@ class AturMataPelajaran extends Component {
                         <th>No</th>
                         <th>Mata Pelajaran</th>
                         <th>Wali Kelas</th>
-                        <th>Edit</th>
-                        <th>Hapus</th>
+                        <th style={{color:'blue'}}>Edit</th>
+                        <th style={{color:'red'}}>Hapus</th>
                       </tr>
                     </thead>
                     <tbody>
                       {listMapel.map((item, key) => {
                         return (
                           <tr key={key}>
-                            <td>{key + 1}</td>
-                            <td>{item.nama_mapel}</td>
-                            <td>{item.jadwal}</td>
-                            <td title="edit data guru">
-                              <i
-                                onClick={() => alert("edit boss?")}
-                                className="fas fa-user-edit"
-                                style={{ color: "blue" }}
-                              />
+                            <td className='align-middle'>{key + 1}</td>
+                            <td className='align-middle'>{item.nama_mapel}</td>
+                            <td className='align-middle'>{item.jadwal}</td>
+                            <td className='align-middle' title="edit data mata pelajaran">
+                            <PopupEditMapel/>
                             </td>
-                            <td title="hapus data guru">
+                            <td title="hapus mata pelajaran">
+                            <Button>
                               <i
-                                onClick={() => alert("hapus boss?")}
+                                onClick={() => this.doDeleteMapel(item.id_mapel)}
                                 className="fas fa-user-minus"
                                 style={{ color: "red" }}
                               />
+                            </Button>
                             </td>
                           </tr>
                         );

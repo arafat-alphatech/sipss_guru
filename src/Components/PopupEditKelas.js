@@ -10,30 +10,29 @@ import TextField from "@material-ui/core/TextField";
 import swal from 'sweetalert';
 import axios from 'axios'
 
-class PopupKelas extends React.Component {
+class PopupEditKelas extends React.Component {
   state = {
     open: false,
-    id_tingkat:'',
+    id_tingkat:"",
     wali_kelas: "",
-    nama_kelas:''
+    nama_kelas:""
   };
 
-  // tambah kelas
-  postNewKelas = () => {
+  // Edit Kelas
+  doEditKelas = () => {
     const token = this.props.adminToken;
     const headers = {
       Authorization: "Bearer " + token
     };
-    const url = "http://13.251.97.170:5001/admin/kelas";
+    const url = "http://13.251.97.170:5001/admin/kelas-detail/" +this.props.id;
     const data = {
-      id_tingkat: this.state.id_tingkat,
       nama_kelas: this.state.nama_kelas,
       wali_kelas: this.state.wali_kelas,
     };
     axios
-      .post(url, data, { headers })
+      .put(url, data, { headers })
       .then(response => {
-        swal("Tambah data kelas berhasil");
+        swal("Edit kelas berhasil");
         console.log("Response dari API: ", response);
         this.setState({ open: false });
       })
@@ -41,38 +40,56 @@ class PopupKelas extends React.Component {
         console.log(err);
       });
   };
-  // post siswa (end)
+
 
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-    // console.log(e.target.value);
   };
 
   // Buka tutup popup
 
   handleClickOpen = () => {
+    const token = this.props.adminToken        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/kelas-detail/" +  this.props.id;
+    axios
+    .get(url,{headers})
+    .then((response) => {
+      this.setState({ nama_kelas: response.data.data[0].nama_kelas });
+      this.setState({ wali_kelas: response.data.data[0].wali_kelas });
+      console.log("from pop up edit kelas by id", response.data.data[0]);
+    })
+    .catch(function (error) {
+      //handle error
+      console.log(error);
+    });
     this.setState({ open: true });
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ open: false,
+      id_tingkat:"",
+      nama_kelas:"",
+      wali_kelas:""
+    });
   };
 
   // Buka tutup popup (end)
 
   render() {
+    console.log('state nama kelas', this.state.nama_kelas)
     const listTingkat = this.props.listTingkat;
     console.log('statenya kelas',this.state)
     return (
       <div>
         <Button onClick={this.handleClickOpen}>
-          Tambah Kelas &nbsp;
           <i
-            title="tambah data kelas"
-            style={{ color: "#00e640" }}
-            className="fas fa-user-plus"
+            title="edit data kelas"
+            style={{ color: "blue" }}
+            className="fas fa-user-edit"
           >
-            <span style={{ marginRight: "20px" }} />
           </i>
         </Button>
         <Dialog
@@ -86,7 +103,7 @@ class PopupKelas extends React.Component {
             id="alert-dialog-title"
             style={{ marginLeft: "auto", marginRight: "auto" }}
           >
-            {"Tambah Kelas"}
+            {"Edit Data Kelas"}
           </DialogTitle>
           <DialogContent>
             <form onSubmit={e => e.preventDefault()}>
@@ -123,8 +140,8 @@ class PopupKelas extends React.Component {
                   required
                   name="nama_kelas"
                   type="text"
-                  label="Nama Kelas"
-                  defaultValue=""
+                  label={"Nama Kelas: "+this.state.nama_kelas}
+                  defaultValue={this.state.nama_kelas}
                   margin="normal"
                   variant="outlined"
                   style={{
@@ -147,8 +164,8 @@ class PopupKelas extends React.Component {
                   required
                   name="wali_kelas"
                   type="text"
-                  label="Wali Kelas"
-                  defaultValue=""
+                  label={"Wali Kelas: "+this.state.wali_kelas}
+                  defaultValue={this.state.wali_kelas}
                   margin="normal"
                   variant="outlined"
                   style={{
@@ -163,8 +180,8 @@ class PopupKelas extends React.Component {
             <Button onClick={this.handleClose} color="primary">
               Batal
             </Button>
-            <Button onClick={() => this.postNewKelas()} color="primary" autoFocus>
-              Tambahkan
+            <Button onClick={() => this.doEditKelas()} color="primary" autoFocus>
+              simpan
             </Button>
           </DialogActions>
         </Dialog>
@@ -176,4 +193,4 @@ class PopupKelas extends React.Component {
 export default connect(
   "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat, adminToken",
   actions
-)(PopupKelas);
+)(PopupEditKelas);

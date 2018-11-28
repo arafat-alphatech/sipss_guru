@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import PopupKelas from "../Components/PopupKelas"
+import PopupEditKelas from "../Components/PopupEditKelas";
+import Button from "@material-ui/core/Button";
+import swal from 'sweetalert'
 
 class AturKelas extends Component {
   componentDidMount = () => {
@@ -35,8 +38,7 @@ class AturKelas extends Component {
                         <th>No</th>
                         <th>Kelas</th>
                         <th>Wali Kelas</th>
-                        <th>Edit</th>
-                        <th>Hapus</th>
+                        <th style={{color:'blue'}}>Edit</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -44,21 +46,10 @@ class AturKelas extends Component {
                         return (
                           <tr key={key}>
                             <td>{key + 1}</td>
-                            <td>{item.nama_kelas}</td>
-                            <td>{item.wali_kelas}</td>
+                            <td className='align-middle'>{item.nama_kelas}</td>
+                            <td className='align-middle'>{item.wali_kelas}</td>
                             <td title="edit data guru">
-                              <i
-                                onClick={() => alert("edit boss?")}
-                                className="fas fa-user-edit"
-                                style={{ color: "blue" }}
-                              />
-                            </td>
-                            <td title="hapus data guru">
-                              <i
-                                onClick={() => alert("hapus boss?")}
-                                className="fas fa-user-minus"
-                                style={{ color: "red" }}
-                              />
+                              <PopupEditKelas/>
                             </td>
                           </tr>
                         );
