@@ -8,6 +8,7 @@ import { connect } from "unistore/react";
 import { actions } from "../store";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
+import swal from 'sweetalert';
 
 class Popup extends React.Component {
   state = {
@@ -22,10 +23,10 @@ class Popup extends React.Component {
   };
 
   // post guru
-  postNewGuru= () => {
-    const token = this.props.adminToken        
+  postNewGuru = () => {
+    const token = this.props.adminToken;
     const headers = {
-        Authorization: "Bearer " + token
+      Authorization: "Bearer " + token
     };
     const url = "http://13.251.97.170:5001/admin/guru";
     const data = {
@@ -38,23 +39,53 @@ class Popup extends React.Component {
       password: this.state.password
     };
     axios
-      .post(url, data,{headers})
+      .post(url, data, { headers })
       .then(response => {
-        alert("Tambah guru berhasil");
+        swal("Tambah guru berhasil");
         console.log("Response dari API: ", response);
-        this.setState({ open: false });  
+        this.setState({ open: false });
       })
       .catch(err => {
         console.log(err);
       });
-  }
+  };
   // post guru (end)
 
+  // edit guru
+  editGuru = () => {
+    const token = this.props.adminToken;
+    const headers = {
+      Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/guru";
+    const data = {
+      nip: this.state.nip,
+      nama: this.state.nama,
+      alamat: this.state.alamat,
+      jenis_kelamin: this.state.jenis_kelamin,
+      telepon: this.state.telepon,
+      username: this.state.username,
+      password: this.state.password
+    };
+    axios
+      .patch(url, data, { headers })
+      .then(response => {
+        alert("Tambah guru berhasil");
+        console.log("Response dari API: ", response);
+        this.setState({ open: false });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  // edit guru (end)
 
+  //set state ketika ada inputan
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
     console.log(e.target.value);
   };
+  //set state ketika ada inputan (end)
 
   // Buka tutup popup
   handleClickOpen = () => {
@@ -67,8 +98,7 @@ class Popup extends React.Component {
   // Buka tutup popup (end)
 
   render() {
-
-    console.log(this.state)
+    console.log(this.state);
     return (
       <div>
         <Button onClick={this.handleClickOpen}>
@@ -254,7 +284,11 @@ class Popup extends React.Component {
             <Button onClick={this.handleClose} color="primary">
               Batal
             </Button>
-            <Button onClick={() => this.postNewGuru()} color="primary" autoFocus>
+            <Button
+              onClick={() => this.postNewGuru()}
+              color="primary"
+              autoFocus
+            >
               Tambahkan
             </Button>
           </DialogActions>

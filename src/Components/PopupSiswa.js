@@ -20,30 +20,31 @@ class PopupSiswa extends React.Component {
   };
 
   // post siswa
-  postNewSiswa= () => {
-    const token = this.props.adminToken        
+  postNewSiswa = () => {
+    const token = this.props.adminToken;
     const headers = {
-        Authorization: "Bearer " + token
+      Authorization: "Bearer " + token
     };
     const url = "http://13.251.97.170:5001/admin/siswa";
     const data = {
+      id_kelas: this.state.id_kelas,
       nis: this.state.nis,
       nama: this.state.nama,
       alamat: this.state.alamat,
       jenis_kelamin: this.state.jenis_kelamin,
-      telepon: this.state.telepon,
+      telepon: this.state.telepon
     };
     axios
-      .post(url, data,{headers})
+      .post(url, data, { headers })
       .then(response => {
         alert("Tambah siswa berhasil");
         console.log("Response dari API: ", response);
-        this.setState({ open: false });  
+        this.setState({ open: false });
       })
       .catch(err => {
         console.log(err);
       });
-  }
+  };
   // post siswa (end)
 
   inputChange = e => {
@@ -61,8 +62,14 @@ class PopupSiswa extends React.Component {
   };
   // Buka tutup popup (end)
 
+  componentDidMount = () => {
+    this.props.getAllSiswa(this.props.token);
+  };
+
   render() {
-    console.log(this.state)
+    const listKelas = this.props.listKelas;
+    console.log('cek statenya',this.state)
+    console.log('cek cek cek',this.props.listKelas);
     return (
       <div>
         <Button onClick={this.handleClickOpen}>
@@ -90,6 +97,28 @@ class PopupSiswa extends React.Component {
           </DialogTitle>
           <DialogContent>
             <form onSubmit={e => e.preventDefault()}>
+              {/* Piih Kelas */}
+
+              <select
+                style={{ maxWidth: "93%", margin: "20px 20px 10px 20px" }}
+                className="form-control"
+                value={listKelas.id_kelas}
+                name="id_kelas"
+                onChange={e => this.inputChange(e)}
+                onClick={() => this.props.getAllKelas()}
+              >
+                <option>Nama kelas</option>
+                {listKelas.map((item, key) => {
+                  return (
+                    <option value={item.id_kelas} key={key}>
+                      {item.nama_kelas}
+                    </option>
+                  );
+                })}
+              </select>
+
+              {/* Pilih Kelas (end) */}
+
               {/* Form isi NIS */}
               <div
                 className="form-label-group"
@@ -210,7 +239,11 @@ class PopupSiswa extends React.Component {
             <Button onClick={this.handleClose} color="primary">
               Batal
             </Button>
-            <Button onClick={() => this.postNewSiswa()} color="primary" autoFocus>
+            <Button
+              onClick={() => this.postNewSiswa()}
+              color="primary"
+              autoFocus
+            >
               Tambahkan
             </Button>
           </DialogActions>
@@ -221,6 +254,6 @@ class PopupSiswa extends React.Component {
 }
 
 export default connect(
-  "is_login, adminToken",
+  "is_login, adminToken, id_kelas, listKelas, listTingkat",
   actions
 )(PopupSiswa);

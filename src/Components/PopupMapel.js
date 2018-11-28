@@ -11,13 +11,8 @@ import TextField from "@material-ui/core/TextField";
 class PopupMapel extends React.Component {
   state = {
     open: false,
-    nip: "",
-    nama: "",
-    alamat: "",
-    jenis_kelamin: "",
-    telepon: "",
-    username: "",
-    password: ""
+    nama_mapel:'',
+    jadwal:''
   };
 
   inputChange = e => {
@@ -43,7 +38,7 @@ class PopupMapel extends React.Component {
         <Button onClick={this.handleClickOpen}>
           Tambah Mata Pelajaran &nbsp;
           <i
-            title="tambah data guru"
+            title="tambah mata pelajaran"
             style={{ color: "#00e640" }}
             className="fas fa-user-plus"
           >
@@ -75,7 +70,7 @@ class PopupMapel extends React.Component {
               >
                 <TextField
                   required
-                  name="namaMapel"
+                  name="nama_mapel"
                   type="text"
                   label="Mata Pelajaran"
                   defaultValue=""
@@ -97,7 +92,7 @@ class PopupMapel extends React.Component {
               >
                 <TextField
                   required
-                  name="namaWali"
+                  name="jadwal"
                   type="text"
                   label="Wali Kelas"
                   defaultValue=""
