@@ -42,10 +42,10 @@ class AturMataPelajaran extends Component {
                       {listMapel.map((item, key) => {
                         return (
                           <tr key={key}>
-                            <td>{key + 1}</td>
-                            <td>{item.nama_mapel}</td>
-                            <td>{item.jadwal}</td>
-                            <td title="edit data guru">
+                            <td className='align-middle'>{key + 1}</td>
+                            <td className='align-middle'>{item.nama_mapel}</td>
+                            <td className='align-middle'>{item.jadwal}</td>
+                            <td className='align-middle' title="edit data guru">
                               <i
                                 onClick={() => alert("edit boss?")}
                                 className="fas fa-user-edit"

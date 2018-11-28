@@ -70,7 +70,7 @@ class Popup extends React.Component {
     axios
       .patch(url, data, { headers })
       .then(response => {
-        alert("Tambah guru berhasil");
+        swal("Tambah guru berhasil");
         console.log("Response dari API: ", response);
         this.setState({ open: false });
       })
@@ -102,7 +102,7 @@ class Popup extends React.Component {
     return (
       <div>
         <Button onClick={this.handleClickOpen}>
-          Tambah Guru &nbsp;
+          Tambah Data Guru &nbsp;
           <i
             title="tambah data guru"
             style={{ color: "#00e640" }}

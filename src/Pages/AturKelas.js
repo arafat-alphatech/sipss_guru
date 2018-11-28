@@ -44,8 +44,8 @@ class AturKelas extends Component {
                         return (
                           <tr key={key}>
                             <td>{key + 1}</td>
-                            <td>{item.nama_kelas}</td>
-                            <td>{item.wali_kelas}</td>
+                            <td className='align-middle'>{item.nama_kelas}</td>
+                            <td className='align-middle'>{item.wali_kelas}</td>
                             <td title="edit data guru">
                               <i
                                 onClick={() => alert("edit boss?")}

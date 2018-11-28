@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import PopupSiswa from '../Components/PopupSiswa'
+import PopupEditSiswa from '../Components/PopupEditSiswa'
+import Button from "@material-ui/core/Button";
+import swal from 'sweetalert'
 
 class AturSiswa extends Component {
   componentDidMount = () => {
@@ -47,25 +50,28 @@ class AturSiswa extends Component {
                       {listSiswa.map((item, key) => {
                         return (
                           <tr key={key}>
-                            <td>{key + 1}</td>
-                            <td>{item.nis}</td>
-                            <td>{item.nama}</td>
-                            <td>{item.alamat}</td>
-                            <td>{item.jenis_kelamin}</td>
-                            <td>{item.telepon}</td>
+                            <td className='align-middle'>{key + 1}</td>
+                            <td className='align-middle'>{item.nis}</td>
+                            <td className='align-middle'>{item.nama}</td>
+                            <td className='align-middle'>{item.alamat}</td>
+                            <td className='align-middle'>{item.jenis_kelamin}</td>
+                            <td className='align-middle'>{item.telepon}</td>
                             <td title="edit data guru">
-                              <i
+                              <PopupEditSiswa/>
+                              {/* <i
                                 onClick={() => alert("edit boss?")}
                                 className="fas fa-user-edit"
                                 style={{ color: "blue" }}
-                              />
+                              /> */}
                             </td>
                             <td title="hapus data guru">
+                            <Button>
                               <i
-                                onClick={() => alert("hapus boss?")}
+                                onClick={() => swal("hapus boss?")}
                                 className="fas fa-user-minus"
                                 style={{ color: "red" }}
                               />
+                            </Button>
                             </td>
                           </tr>
                         );

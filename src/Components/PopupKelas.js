@@ -13,6 +13,7 @@ import axios from 'axios'
 class PopupKelas extends React.Component {
   state = {
     open: false,
+    id_tingkat:'',
     wali_kelas: "",
     nama_kelas:''
   };
@@ -41,11 +42,10 @@ class PopupKelas extends React.Component {
       });
   };
   // post siswa (end)
-  // tambah kelas (end)
 
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   // Buka tutup popup
@@ -97,7 +97,6 @@ class PopupKelas extends React.Component {
                   value={listTingkat.id_tingkat}
                   name="id_tingkat"
                   onChange={e => this.inputChange(e)}
-                  onClick={() => this.props.getKelas()}
                 >
                   <option>Tingkat Kelas</option>
                   {listTingkat.map((item, key) => {
@@ -175,6 +174,6 @@ class PopupKelas extends React.Component {
 }
 
 export default connect(
-  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat",
+  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat, adminToken",
   actions
 )(PopupKelas);
