@@ -62,12 +62,7 @@ class AturSiswa extends Component {
                             <td className='align-middle'>{item.jenis_kelamin}</td>
                             <td className='align-middle'>{item.telepon}</td>
                             <td title="edit data guru">
-                              <PopupEditSiswa/>
-                              {/* <i
-                                onClick={() => alert("edit boss?")}
-                                className="fas fa-user-edit"
-                                style={{ color: "blue" }}
-                              /> */}
+                            <PopupEditSiswa id={item.id_siswa}/>
                             </td>
                             <td title="hapus data guru">
                             <Button>
