@@ -49,7 +49,7 @@ class AturKelas extends Component {
                             <td className='align-middle'>{item.nama_kelas}</td>
                             <td className='align-middle'>{item.wali_kelas}</td>
                             <td title="edit data guru">
-                              <PopupEditKelas/>
+                              <PopupEditKelas id={item.id_kelas}/>
                             </td>
                           </tr>
                         );

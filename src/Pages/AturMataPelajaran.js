@@ -54,7 +54,7 @@ class AturMataPelajaran extends Component {
                             <td className='align-middle'>{item.nama_mapel}</td>
                             <td className='align-middle'>{item.jadwal}</td>
                             <td className='align-middle' title="edit data mata pelajaran">
-                            <PopupEditMapel/>
+                            <PopupEditMapel id ={item.id_mapel}/>
                             </td>
                             <td title="hapus mata pelajaran">
                             <Button>
