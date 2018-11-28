@@ -92,7 +92,7 @@ class PopupEditMapel extends React.Component {
                   required
                   name="jadwal"
                   type="text"
-                  label="Wali Kelas"
+                  label="Jadwal"
                   defaultValue=""
                   margin="normal"
                   variant="outlined"
@@ -110,7 +110,7 @@ class PopupEditMapel extends React.Component {
               Batal
             </Button>
             <Button onClick={this.handleClose} color="primary" autoFocus>
-              Tambahkan
+              Simpan
             </Button>
           </DialogActions>
         </Dialog>
