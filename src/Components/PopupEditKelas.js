@@ -107,26 +107,6 @@ class PopupEditKelas extends React.Component {
           </DialogTitle>
           <DialogContent>
             <form onSubmit={e => e.preventDefault()}>
-              {/* Piih Tingkat Kelas */}
-              <div style={{ margin: "10px" }}>
-                <select
-                  className="form-control"
-                  value={listTingkat.id_tingkat}
-                  name="id_tingkat"
-                  onChange={e => this.inputChange(e)}
-                >
-                  <option>Tingkat Kelas</option>
-                  {listTingkat.map((item, key) => {
-                    return (
-                      <option value={item.id_tingkat} key={key}>
-                        {item.nama_tingkat}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-              {/* Pilih Kelas (end) */}
-
               {/* Tambah Nama Kelas */}
               <div
                 className="form-label-group"

@@ -4,6 +4,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import axios from "axios";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import TextField from "@material-ui/core/TextField";
@@ -23,6 +24,22 @@ class PopupEditMapel extends React.Component {
   // Buka tutup popup
 
   handleClickOpen = () => {
+    const token = this.props.adminToken        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/mapel-detail/" +  this.props.id;
+    axios
+    .get(url,{headers})
+    .then((response) => {
+      this.setState({ nama_mapel: response.data.data[0].nip });
+      this.setState({ jadwal: response.data.data[0].nama });
+      console.log("from pop up edit mapel by id", response.data.data[0]);
+    })
+    .catch(function (error) {
+      //handle error
+      console.log(error);
+    });
     this.setState({ open: true });
   };
 
@@ -120,6 +137,6 @@ class PopupEditMapel extends React.Component {
 }
 
 export default connect(
-  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat",
+  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat, adminToken",
   actions
 )(PopupEditMapel);
