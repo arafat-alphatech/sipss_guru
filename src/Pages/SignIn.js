@@ -18,12 +18,14 @@ class SignIn extends Component {
 
   signInHandle = () => {
     this.props.signInHandle( this.state.username, this.state.password )
+    alert('Selamat datang')
     this.props.history.push('/')
   }
   
-  render() {
-    return (
-        
+  render() {  
+    console.log('is_login', this.props.is_login)
+
+    return (          
     <div className="sign-in" style={{padding:'20px'}}>
         <div className="card mb-3"
             style={{ 

@@ -10,7 +10,11 @@ class AturGuru extends Component {
     componentDidMount = () => {
         this.props.getAllGuru(this.props.token)
     }
-    
+    doDeleteGuru = (id) => {
+      this.props.deleteGuru(id).then(()=>{
+        this.props.getAllGuru(this.props.token)
+      })
+    }
     render() {
     const dataGuru = this.props.listGuru
     return (
@@ -58,13 +62,12 @@ class AturGuru extends Component {
                             <td className='align-middle'>{item.telepon}</td>
                             <td className='align-middle'>{item.username}</td>
                             <td title="edit data guru">
-                                <PopupEditGuru/>
+                                <PopupEditGuru id={item.id_guru}/>
                             </td>
                             <td title="hapus data guru">
                               <Button>
-
                               <i
-                                onClick={() => swal("hapus boss?")}
+                                onClick={() =>  this.doDeleteGuru(item.id_guru)}
                                 className="fas fa-user-minus"
                                 style={{ color: "red" }}
                               />

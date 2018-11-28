@@ -10,6 +10,11 @@ class AturMataPelajaran extends Component {
   componentDidMount = () => {
     this.props.getAllMapel(this.props.token)
   }
+  doDeleteMapel = (id) => {
+    this.props.deleteMapel(id).then(()=>{
+      this.props.getAllMapel(this.props.token)
+    })
+  }
   render() {
     const listMapel = this.props.listMapel
     return (
@@ -54,7 +59,7 @@ class AturMataPelajaran extends Component {
                             <td title="hapus mata pelajaran">
                             <Button>
                               <i
-                                onClick={() => swal("hapus boss?")}
+                                onClick={() => this.doDeleteMapel(item.id_mapel)}
                                 className="fas fa-user-minus"
                                 style={{ color: "red" }}
                               />

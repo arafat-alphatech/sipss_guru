@@ -22,42 +22,13 @@ class PopupEditGuru extends React.Component {
     password: ""
   };
 
-  // post guru
-  postNewGuru = () => {
-    const token = this.props.adminToken;
-    const headers = {
-      Authorization: "Bearer " + token
-    };
-    const url = "http://13.251.97.170:5001/admin/guru";
-    const data = {
-      nip: this.state.nip,
-      nama: this.state.nama,
-      alamat: this.state.alamat,
-      jenis_kelamin: this.state.jenis_kelamin,
-      telepon: this.state.telepon,
-      username: this.state.username,
-      password: this.state.password
-    };
-    axios
-      .post(url, data, { headers })
-      .then(response => {
-        swal("Tambah guru berhasil");
-        console.log("Response dari API: ", response);
-        this.setState({ open: false });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-  // post guru (end)
-
   // edit guru
-  editGuru = () => {
+  doEditGuru = () => {
     const token = this.props.adminToken;
     const headers = {
       Authorization: "Bearer " + token
     };
-    const url = "http://13.251.97.170:5001/admin/guru";
+    const url = "http://13.251.97.170:5001/admin/guru/"+this.props.id;
     const data = {
       nip: this.state.nip,
       nama: this.state.nama,
@@ -68,9 +39,9 @@ class PopupEditGuru extends React.Component {
       password: this.state.password
     };
     axios
-      .patch(url, data, { headers })
+      .put(url, data, { headers })
       .then(response => {
-        alert("Tambah guru berhasil");
+        swal("Edit guru berhasil");
         console.log("Response dari API: ", response);
         this.setState({ open: false });
       })
@@ -89,16 +60,43 @@ class PopupEditGuru extends React.Component {
 
   // Buka tutup popup
   handleClickOpen = () => {
+    const token = this.props.adminToken        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/guru-detail/" +  this.props.id;
+    axios
+    .get(url,{headers})
+    .then((response) => {
+      this.setState({ nip: response.data.data[0].nip });
+      this.setState({ nama: response.data.data[0].nama });
+      this.setState({ alamat: response.data.data[0].alamat });
+      this.setState({ jenis_kelamin: response.data.data[0].jenis_kelamin });
+      this.setState({ telepon: response.data.data[0].telepon });
+      this.setState({ username: response.data.data[0].username });
+      this.setState({ password: response.data.data[0].password});
+      console.log("from pop up edit guru by id", response.data.data[0]);
+    })
+    .catch(function (error) {
+      //handle error
+      console.log(error);
+    });
     this.setState({ open: true });
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ open: false,
+                    nip: "",
+                    nama:"",
+                    alamat:"",
+                    jenis_kelamin:"",
+                    telepon:"",
+                    username:"",
+                    password:""});
   };
   // Buka tutup popup (end)
 
   render() {
-    console.log(this.state);
     return (
       <div>
         <Button onClick={this.handleClickOpen}>
@@ -128,29 +126,6 @@ class PopupEditGuru extends React.Component {
               <div
                 className="form-label-group"
                 style={{
-                  marginRight: "auto",
-                  marginLeft: "auto",
-                  maxWidth: "500px"
-                }}
-              >
-                <TextField
-                  required
-                  name="username"
-                  type="text"
-                  label="Username"
-                  defaultValue=""
-                  margin="normal"
-                  variant="outlined"
-                  style={{
-                    width: "100%"
-                  }}
-                  onChange={e => this.inputChange(e)}
-                />
-              </div>
-
-              <div
-                className="form-label-group"
-                style={{
                   maxWidth: "500px",
                   margin: "0 auto"
                 }}
@@ -159,8 +134,8 @@ class PopupEditGuru extends React.Component {
                   required
                   name="nama"
                   type="text"
-                  label="Nama Guru"
-                  defaultValue=""
+                  label={"Nama Guru: "+this.state.nama}
+                  defaultValue={this.state.nama}
                   margin="normal"
                   variant="outlined"
                   style={{
@@ -181,8 +156,8 @@ class PopupEditGuru extends React.Component {
                   required
                   name="nip"
                   type="text"
-                  label="NIP"
-                  defaultValue=""
+                  label={"NIP: "+this.state.nip}
+                  defaultValue={this.state.nip}
                   margin="normal"
                   variant="outlined"
                   style={{
@@ -224,8 +199,8 @@ class PopupEditGuru extends React.Component {
                   required
                   name="alamat"
                   type="text"
-                  label="Alamat"
-                  defaultValue=""
+                  label={"Alamat: "+this.state.alamat}
+                  defaultValue={this.state.alamat}
                   margin="normal"
                   variant="outlined"
                   style={{
@@ -246,8 +221,30 @@ class PopupEditGuru extends React.Component {
                   required
                   name="telepon"
                   type="text"
-                  label="Telepon"
-                  defaultValue=""
+                  label={"Telepon: "+this.state.telepon}
+                  defaultValue={this.state.telepon}
+                  margin="normal"
+                  variant="outlined"
+                  style={{
+                    width: "100%"
+                  }}
+                  onChange={e => this.inputChange(e)}
+                />
+              </div>
+              <div
+                className="form-label-group"
+                style={{
+                  marginRight: "auto",
+                  marginLeft: "auto",
+                  maxWidth: "500px"
+                }}
+              >
+                <TextField
+                  required
+                  name="username"
+                  type="text"
+                  label={"Username: "+this.props.username}
+                  defaultValue={this.props.username}
                   margin="normal"
                   variant="outlined"
                   style={{
@@ -267,8 +264,8 @@ class PopupEditGuru extends React.Component {
                   required
                   name="password"
                   type="password"
-                  label="Password"
-                  defaultValue=""
+                  label={"Password: "+ this.state.password}
+                  defaultValue={this.state.password}
                   margin="normal"
                   variant="outlined"
                   style={{
@@ -284,11 +281,11 @@ class PopupEditGuru extends React.Component {
               Batal
             </Button>
             <Button
-              onClick={() => this.postNewGuru()}
+              onClick={() => this.doEditGuru()}
               color="primary"
               autoFocus
             >
-              Tambahkan
+              Simpan
             </Button>
           </DialogActions>
         </Dialog>

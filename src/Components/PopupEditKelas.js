@@ -13,10 +13,34 @@ import axios from 'axios'
 class PopupEditKelas extends React.Component {
   state = {
     open: false,
-    id_tingkat:'',
+    id_tingkat:"",
     wali_kelas: "",
-    nama_kelas:''
+    nama_kelas:""
   };
+
+  // Edit Kelas
+  doEditKelas = () => {
+    const token = this.props.adminToken;
+    const headers = {
+      Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/kelas-detail/" +this.props.id;
+    const data = {
+      nama_kelas: this.state.nama_kelas,
+      wali_kelas: this.state.wali_kelas,
+    };
+    axios
+      .put(url, data, { headers })
+      .then(response => {
+        swal("Edit kelas berhasil");
+        console.log("Response dari API: ", response);
+        this.setState({ open: false });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
 
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -25,16 +49,37 @@ class PopupEditKelas extends React.Component {
   // Buka tutup popup
 
   handleClickOpen = () => {
+    const token = this.props.adminToken        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/kelas-detail/" +  this.props.id;
+    axios
+    .get(url,{headers})
+    .then((response) => {
+      this.setState({ nama_kelas: response.data.data[0].nama_kelas });
+      this.setState({ wali_kelas: response.data.data[0].wali_kelas });
+      console.log("from pop up edit kelas by id", response.data.data[0]);
+    })
+    .catch(function (error) {
+      //handle error
+      console.log(error);
+    });
     this.setState({ open: true });
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ open: false,
+      id_tingkat:"",
+      nama_kelas:"",
+      wali_kelas:""
+    });
   };
 
   // Buka tutup popup (end)
 
   render() {
+    console.log('state nama kelas', this.state.nama_kelas)
     const listTingkat = this.props.listTingkat;
     console.log('statenya kelas',this.state)
     return (
@@ -95,8 +140,8 @@ class PopupEditKelas extends React.Component {
                   required
                   name="nama_kelas"
                   type="text"
-                  label="Nama Kelas"
-                  defaultValue=""
+                  label={"Nama Kelas: "+this.state.nama_kelas}
+                  defaultValue={this.state.nama_kelas}
                   margin="normal"
                   variant="outlined"
                   style={{
@@ -119,8 +164,8 @@ class PopupEditKelas extends React.Component {
                   required
                   name="wali_kelas"
                   type="text"
-                  label="Wali Kelas"
-                  defaultValue=""
+                  label={"Wali Kelas: "+this.state.wali_kelas}
+                  defaultValue={this.state.wali_kelas}
                   margin="normal"
                   variant="outlined"
                   style={{
@@ -135,8 +180,8 @@ class PopupEditKelas extends React.Component {
             <Button onClick={this.handleClose} color="primary">
               Batal
             </Button>
-            <Button onClick={() => this.postNewKelas()} color="primary" autoFocus>
-              Tambahkan
+            <Button onClick={() => this.doEditKelas()} color="primary" autoFocus>
+              simpan
             </Button>
           </DialogActions>
         </Dialog>

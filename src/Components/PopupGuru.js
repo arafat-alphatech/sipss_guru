@@ -51,35 +51,6 @@ class Popup extends React.Component {
   };
   // post guru (end)
 
-  // edit guru
-  editGuru = () => {
-    const token = this.props.adminToken;
-    const headers = {
-      Authorization: "Bearer " + token
-    };
-    const url = "http://13.251.97.170:5001/admin/guru";
-    const data = {
-      nip: this.state.nip,
-      nama: this.state.nama,
-      alamat: this.state.alamat,
-      jenis_kelamin: this.state.jenis_kelamin,
-      telepon: this.state.telepon,
-      username: this.state.username,
-      password: this.state.password
-    };
-    axios
-      .patch(url, data, { headers })
-      .then(response => {
-        swal("Tambah guru berhasil");
-        console.log("Response dari API: ", response);
-        this.setState({ open: false });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-  // edit guru (end)
-
   //set state ketika ada inputan
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });

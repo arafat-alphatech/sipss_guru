@@ -39,7 +39,6 @@ class AturKelas extends Component {
                         <th>Kelas</th>
                         <th>Wali Kelas</th>
                         <th style={{color:'blue'}}>Edit</th>
-                        <th style={{color:'red'}}>Hapus</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -51,15 +50,6 @@ class AturKelas extends Component {
                             <td className='align-middle'>{item.wali_kelas}</td>
                             <td title="edit data guru">
                               <PopupEditKelas/>
-                            </td>
-                            <td title="hapus data guru">
-                            <Button>
-                              <i
-                                onClick={() => swal("hapus boss?")}
-                                className="fas fa-user-minus"
-                                style={{ color: "red" }}
-                              />
-                            </Button>
                             </td>
                           </tr>
                         );

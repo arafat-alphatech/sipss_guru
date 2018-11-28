@@ -7,9 +7,9 @@ import { Redirect, withRouter } from "react-router-dom";
 
 class App extends Component {
   render() {
-    if (localStorage.getItem('is_login') === 'false' && this.props.location.pathname !== '/signin') {
-      return <Redirect to={{ pathname: "/signin" }} />;
-    }
+    // if (this.props.is_login === false && this.props.location.pathname !== '/signin') {
+    //   return <Redirect to={{ pathname: "/signin" }} />;
+    // }
     return (
       <div>
         {

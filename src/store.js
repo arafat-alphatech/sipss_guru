@@ -253,8 +253,8 @@ const actions = store => ({
       .then(response => {
         store.setState({
           token: response.data.token,
+          is_login: true
         });
-        localStorage.setItem('is_login', true)
       })
       .catch(err => {
         alert("masukkan username dan password yang benar");
@@ -263,7 +263,8 @@ const actions = store => ({
   },
   signOutHandle: (state) => {
     store.setState({
-      token: ""
+      token: "",
+      is_login: false
     })    
     alert('Sampai jumpa kembali')
   },
@@ -298,6 +299,21 @@ const actions = store => ({
         console.log(err);
       });
   },
+  deleteGuru : async (state,id) => {
+    const token = state.adminToken        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/guru/"+id;
+    await axios
+    .delete(url,{headers})
+    .then(response => {
+      alert("Delete Guru is Success!")
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  },
   getAllSiswa: async (state) => {
     const token = state.adminToken        
     const headers = {
@@ -317,6 +333,21 @@ const actions = store => ({
         console.log(err);
       });
   },
+  deleteSiswa : async (state,id) => {
+    const token = state.adminToken        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/siswa/"+id;
+    await axios
+    .delete(url,{headers})
+    .then(response => {
+      alert("Delete Siswa is Success!")
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  },
   getAllMapel: async (state) => {
     const token = state.adminToken        
     const headers = {
@@ -335,6 +366,21 @@ const actions = store => ({
       .catch(err => {
         console.log(err);
       });
+  },
+  deleteMapel : async (state,id) => {
+    const token = state.adminToken        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/mapel/"+id;
+    await axios
+    .delete(url,{headers})
+    .then(response => {
+      alert("Delete Mapel is Success!")
+    })
+    .catch(err => {
+      console.log(err);
+    });
   },
   getAllKelas: async (state) => {
     const token = state.adminToken        
