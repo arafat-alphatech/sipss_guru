@@ -6,10 +6,9 @@ import { actions } from "../store";
 
 class Intro extends Component {
   render() {
-    if (!this.props.is_login) {
+    if (this.props.is_login === false && this.props.location.pathname !== '/signin') {
       return <Redirect to={{ pathname: "/signin" }} />;
     }
-    console.log(this.props.is_login);
     return (
       <div>
         {/* <h1

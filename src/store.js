@@ -253,8 +253,8 @@ const actions = store => ({
       .then(response => {
         store.setState({
           token: response.data.token,
+          is_login: true
         });
-        localStorage.setItem('is_login', true)
       })
       .catch(err => {
         alert("masukkan username dan password yang benar");
@@ -263,7 +263,8 @@ const actions = store => ({
   },
   signOutHandle: (state) => {
     store.setState({
-      token: ""
+      token: "",
+      is_login: false
     })    
     alert('Sampai jumpa kembali')
   },
