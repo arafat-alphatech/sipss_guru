@@ -38,8 +38,8 @@ class AturKelas extends Component {
                         <th>No</th>
                         <th>Kelas</th>
                         <th>Wali Kelas</th>
-                        <th>Edit</th>
-                        <th>Hapus</th>
+                        <th style={{color:'blue'}}>Edit</th>
+                        <th style={{color:'red'}}>Hapus</th>
                       </tr>
                     </thead>
                     <tbody>

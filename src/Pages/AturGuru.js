@@ -42,8 +42,8 @@ class AturGuru extends Component {
                         <th>Jenis Kelamin</th>
                         <th>Telepon</th>
                         <th>Username</th>
-                        <th>Edit</th>
-                        <th>Hapus</th>
+                        <th style={{color:'blue'}}>Edit</th>
+                        <th style={{color:'red'}}>Hapus</th>
                       </tr>
                     </thead>
                     <tbody>

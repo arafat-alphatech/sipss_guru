@@ -37,8 +37,8 @@ class AturMataPelajaran extends Component {
                         <th>No</th>
                         <th>Mata Pelajaran</th>
                         <th>Wali Kelas</th>
-                        <th>Edit</th>
-                        <th>Hapus</th>
+                        <th style={{color:'blue'}}>Edit</th>
+                        <th style={{color:'red'}}>Hapus</th>
                       </tr>
                     </thead>
                     <tbody>
