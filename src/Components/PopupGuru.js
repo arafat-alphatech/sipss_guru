@@ -7,6 +7,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import TextField from "@material-ui/core/TextField";
+import axios from "axios";
 
 class Popup extends React.Component {
   state = {
@@ -20,13 +21,42 @@ class Popup extends React.Component {
     password: ""
   };
 
+  // post guru
+  postNewGuru= () => {
+    const token = this.props.adminToken        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/guru";
+    const data = {
+      nip: this.state.nip,
+      nama: this.state.nama,
+      alamat: this.state.alamat,
+      jenis_kelamin: this.state.jenis_kelamin,
+      telepon: this.state.telepon,
+      username: this.state.username,
+      password: this.state.password
+    };
+    axios
+      .post(url, data,{headers})
+      .then(response => {
+        alert("Tambah guru berhasil");
+        console.log("Response dari API: ", response);
+        this.setState({ open: false });  
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  // post guru (end)
+
+
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
     console.log(e.target.value);
   };
 
   // Buka tutup popup
-
   handleClickOpen = () => {
     this.setState({ open: true });
   };
@@ -34,11 +64,11 @@ class Popup extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
   };
-
   // Buka tutup popup (end)
 
   render() {
-    const listNamaKelas = this.props.listNamaKelas;
+
+    console.log(this.state)
     return (
       <div>
         <Button onClick={this.handleClickOpen}>
@@ -98,7 +128,7 @@ class Popup extends React.Component {
               >
                 <TextField
                   required
-                  name="namaGuru"
+                  name="nama"
                   type="text"
                   label="Nama Guru"
                   defaultValue=""
@@ -138,16 +168,15 @@ class Popup extends React.Component {
               <select
                 style={{ maxWidth: "93%", margin: "20px 20px 10px 20px" }}
                 className="form-control"
-                value={listNamaKelas.id_kelas}
-                name="id_kelas"
-                onChange={e => this.props.setField(e)}
-                onClick={() => this.props.getMaPel()}
+                value={this.state.jenis_kelamin}
+                name="jenis_kelamin"
+                onChange={e => this.inputChange(e)}
               >
                 <option>Jenis Kelamin</option>
-                {listNamaKelas.map((item, key) => {
+                {[["Laki - laki", "L"], ["Perempuan", "P"]].map((item, key) => {
                   return (
-                    <option value={item.id_kelas} key={key}>
-                      {item.nama_kelas}
+                    <option value={item[1]} key={key}>
+                      {item[0]}
                     </option>
                   );
                 })}
@@ -186,9 +215,30 @@ class Popup extends React.Component {
               >
                 <TextField
                   required
-                  name="telepom"
+                  name="telepon"
                   type="text"
                   label="Telepon"
+                  defaultValue=""
+                  margin="normal"
+                  variant="outlined"
+                  style={{
+                    width: "100%"
+                  }}
+                  onChange={e => this.inputChange(e)}
+                />
+              </div>
+              <div
+                className="form-label-group"
+                style={{
+                  maxWidth: "500px",
+                  margin: "0 auto"
+                }}
+              >
+                <TextField
+                  required
+                  name="password"
+                  type="password"
+                  label="Password"
                   defaultValue=""
                   margin="normal"
                   variant="outlined"
@@ -204,7 +254,7 @@ class Popup extends React.Component {
             <Button onClick={this.handleClose} color="primary">
               Batal
             </Button>
-            <Button onClick={this.handleClose} color="primary" autoFocus>
+            <Button onClick={() => this.postNewGuru()} color="primary" autoFocus>
               Tambahkan
             </Button>
           </DialogActions>
@@ -215,6 +265,6 @@ class Popup extends React.Component {
 }
 
 export default connect(
-  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat",
+  "is_login, adminToken",
   actions
 )(Popup);

@@ -354,7 +354,35 @@ const actions = store => ({
       .catch(err => {
         console.log(err);
       });
-  }
+  },
+  postNewGuru: async state => {
+    const token = state.adminToken        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/guru";
+    const data = {
+      nip: state.nip,
+      nama: state.nama,
+      alamat: state.alamat,
+      jenis_kelamin: state.jenis_kelamin,
+      telepon: state.telepon,
+      username: state.username,
+      password: state.password
+    };
+    await axios
+      .post(url, data,{headers})
+      .then(response => {
+        store.setState({
+          dataGuru: response.data,
+        });
+        alert("Tambah guru berhasil");
+        console.log("Response dari API: ", response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
 });
 
 export { store, actions };

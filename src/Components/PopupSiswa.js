@@ -7,18 +7,44 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import TextField from "@material-ui/core/TextField";
+import axios from "axios";
 
 class PopupSiswa extends React.Component {
   state = {
     open: false,
-    nip: "",
+    nis: "",
     nama: "",
     alamat: "",
     jenis_kelamin: "",
-    telepon: "",
-    username: "",
-    password: ""
+    telepon: ""
   };
+
+  // post siswa
+  postNewSiswa= () => {
+    const token = this.props.adminToken        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/siswa";
+    const data = {
+      nis: this.state.nis,
+      nama: this.state.nama,
+      alamat: this.state.alamat,
+      jenis_kelamin: this.state.jenis_kelamin,
+      telepon: this.state.telepon,
+    };
+    axios
+      .post(url, data,{headers})
+      .then(response => {
+        alert("Tambah siswa berhasil");
+        console.log("Response dari API: ", response);
+        this.setState({ open: false });  
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  // post siswa (end)
 
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -26,7 +52,6 @@ class PopupSiswa extends React.Component {
   };
 
   // Buka tutup popup
-
   handleClickOpen = () => {
     this.setState({ open: true });
   };
@@ -34,11 +59,10 @@ class PopupSiswa extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
   };
-
   // Buka tutup popup (end)
 
   render() {
-    const listNamaKelas = this.props.listNamaKelas;
+    console.log(this.state)
     return (
       <div>
         <Button onClick={this.handleClickOpen}>
@@ -100,7 +124,7 @@ class PopupSiswa extends React.Component {
               >
                 <TextField
                   required
-                  name="namaSiswa"
+                  name="nama"
                   type="text"
                   label="Nama Siswa"
                   defaultValue=""
@@ -118,16 +142,15 @@ class PopupSiswa extends React.Component {
               <select
                 style={{ maxWidth: "93%", margin: "20px 20px 10px 20px" }}
                 className="form-control"
-                value={listNamaKelas.id_kelas}
-                name="id_kelas"
-                onChange={e => this.props.setField(e)}
-                onClick={() => this.props.getMaPel()}
+                value={this.state.jenis_kelamin}
+                name="jenis_kelamin"
+                onChange={e => this.inputChange(e)}
               >
                 <option>Jenis Kelamin</option>
-                {listNamaKelas.map((item, key) => {
+                {[["Laki - laki", "L"], ["Perempuan", "P"]].map((item, key) => {
                   return (
-                    <option value={item.id_kelas} key={key}>
-                      {item.nama_kelas}
+                    <option value={item[1]} key={key}>
+                      {item[0]}
                     </option>
                   );
                 })}
@@ -187,7 +210,7 @@ class PopupSiswa extends React.Component {
             <Button onClick={this.handleClose} color="primary">
               Batal
             </Button>
-            <Button onClick={this.handleClose} color="primary" autoFocus>
+            <Button onClick={() => this.postNewSiswa()} color="primary" autoFocus>
               Tambahkan
             </Button>
           </DialogActions>
@@ -198,6 +221,6 @@ class PopupSiswa extends React.Component {
 }
 
 export default connect(
-  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat",
+  "is_login, adminToken",
   actions
 )(PopupSiswa);
