@@ -6,19 +6,44 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { connect } from "unistore/react";
 import { actions } from "../store";
+import swal from 'sweetalert';
+import axios from 'axios'
 import TextField from "@material-ui/core/TextField";
 
 class PopupMapel extends React.Component {
   state = {
     open: false,
-    nama_mapel:'',
-    jadwal:''
+    nama_mapel:''
   };
 
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
     console.log(e.target.value);
   };
+
+  postNewMapel = () => {
+    const token = this.props.adminToken;
+    const headers = {
+      Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/mapel";
+    const data = {
+      nama_mapel: this.state.nama_mapel
+    };
+    // console.log("url",url)
+    // console.log("data",data)
+    // console.log("headers", headers)
+    axios
+      .post(url, data, { headers })
+      .then(response => {
+        swal("Tambah data mata pelajaran berhasil");
+        console.log("Response dari API: ", response);
+        this.setState({ open: false });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
   // Buka tutup popup
 
@@ -82,36 +107,13 @@ class PopupMapel extends React.Component {
                   onChange={e => this.inputChange(e)}
                 />
               </div>
-
-              <div
-                className="form-label-group"
-                style={{
-                  maxWidth: "500px",
-                  margin: "0 auto"
-                }}
-              >
-                <TextField
-                  required
-                  name="jadwal"
-                  type="text"
-                  label="Wali Kelas"
-                  defaultValue=""
-                  margin="normal"
-                  variant="outlined"
-                  style={{
-                    width: "100%"
-                  }}
-                  onChange={e => this.inputChange(e)}
-                />
-              </div>
-
             </form>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
               Batal
             </Button>
-            <Button onClick={this.handleClose} color="primary" autoFocus>
+            <Button onClick={() => this.postNewMapel()} color="primary" autoFocus>
               Tambahkan
             </Button>
           </DialogActions>
@@ -122,6 +124,6 @@ class PopupMapel extends React.Component {
 }
 
 export default connect(
-  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat",
+  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat, adminToken",
   actions
 )(PopupMapel);
