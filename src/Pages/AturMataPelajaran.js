@@ -16,7 +16,7 @@ class AturMataPelajaran extends Component {
     })
   }
   render() {
-    const listMapel = this.props.listMapel
+    const listAllMapel = this.props.listAllMapel
     return (
       <div style={{ padding: "20px" }}>
         {/* Table Guru */}
@@ -41,18 +41,16 @@ class AturMataPelajaran extends Component {
                       <tr style={{ color: "#39C2C9" }}>
                         <th>No</th>
                         <th>Mata Pelajaran</th>
-                        <th>Jadwal</th>
                         <th style={{color:'blue'}}>Edit</th>
                         <th style={{color:'red'}}>Hapus</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {listMapel.map((item, key) => {
+                      {listAllMapel.map((item, key) => {
                         return (
                           <tr key={key}>
                             <td className='align-middle'>{key + 1}</td>
                             <td className='align-middle'>{item.nama_mapel}</td>
-                            <td className='align-middle'>{item.jadwal}</td>
                             <td className='align-middle' title="edit data mata pelajaran">
                             <PopupEditMapel id ={item.id_mapel}/>
                             </td>
@@ -84,6 +82,6 @@ class AturMataPelajaran extends Component {
 }
 
 export default connect(
-    "listMapel, is_login",
+    "listAllMapel, is_login",
     actions
   )(AturMataPelajaran);

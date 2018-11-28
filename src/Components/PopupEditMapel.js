@@ -8,17 +8,39 @@ import axios from "axios";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import TextField from "@material-ui/core/TextField";
+import swal from 'sweetalert';
 
 class PopupEditMapel extends React.Component {
   state = {
     open: false,
-    nama_mapel: "",
-    jadwal: ""
+    nama_mapel: ""
   };
 
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
     console.log(e.target.value);
+  };
+
+  // Edit Mapel
+  doEditMapel = () => {
+    const token = this.props.adminToken;
+    const headers = {
+      Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/mapel/" +this.props.id;
+    const data = {
+      nama_mapel: this.state.nama_mapel
+    };
+    axios
+      .put(url, data, { headers })
+      .then(response => {
+        swal("Edit Mapel berhasil");
+        console.log("Response dari API: ", response);
+        this.setState({ open: false });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   // Buka tutup popup
@@ -32,8 +54,7 @@ class PopupEditMapel extends React.Component {
     axios
       .get(url, { headers })
       .then(response => {
-        this.setState({ nama_mapel: response.data.data[0].nip });
-        this.setState({ jadwal: response.data.data[0].nama });
+        this.setState({ nama_mapel: response.data.data[0].nama_mapel });
         console.log("from pop up edit mapel by id", response.data.data[0]);
       })
       .catch(function(error) {
@@ -86,8 +107,8 @@ class PopupEditMapel extends React.Component {
                   required
                   name="nama_mapel"
                   type="text"
-                  label="Mata Pelajaran"
-                  defaultValue=""
+                  label={"Nama Mapel: "+this.state.nama_mapel}
+                  defaultValue={this.state.nama_mapel}
                   margin="normal"
                   variant="outlined"
                   style={{
@@ -96,53 +117,13 @@ class PopupEditMapel extends React.Component {
                   onChange={e => this.inputChange(e)}
                 />
               </div>
-
-              {/* <div
-                className="form-label-group"
-                style={{
-                  maxWidth: "500px",
-                  margin: "0 auto"
-                }}
-              >
-                <TextField
-                  required
-                  name="jadwal"
-                  type="text"
-                  label="Jadwal"
-                  defaultValue=""
-                  margin="normal"
-                  variant="outlined"
-                  style={{
-                    width: "100%"
-                  }}
-                  onChange={e => this.inputChange(e)}
-                />
-              </div> */}
-
-              {/* Input Jadwal Ujian */}
-              <TextField
-                required
-                id="date"
-                label="Jadwal"
-                type="datetime-local"
-                defaultValue="2018-11-25T10:30"
-                margin="normal"
-                variant="outlined"
-                InputLabelProps={{
-                  shrink: true
-                }}
-                style={{ marginTop: "20px", width: "90%", marginLeft:'25px' }}
-                name="tanggal_ujian"
-                onChange={e => this.props.setField(e)}
-              />
-              {/* Input Jadwal Ujian (end) */}
             </form>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
               Batal
             </Button>
-            <Button onClick={this.handleClose} color="primary" autoFocus>
+            <Button onClick={() => this.doEditMapel()}color="primary" autoFocus>
               Simpan
             </Button>
           </DialogActions>
