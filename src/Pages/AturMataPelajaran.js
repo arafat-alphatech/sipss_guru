@@ -3,6 +3,8 @@ import { connect } from "unistore/react";
 import { actions } from "../store";
 import PopupMapel from "../Components/PopupMapel"
 import PopupEditMapel from "../Components/PopupEditMapel";
+import Button from "@material-ui/core/Button";
+import swal from 'sweetalert'
 
 class AturMataPelajaran extends Component {
   componentDidMount = () => {
@@ -46,20 +48,17 @@ class AturMataPelajaran extends Component {
                             <td className='align-middle'>{key + 1}</td>
                             <td className='align-middle'>{item.nama_mapel}</td>
                             <td className='align-middle'>{item.jadwal}</td>
-                            <td className='align-middle' title="edit data guru">
+                            <td className='align-middle' title="edit data mata pelajaran">
                             <PopupEditMapel/>
-                              <i
-                                onClick={() => alert("edit boss?")}
-                                className="fas fa-user-edit"
-                                style={{ color: "blue" }}
-                              />
                             </td>
-                            <td title="hapus data guru">
+                            <td title="hapus mata pelajaran">
+                            <Button>
                               <i
-                                onClick={() => alert("hapus boss?")}
+                                onClick={() => swal("hapus boss?")}
                                 className="fas fa-user-minus"
                                 style={{ color: "red" }}
                               />
+                            </Button>
                             </td>
                           </tr>
                         );

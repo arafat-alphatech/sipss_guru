@@ -33,7 +33,7 @@ class PopupKelas extends React.Component {
     axios
       .post(url, data, { headers })
       .then(response => {
-        swal("Tambah kelas berhasil");
+        swal("Tambah data kelas berhasil");
         console.log("Response dari API: ", response);
         this.setState({ open: false });
       })
@@ -68,7 +68,7 @@ class PopupKelas extends React.Component {
         <Button onClick={this.handleClickOpen}>
           Tambah Kelas &nbsp;
           <i
-            title="tambah data guru"
+            title="tambah data kelas"
             style={{ color: "#00e640" }}
             className="fas fa-user-plus"
           >

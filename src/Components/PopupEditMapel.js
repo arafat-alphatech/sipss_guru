@@ -37,7 +37,7 @@ class PopupEditMapel extends React.Component {
       <div>
         <Button onClick={this.handleClickOpen}>
           <i
-            title="tambah mata pelajaran"
+            title="edit mata pelajaran"
             style={{ color: "blue" }}
             className="fas fa-user-edit"
           >
@@ -54,7 +54,7 @@ class PopupEditMapel extends React.Component {
             id="alert-dialog-title"
             style={{ marginLeft: "auto", marginRight: "auto" }}
           >
-            {"Tambah Mata Pelajaran"}
+            {"Edit Mata Pelajaran"}
           </DialogTitle>
           <DialogContent>
             <form onSubmit={e => e.preventDefault()}>
