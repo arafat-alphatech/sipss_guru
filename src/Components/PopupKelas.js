@@ -7,18 +7,41 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import TextField from "@material-ui/core/TextField";
+import swal from 'sweetalert';
+import axios from 'axios'
 
 class PopupKelas extends React.Component {
   state = {
     open: false,
-    nip: "",
-    nama: "",
-    alamat: "",
-    jenis_kelamin: "",
-    telepon: "",
-    username: "",
-    password: ""
+    wali_kelas: "",
+    nama_kelas:''
   };
+
+  // tambah kelas
+  postNewKelas = () => {
+    const token = this.props.adminToken;
+    const headers = {
+      Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/kelas";
+    const data = {
+      id_tingkat: this.state.id_tingkat,
+      nama_kelas: this.state.nama_kelas,
+      wali_kelas: this.state.wali_kelas,
+    };
+    axios
+      .post(url, data, { headers })
+      .then(response => {
+        swal("Tambah kelas berhasil");
+        console.log("Response dari API: ", response);
+        this.setState({ open: false });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  // post siswa (end)
+  // tambah kelas (end)
 
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -38,7 +61,8 @@ class PopupKelas extends React.Component {
   // Buka tutup popup (end)
 
   render() {
-    const listNamaKelas = this.props.listNamaKelas;
+    const listTingkat = this.props.listTingkat;
+    console.log('statenya kelas',this.state)
     return (
       <div>
         <Button onClick={this.handleClickOpen}>
@@ -66,27 +90,51 @@ class PopupKelas extends React.Component {
           </DialogTitle>
           <DialogContent>
             <form onSubmit={e => e.preventDefault()}>
-              {/* Piih Kelas */}
-
-              <select
-                style={{ maxWidth: "93%", margin: "20px 20px 10px 20px" }}
-                className="form-control"
-                value={listNamaKelas.id_kelas}
-                name="id_kelas"
-                onChange={e => this.props.setField(e)}
-                onClick={() => this.props.getMaPel()}
-              >
-                <option>Nama kelas</option>
-                {listNamaKelas.map((item, key) => {
-                  return (
-                    <option value={item.id_kelas} key={key}>
-                      {item.nama_kelas}
-                    </option>
-                  );
-                })}
-              </select>
-
+              {/* Piih Tingkat Kelas */}
+              <div style={{ margin: "10px" }}>
+                <select
+                  className="form-control"
+                  value={listTingkat.id_tingkat}
+                  name="id_tingkat"
+                  onChange={e => this.inputChange(e)}
+                  onClick={() => this.props.getKelas()}
+                >
+                  <option>Tingkat Kelas</option>
+                  {listTingkat.map((item, key) => {
+                    return (
+                      <option value={item.id_tingkat} key={key}>
+                        {item.nama_tingkat}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
               {/* Pilih Kelas (end) */}
+
+              {/* Tambah Nama Kelas */}
+              <div
+                className="form-label-group"
+                style={{
+                  marginRight: "auto",
+                  marginLeft: "auto",
+                  maxWidth: "500px"
+                }}
+              >
+                <TextField
+                  required
+                  name="nama_kelas"
+                  type="text"
+                  label="Nama Kelas"
+                  defaultValue=""
+                  margin="normal"
+                  variant="outlined"
+                  style={{
+                    width: "100%"
+                  }}
+                  onChange={e => this.inputChange(e)}
+                />
+              </div>
+              {/* Tambah nama kelas (end) */}
 
               <div
                 className="form-label-group"
@@ -98,7 +146,7 @@ class PopupKelas extends React.Component {
               >
                 <TextField
                   required
-                  name="waliKelas"
+                  name="wali_kelas"
                   type="text"
                   label="Wali Kelas"
                   defaultValue=""
@@ -116,7 +164,7 @@ class PopupKelas extends React.Component {
             <Button onClick={this.handleClose} color="primary">
               Batal
             </Button>
-            <Button onClick={this.handleClose} color="primary" autoFocus>
+            <Button onClick={() => this.postNewKelas()} color="primary" autoFocus>
               Tambahkan
             </Button>
           </DialogActions>
