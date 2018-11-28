@@ -1,0 +1,10 @@
+body .loading {
+    background: url(https://cdn.dribbble.com/users/475723/screenshots/2666648/loading-animation.gif) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: white;
+  width: 100%;
+  height: 100vh;
+}

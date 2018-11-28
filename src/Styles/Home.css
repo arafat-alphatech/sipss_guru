@@ -2,3 +2,58 @@
     margin-left: 190px;
     margin-right: auto;
 }
+
+.btn-primary {
+  color: #fff;
+  background-color: #00A2E5;
+  /* background-color: #39C2C9; */
+  border-color: rgb(4, 166, 236);
+  min-width: 200px;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #29f1c3;
+  border-color: #7befb2;
+}
+.btn-primary:focus, .btn-primary.focus {
+  color: #fff;
+  background-color: #29f1c3;
+  border-color: #7befb2;
+}
+.btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #29f1c3;
+  border-color: #7befb2;
+  background-image: none;
+}
+
+.btn-primary:active:focus {
+    color: #ffffff !important; 
+    background-color: #29f1c3 !important;
+    border-color: #7befb2 !important; 
+}
+
+:root {
+  --space: 1.5em 0;
+  --space: 2em 0;
+}
+
+.Site {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.Site-content {
+  flex: 1 0 auto;
+  padding: var(--space) var(--space) 0;
+  width: 100%;
+}
+
+.Site-content:after {
+  content: '\00a0';
+  display: block;
+  margin-top: var(--space);
+  height: 0;
+  visibility: hidden;
+}
