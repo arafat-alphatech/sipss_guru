@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import PopupKelas from "../Components/PopupKelas"
+import PopupEditKelas from "../Components/PopupEditKelas";
+import Button from "@material-ui/core/Button";
+import swal from 'sweetalert'
 
 class AturKelas extends Component {
   componentDidMount = () => {
@@ -47,18 +50,16 @@ class AturKelas extends Component {
                             <td className='align-middle'>{item.nama_kelas}</td>
                             <td className='align-middle'>{item.wali_kelas}</td>
                             <td title="edit data guru">
-                              <i
-                                onClick={() => alert("edit boss?")}
-                                className="fas fa-user-edit"
-                                style={{ color: "blue" }}
-                              />
+                              <PopupEditKelas/>
                             </td>
                             <td title="hapus data guru">
+                            <Button>
                               <i
-                                onClick={() => alert("hapus boss?")}
+                                onClick={() => swal("hapus boss?")}
                                 className="fas fa-user-minus"
                                 style={{ color: "red" }}
                               />
+                            </Button>
                             </td>
                           </tr>
                         );

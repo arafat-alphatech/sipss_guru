@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import PopupMapel from "../Components/PopupMapel"
+import PopupEditMapel from "../Components/PopupEditMapel";
 
 class AturMataPelajaran extends Component {
   componentDidMount = () => {
@@ -46,6 +47,7 @@ class AturMataPelajaran extends Component {
                             <td className='align-middle'>{item.nama_mapel}</td>
                             <td className='align-middle'>{item.jadwal}</td>
                             <td className='align-middle' title="edit data guru">
+                            <PopupEditMapel/>
                               <i
                                 onClick={() => alert("edit boss?")}
                                 className="fas fa-user-edit"
