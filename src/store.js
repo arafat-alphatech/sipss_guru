@@ -344,14 +344,13 @@ const actions = store => ({
         Authorization: "Bearer " + token
     };
     const url = "http://13.251.97.170:5001/admin/guru";
-    console.log(headers)
     await axios
       .get(url,{headers})
       .then(response => {
         store.setState({
           listGuru: response.data.data
         });
-        console.log('data get guru', response.data.data)
+        console.log('data get guru from store', response.data.data)
       })
       .catch(err => {
         console.log(err);
@@ -378,7 +377,6 @@ const actions = store => ({
         Authorization: "Bearer " + token
     };
     const url = "http://13.251.97.170:5001/admin/siswa";
-    console.log(headers)
     await axios
       .get(url,{headers})
       .then(response => {
@@ -412,7 +410,6 @@ const actions = store => ({
         Authorization: "Bearer " + token
     };
     const url = "http://13.251.97.170:5001/admin/mapel";
-    console.log(headers)
     await axios
       .get(url,{headers})
       .then(response => {
@@ -446,7 +443,6 @@ const actions = store => ({
         Authorization: "Bearer " + token
     };
     const url = "http://13.251.97.170:5001/admin/kelas";
-    console.log(headers)
     await axios
       .get(url,{headers})
       .then(response => {
@@ -493,7 +489,6 @@ const actions = store => ({
         Authorization: "Bearer " + token
     };
     const url = "http://13.251.97.170:5001/admin/kelasmapelconj";
-    console.log(headers)
     await axios
       .get(url,{headers})
       .then(response => {

@@ -14,16 +14,12 @@ class PopupMKCon extends React.Component {
   state = {
     open: false,
     id_guru: '',
-    nip: '',
-    nama: '',
     id_kelas: '',
-    nama_kelas: '',
-    id_mapel: '',
-    nama_mapel: ''
+    id_mapel: ''
   };
 
   // post siswa
-  tambahKelasMapel = () => {
+  doAddMKCon = () => {
     const token = this.props.adminToken;
     const headers = {
       Authorization: "Bearer " + token
@@ -31,17 +27,14 @@ class PopupMKCon extends React.Component {
     const url = "http://13.251.97.170:5001/admin/kelasmapelconj";
     const data = {
       id_guru: this.state.id_guru,
-      nip: this.state.nip,
-      nama: this.state.nama,
       id_kelas: this.state.id_kelas,
-      nama_kelas: this.state.nama_kelas,
-      id_mapel: this.state.id_mapel,
-      nama_mapel: this.state.nama_mapel
+      id_mapel: this.state.id_mapel
     };
     axios
       .post(url, data, { headers })
       .then(response => {
         swal("Tambah data berhasil");
+        this.props.getMapelKelas(this.props.token)
         console.log("Response tambah mapel kelas: ", response);
         this.setState({ open: false });
       })
@@ -53,14 +46,15 @@ class PopupMKCon extends React.Component {
 
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
 
   // Buka tutup popup
   handleClickOpen = () => {
+    this.props.getAllGuru(this.props.token);
+    this.props.getAllKelas()
+    this.props.getAllMapel()
     this.setState({ open: true });
   };
-
   handleClose = () => {
     this.setState({ open: false });
   };
@@ -72,8 +66,6 @@ class PopupMKCon extends React.Component {
 
   render() {
     const listKelas = this.props.listKelas;
-    console.log('cek statenya',this.state)
-    console.log('cek cek cek',this.props.listKelas);
     return (
       <div>
         <Button onClick={this.handleClickOpen}>
@@ -100,46 +92,20 @@ class PopupMKCon extends React.Component {
             {"Tambah Data"}
           </DialogTitle>
           <DialogContent>
-            <form onSubmit={e => e.preventDefault()}>
-              
-              {/* Form isi NIP */}
-              <div
-                className="form-label-group"
-                style={{
-                  maxWidth: "500px",
-                  margin: "0 auto"
-                }}
-              >
-                <TextField
-                  required
-                  name="nip"
-                  type="text"
-                  label="NIP"
-                  defaultValue=""
-                  margin="normal"
-                  variant="outlined"
-                  style={{
-                    width: "100%"
-                  }}
-                  onChange={e => this.inputChange(e)}
-                />
-              </div>
-              {/* Form isi NIS (end) */}
-
+          <form onSubmit={e => e.preventDefault()}>
               {/* Piih Guru */}
               <select
                 style={{ maxWidth: "93%", margin: "20px 20px 10px 20px" }}
                 className="form-control"
-                value={listKelas.id_kelas}
-                name="id_kelas"
+                value={this.state.id_guru}
+                name="id_guru"
                 onChange={e => this.inputChange(e)}
-                onClick={() => this.props.getAllKelas()}
               >
-                <option>Nama Guru</option>
-                {listKelas.map((item, key) => {
+                <option>[NIP] Nama Guru</option>
+                {this.props.listGuru.map((item, key) => {
                   return (
-                    <option value={item.id_kelas} key={key}>
-                      {item.nama_kelas}
+                    <option value={item.id_guru} key={key}>
+                      [{item.nip}] {item.nama}
                     </option>
                   );
                 })}
@@ -150,13 +116,12 @@ class PopupMKCon extends React.Component {
               <select
                 style={{ maxWidth: "93%", margin: "20px 20px 10px 20px" }}
                 className="form-control"
-                value={listKelas.id_kelas}
+                value={this.state.id_kelas}
                 name="id_kelas"
                 onChange={e => this.inputChange(e)}
-                onClick={() => this.props.getAllKelas()}
               >
                 <option>Nama kelas</option>
-                {listKelas.map((item, key) => {
+                {this.props.listKelas.map((item, key) => {
                   return (
                     <option value={item.id_kelas} key={key}>
                       {item.nama_kelas}
@@ -170,22 +135,20 @@ class PopupMKCon extends React.Component {
               <select
                 style={{ maxWidth: "93%", margin: "20px 20px 10px 20px" }}
                 className="form-control"
-                value={listKelas.id_kelas}
-                name="id_kelas"
+                value={this.state.id_mapel}
+                name="id_mapel"
                 onChange={e => this.inputChange(e)}
-                onClick={() => this.props.getAllKelas()}
               >
                 <option>Nama Mata Pelajaran</option>
-                {listKelas.map((item, key) => {
+                {this.props.listAllMapel.map((item, key) => {
                   return (
-                    <option value={item.id_kelas} key={key}>
-                      {item.nama_kelas}
+                    <option value={item.id_mapel} key={key}>
+                      {item.nama_mapel}
                     </option>
                   );
                 })}
               </select>
               {/* Pilih Mata Pelajaran (end) */}
-
             </form>
           </DialogContent>
           <DialogActions>
@@ -193,7 +156,7 @@ class PopupMKCon extends React.Component {
               Batal
             </Button>
             <Button
-              onClick={() => this.postNewSiswa()}
+              onClick={() => this.doAddMKCon()}
               color="primary"
               autoFocus
             >
@@ -207,6 +170,6 @@ class PopupMKCon extends React.Component {
 }
 
 export default connect(
-  "is_login, adminToken, id_kelas, listKelas, listTingkat",
+  "is_login, adminToken, listKelas, listGuru, listAllMapel",
   actions
 )(PopupMKCon);
