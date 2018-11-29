@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import PopupEditRekap from "../Components/PopupEditRekap"
+import { Line} from 'rc-progress';
 
 class RekapNilai extends Component {
 
@@ -15,8 +16,10 @@ class RekapNilai extends Component {
     componentDidMount(){
         this.props.getKelasByGuru()
     }
-   
+
+    
     render() {
+        const progress = 10;
         const listMapel = this.props.listMapel;
         const listNamaKelas = this.props.listNamaKelas;
         const listPaketSoal = this.props.listPaketSoal;
@@ -64,6 +67,7 @@ class RekapNilai extends Component {
                       <tr style={{ color: "#39C2C9" }}>
                         <th>No</th>
                         <th>Kode Soal</th>
+                        <th>Status Koreksi</th>
                         <th>Persentase</th>
                         <th style={{color:'blue'}}>Edit Persentase</th>
                       </tr>
@@ -74,6 +78,7 @@ class RekapNilai extends Component {
                           <tr key={key}>
                             <td>{key + 1}</td>
                             <td className='align-middle'>{item.kode_soal}</td>
+                            <td className='align-middle'><Line percent={progress} trailWidth='3' strokeWidth="4" strokeColor="#00A2E5" />{progress}%</td>
                             <td className='align-middle'>Persentase</td>
                             <td title="edit data guru">
                                 <PopupEditRekap/>
@@ -81,6 +86,13 @@ class RekapNilai extends Component {
                           </tr>
                         );
                       })}
+                      <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td>Total: {progress}% </td>
+                          <td></td>
+                    </tr>
                     </tbody>
                   </table>
                 </div>
