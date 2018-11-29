@@ -105,7 +105,6 @@ class PopupEditGuru extends React.Component {
             title="edit data guru"
             style={{ color: "#00e640" }}
             className="fas fa-user-edit"
-            style={{color:'blue'}}
           >
           </i>
         </Button>
