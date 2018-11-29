@@ -22,17 +22,17 @@ const HalamanEdit = Loadable({
 
 const HalamanEditLast = Loadable({
   loader: () =>
-    import(/* webpackChunkName: "home"*/ "../Pages/HalamanEditLast"),
+    import(/* webpackChunkName: "edit-last"*/ "../Pages/HalamanEditLast"),
   loading: () => <Loading />
 });
 
 const TambahUjian = Loadable({
-  loader: () => import(/* webpackChunkName: "home"*/ "../Pages/TambahUjian"),
+  loader: () => import(/* webpackChunkName: "tambah-ujian"*/ "../Pages/TambahUjian"),
   loading: () => <Loading />
 });
 
 const ReviewSoal = Loadable({
-  loader: () => import(/* webpackChunkName: "home"*/ "../Pages/ReviewSoal"),
+  loader: () => import(/* webpackChunkName: "review-soal"*/ "../Pages/ReviewSoal"),
   loading: () => <Loading />
 });
 const Dashboard = Loadable({
@@ -41,7 +41,7 @@ const Dashboard = Loadable({
 });
 
 const TambahSoal = Loadable({
-  loader: () => import(/* webpackChunkName: "home"*/ "../Pages/TambahSoal"),
+  loader: () => import(/* webpackChunkName: "tambah-soal"*/ "../Pages/TambahSoal"),
   loading: () => <Loading />
 });
 
@@ -80,6 +80,11 @@ const AturMataPelajaran = Loadable({
   loading: () => <Loading />
 });
 
+const KelasMapelCon = Loadable({
+  loader: () => import(/* webpackChunkName: "penempatan-guru"*/ "../Pages/KelasMapelCon"),
+  loading: () => <Loading />
+});
+
 const MainRoute = () => {
   return (
     <Switch>
@@ -99,8 +104,8 @@ const MainRoute = () => {
       <Route exact path="/beranda-guru" component={AturGuru} />
       <Route exact path="/beranda-kelas" component={AturKelas} />      
       <Route exact path="/beranda-siswa" component={AturSiswa} />      
-      <Route exact path="/beranda-mapel" component={AturMataPelajaran} />      
-
+      <Route exact path="/beranda-mapel" component={AturMataPelajaran} />
+      <Route exact path="/penempatan-guru" component={KelasMapelCon} />
       <Route component={NotMatch} />
     </Switch>
   );
