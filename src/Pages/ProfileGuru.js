@@ -1,12 +1,47 @@
 import React, { Component } from "react";
 import Card from "@material-ui/core/Card";
-import MenuBawah from "../Components/MenuBawah";
+import MenuBawah from '../Components/MenuBawah';
+import { connect } from "unistore/react";
+import { actions } from "../store";
+import axios from 'axios'
 import Button from "@material-ui/core/Button";
 
 class Profile extends Component {
+  state = {
+    biodata: [],
+    listData: []
+  };
+
+  getProfile = () => {
+    const token = this.props.token;
+    const headers = {
+      Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/profile";
+    axios
+      .get(url, { headers })
+      .then((response) => {
+        this.setState({
+          biodata: response.data.biodata,
+          listData: response.data.data
+        });
+        console.log("from profile guru", response.data);
+      })
+      .catch(function (error) {
+        //handle error
+        console.log(error);
+      });
+  }
+
+  componentDidMount() {
+    this.getProfile()
+
+  }
+
   render() {
-    const image =
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Tom_Cruise_by_Gage_Skidmore.jpg/220px-Tom_Cruise_by_Gage_Skidmore.jpg";
+    const biodata = this.state.biodata;
+    const listData = this.state.listData;
+    const image = biodata.foto;
     return (
       <div style={{ padding: "0px", margin: "0px" }}>
         <div className="container" style={{ width: "100%", padding: "0px" }}>
@@ -28,7 +63,11 @@ class Profile extends Component {
             <div className="col-8" style={{ margin: "0px", padding: "0px" }}>
               <div className="card rounded-0 border-0">
                 <div className="card-body">
-                  <p>Nama</p>
+                  <p>NIP : {biodata.nip}</p>
+                  <p>Nama : {biodata.nama}</p>
+                  <p>Alamat: {biodata.alamat} </p>
+                  <p>Jenis kelamin: {biodata.jenis_kelamin} </p>
+                  <p>Telepon: {biodata.telepon}</p>
                 </div>
               </div>
             </div>
@@ -43,12 +82,9 @@ class Profile extends Component {
             >
               <div
                 className="card rounded-0 border-0"
-                style={{ backgroundColor: "#22a7f0" }}
-              >
-                <div className="card-body" style={{ color: "white" }}>
-                  <p>NIP</p>
-                  <p>Alamat</p>
-                  <p>Telepon</p>
+                style={{ backgroundColor: "#22a7f0" }}>
+                <div className="card-body" style={{ color: 'white' }}>
+                  Username :{biodata.username}
                 </div>
               </div>
             </div>
@@ -58,20 +94,8 @@ class Profile extends Component {
             >
               <div
                 className="card rounded-0 border-0"
-                style={{ backgroundColor: "#d5b8ff" }}
-              >
-                <div className="card-body" style={{ color: "white" }}>
-                  <p>Username</p>
-                  <p>Jenis Kelamin</p>
-                </div>
-                  <Button
-                    onClick={() => this.doEditGuru()}
-                    variant='contained'
-                    color="primary"
-                    autoFocus
-                  >
-                    Ganti Password
-                  </Button>
+                style={{ backgroundColor: "#d5b8ff" }}>
+                <div className="card-body" style={{ color: 'white' }}>Password : {biodata.password}</div>
               </div>
             </div>
           </div>
@@ -100,11 +124,15 @@ class Profile extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>VII A</td>
-                        <td>Agama</td>
-                      </tr>
+                      {listData.map((item, key) => {
+                        return (
+                          <tr key={key}>
+                            <td>{key+1}</td>
+                            <td>{item.kelas}</td>
+                            <td>{item.mapel}</td>
+                          </tr>
+                        )
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -133,4 +161,7 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default connect(
+  "token",
+  actions
+)(Profile);
