@@ -18,14 +18,22 @@ class SignIn extends Component {
   
   signInHandle = () => {
     this.props.signInHandle( this.state.username, this.state.password, this.state.login_as )
-    this.props.history.push('/')
+    if(this.state.login_as === "admin"){
+      this.props.history.push('/beranda-admin')
+    }else{
+      this.props.history.push('/')
+    }
   }
   
   render() {  
     console.log('di Signin is_login', this.props.is_login)
 
     if(this.props.is_login == true){
-      return <Redirect to="/" />
+      if(this.props.login_as === "admin"){
+        return <Redirect to="/beranda-admin" />
+      }else{
+        return <Redirect to="/" />
+      }
     }
 
     return (          
@@ -119,6 +127,6 @@ class SignIn extends Component {
 }
 
 export default connect(
-  "token, is_login, type",
+  "token, is_login, login_as",
   actions
 )(withRouter(SignIn));
