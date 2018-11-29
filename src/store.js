@@ -29,6 +29,8 @@ const initialState = {
   listSiswa:[],
   listKelas:[],
   listAllMapel:[],
+  csvData : [],
+  tableData : [],
   listTingkat: [{"id_tingkat":1,"nama_tingkat":"VII"},{"id_tingkat":2,"nama_tingkat":"VIII"},{"id_tingkat":3,"nama_tingkat":"IX"}],
   adminToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NDMzMjQxNDcsIm5iZiI6MTU0MzMyNDE0NywianRpIjoiNjFkMjc5YzMtZjMwNS00YmE0LWI3NTYtYzY1ZmUzZTA1MDc2IiwiZXhwIjoxNTQ1OTE2MTQ3LCJpZGVudGl0eSI6OTk5LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MiLCJ1c2VyX2NsYWltcyI6eyJpZF9hZG1pbiI6OTk5LCJuaXAiOjE3MDAwMX19.5m0P2mTpWqlEdTWLyqHpHfupJH5EMjVxHv7ZfxQW4r4" 
 };
@@ -182,7 +184,7 @@ const actions = store => ({
         console.log(err);
       });
   },
-  getChartData: async (state, id_paket_soal, id_kelas) => {
+  getChartData: async state => {
     const token = state.token        
     const headers = {
         Authorization: "Bearer " + token
@@ -200,6 +202,42 @@ const actions = store => ({
           data: response.data.persentase
         });
         console.log("data response dari api: ", response.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  getRawDataFromAPI : async state => {
+    const token = state.token        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/dashboard?id_kelas="+state.id_kelas+"&id_paket_soal="+state.id_paket_soal;
+    await axios
+      .get(url, {headers})
+      .then(response => {
+        store.setState({
+          csvData : response.data.data
+        })
+        console.log(">>>>>>>>>><<<<<<<", state.csvData);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  getTableDataFromAPI: async state => {
+    const token = state.token        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/dashboard-table?id_kelas="+state.id_kelas+"&id_paket_soal="+state.id_paket_soal;
+    await axios
+      .get(url, {headers})
+      .then(response => {
+        store.setState({
+          tableData : response.data.data
+        })
+        console.log("==================", state.tableData);
       })
       .catch(err => {
         console.log(err);
