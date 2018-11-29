@@ -34,6 +34,7 @@ class PopupKelas extends React.Component {
       .post(url, data, { headers })
       .then(response => {
         swal("Tambah data kelas berhasil");
+        this.props.getAllKelas(this.props.token);
         console.log("Response dari API: ", response);
         this.setState({ open: false });
       })

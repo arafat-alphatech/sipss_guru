@@ -37,6 +37,7 @@ class PopupMapel extends React.Component {
       .post(url, data, { headers })
       .then(response => {
         swal("Tambah data mata pelajaran berhasil");
+        this.props.getAllMapel(this.props.token)
         console.log("Response dari API: ", response);
         this.setState({ open: false });
       })

@@ -35,6 +35,7 @@ class PopupEditMapel extends React.Component {
       .put(url, data, { headers })
       .then(response => {
         swal("Edit Mapel berhasil");
+        this.props.getAllMapel(this.props.token)
         console.log("Response dari API: ", response);
         this.setState({ open: false });
       })

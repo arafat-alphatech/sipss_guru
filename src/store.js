@@ -85,6 +85,24 @@ const actions = store => ({
         console.log(err);
       });
   },
+  getKelasByGuru: async state => {
+    const token = state.token        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/kelas-guru";
+    await axios
+      .get(url,{headers})
+      .then(response => {
+        store.setState({
+          listNamaKelas: response.data.data
+        });
+        console.log("List Kelas: ", response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
   getUjian: async (state, id_kelas, id_mapel) => {
     const token = state.token        
     const headers = {
