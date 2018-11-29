@@ -45,6 +45,16 @@ class SignIn extends Component {
                     margin: "0 auto"
                 }}
               >
+              <select
+                  className="form-control"
+                  value=''
+                  name="id_tingkat"
+                  onChange={e => this.inputChange(e)}
+                >
+                  <option>Sebagai guru</option>
+                  <option>Sebagai admin</option>
+                  })}
+                </select>
                 <TextField
                   required
                   name="username"
