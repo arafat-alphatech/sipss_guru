@@ -13,36 +13,38 @@ import swal from "sweetalert";
 class PopupEditMKCon extends React.Component {
   state = {
     open: false,
-    id_guru: "",
+    id_guru_old: "",
+    id_guru_new: "",
     nip: "",
     nama: "",
-    id_kelas: "",
+    id_kelas_old: "",
+    id_kelas_new: "",
     nama_kelas: "",
-    id_mapel: "",
+    id_mapel_old: "",
+    id_mapel_new: "",
     nama_mapel: ""
   };
 
   // edit guru
-  doEditGuru = () => {
+  doEditMKCon = () => {
     const token = this.props.adminToken;
     const headers = {
       Authorization: "Bearer " + token
     };
-    const url = "http://13.251.97.170:5001/admin/guru/" + this.props.id;
+    const url = "http://13.251.97.170:5001/admin/kelasmapelconj" ;
     const data = {
-      nip: this.state.nip,
-      nama: this.state.nama,
-      alamat: this.state.alamat,
-      jenis_kelamin: this.state.jenis_kelamin,
-      telepon: this.state.telepon,
-      username: this.state.username,
-      password: this.state.password
+      id_guru_old : parseInt(this.state.id_guru_old),
+      id_kelas_old : parseInt(this.state.id_kelas_old),
+      id_mapel_old : parseInt(this.state.id_mapel_old),
+      id_guru_new : parseInt(this.state.id_guru_new),
+      id_kelas_new : parseInt(this.state.id_kelas_new),
+      id_mapel_new : parseInt(this.state.id_mapel_new),
     };
     axios
       .put(url, data, { headers })
       .then(response => {
         swal("Edit data berhasil");
-        this.props.getAllGuru(this.props.token);
+        this.props.getMapelKelas(this.props.token)
         console.log("Response dari API: ", response);
         this.setState({ open: false });
       })
@@ -55,33 +57,23 @@ class PopupEditMKCon extends React.Component {
   //set state ketika ada inputan
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
   //set state ketika ada inputan (end)
 
   // Buka tutup popup
   handleClickOpen = () => {
-    const token = this.props.adminToken;
-    const headers = {
-      Authorization: "Bearer " + token
-    };
-    const url = "http://13.251.97.170:5001/admin/guru-detail/" + this.props.id;
-    axios
-      .get(url, { headers })
-      .then(response => {
-        this.setState({ nip: response.data.data[0].nip });
-        this.setState({ nama: response.data.data[0].nama });
-        this.setState({ alamat: response.data.data[0].alamat });
-        this.setState({ jenis_kelamin: response.data.data[0].jenis_kelamin });
-        this.setState({ telepon: response.data.data[0].telepon });
-        this.setState({ username: response.data.data[0].username });
-        this.setState({ password: response.data.data[0].password });
-        console.log("from pop up edit guru by id", response.data.data[0]);
-      })
-      .catch(function(error) {
-        //handle error
-        console.log(error);
-      });
+    this.setState({
+      id_guru_old :this.props.id_guru_old,
+      id_kelas_old : this.props.id_kelas_old,
+      id_mapel_old : this.props.id_mapel_old,
+      nip :this.props.nip,
+      nama : this.props.nama,
+      nama_kelas : this.props.nama_kelas,
+      nama_mapel : this.props.nama_mapel
+    })
+    this.props.getAllGuru(this.props.token);
+    this.props.getAllKelas()
+    this.props.getAllMapel()
     this.setState({ open: true });
   };
 
@@ -100,7 +92,6 @@ class PopupEditMKCon extends React.Component {
   // Buka tutup popup (end)
 
   render() {
-    const listKelas = this.props.listKelas;
     return (
       <div>
         <Button onClick={this.handleClickOpen}>
@@ -133,20 +124,11 @@ class PopupEditMKCon extends React.Component {
                   maxWidth: "500px",
                   margin: "0 auto"
                 }}
-              >
-                <TextField
-                  required
-                  name="nip"
-                  type="text"
-                  label="NIP"
-                  defaultValue=""
-                  margin="normal"
-                  variant="outlined"
-                  style={{
-                    width: "100%"
-                  }}
-                  onChange={e => this.inputChange(e)}
-                />
+              > 
+                <p>NIP            : {this.state.nip}</p>
+                <p>Nama Guru      : {this.state.nama}</p>
+                <p>Nama Kelas     : {this.state.nama_kelas}</p>
+                <p>Mata Pelajaran : {this.state.nama_mapel}</p>
               </div>
               {/* Form isi NIS (end) */}
 
@@ -154,16 +136,15 @@ class PopupEditMKCon extends React.Component {
               <select
                 style={{ maxWidth: "93%", margin: "20px 20px 10px 20px" }}
                 className="form-control"
-                value='aa'
-                name="id_kelas"
+                value={this.state.id_guru}
+                name="id_guru_new"
                 onChange={e => this.inputChange(e)}
-                onClick={() => this.props.getAllKelas()}
               >
-                <option>Nama Guru</option>
-                {listKelas.map((item, key) => {
+                <option>[NIP] Nama Guru</option>
+                {this.props.listGuru.map((item, key) => {
                   return (
-                    <option value={item.id_kelas} key={key}>
-                      {item.nama_kelas}
+                    <option value={item.id_guru} key={key}>
+                      [{item.nip}] {item.nama}
                     </option>
                   );
                 })}
@@ -174,13 +155,12 @@ class PopupEditMKCon extends React.Component {
               <select
                 style={{ maxWidth: "93%", margin: "20px 20px 10px 20px" }}
                 className="form-control"
-                value='aa'
-                name="id_kelas"
+                value={this.state.id_kelas}
+                name="id_kelas_new"
                 onChange={e => this.inputChange(e)}
-                onClick={() => this.props.getAllKelas()}
               >
                 <option>Nama kelas</option>
-                {listKelas.map((item, key) => {
+                {this.props.listKelas.map((item, key) => {
                   return (
                     <option value={item.id_kelas} key={key}>
                       {item.nama_kelas}
@@ -194,16 +174,15 @@ class PopupEditMKCon extends React.Component {
               <select
                 style={{ maxWidth: "93%", margin: "20px 20px 10px 20px" }}
                 className="form-control"
-                value='aa'
-                name="id_kelas"
+                value={this.state.id_mapel}
+                name="id_mapel_new"
                 onChange={e => this.inputChange(e)}
-                onClick={() => this.props.getAllKelas()}
               >
                 <option>Nama Mata Pelajaran</option>
-                {listKelas.map((item, key) => {
+                {this.props.listAllMapel.map((item, key) => {
                   return (
-                    <option value={item.id_kelas} key={key}>
-                      {item.nama_kelas}
+                    <option value={item.id_mapel} key={key}>
+                      {item.nama_mapel}
                     </option>
                   );
                 })}
@@ -215,7 +194,7 @@ class PopupEditMKCon extends React.Component {
             <Button onClick={this.handleClose} color="primary">
               Batal
             </Button>
-            <Button onClick={() => this.doEditGuru()} color="primary" autoFocus>
+            <Button onClick={() => this.doEditMKCon()} color="primary" autoFocus>
               Simpan
             </Button>
           </DialogActions>
@@ -226,6 +205,6 @@ class PopupEditMKCon extends React.Component {
 }
 
 export default connect(
-  "is_login, adminToken, listKelas",
+  "is_login, adminToken, listKelas, listGuru, listAllMapel",
   actions
 )(PopupEditMKCon);
