@@ -4,6 +4,7 @@ import { actions } from "../store";
 import { Link } from "react-router-dom";
 import Chart from '../Components/Graph';
 import { CSVLink } from "react-csv";
+import TabelNilai from "../Components/TabelNilai"
 
 class Dashboard extends Component {
 
@@ -15,7 +16,6 @@ class Dashboard extends Component {
         
     }
     componentDidMount(){
-        console.log(">>>>>>><<<<<<<")
         this.props.getKelasByGuru()
     }
    
@@ -72,6 +72,7 @@ class Dashboard extends Component {
                     </div>
                     <div className="col-md-8">
                         <Chart labels={this.props.labels} data={this.props.data}/>
+                        <TabelNilai tableData={this.props.tableData}/>
                         <CSVLink style={{marginTop:"30px"}} className="btn btn-primary" data={this.props.csvData}>Get Raw Data</CSVLink>
                     </div>
                     <div className="col-md-2">
@@ -85,6 +86,6 @@ class Dashboard extends Component {
 }
 
 export default connect(
-    "listMapel,listNamaKelas,listPaketSoal,labels,data,csvData",
+    "listMapel,listNamaKelas,listPaketSoal,labels,data,csvData,tableData",
     actions
 )(Dashboard);
