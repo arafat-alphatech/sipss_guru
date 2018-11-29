@@ -4,6 +4,7 @@ import MenuBawah from '../Components/MenuBawah';
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import axios from 'axios'
+import Button from "@material-ui/core/Button";
 
 class Profile extends Component {
   state = {
@@ -46,22 +47,21 @@ class Profile extends Component {
         <div className="container" style={{ width: "100%", padding: "0px" }}>
           <div
             className="row"
-            style={{ padding: "0", margin: "0 auto", height: "100%" }}>
-            <div
-              className="col-4"
-              style={{ margin: "0px", padding: "0px" }}>
-              <div
-                className="card rounded-0 border-0">
+            style={{ padding: "0", margin: "0 auto", height: "100%" }}
+          >
+            <div className="col-4" style={{ margin: "0px", padding: "0px" }}>
+              <div className="card rounded-0 border-0">
                 <div className="card-body">
-                  <img className='rounded-circle' src={image} style={{ height: '100px', width: '100px' }}></img>
+                  <img
+                    className="rounded-circle"
+                    src={image}
+                    style={{ height: "100px", width: "100px" }}
+                  />
                 </div>
               </div>
             </div>
-            <div
-              className="col-8"
-              style={{ margin: "0px", padding: "0px" }}>
-              <div
-                className="card rounded-0 border-0">
+            <div className="col-8" style={{ margin: "0px", padding: "0px" }}>
+              <div className="card rounded-0 border-0">
                 <div className="card-body">
                   <p>NIP : {biodata.nip}</p>
                   <p>Nama : {biodata.nama}</p>
@@ -74,10 +74,12 @@ class Profile extends Component {
           </div>
           <div
             className="row"
-            style={{ padding: "0", margin: "0 auto", height: "100%" }}>
+            style={{ padding: "0", margin: "0 auto", height: "100%" }}
+          >
             <div
               className="col-6 col-md-12"
-              style={{ margin: "0px", padding: "0px" }}>
+              style={{ margin: "0px", padding: "0px" }}
+            >
               <div
                 className="card rounded-0 border-0"
                 style={{ backgroundColor: "#22a7f0" }}>
@@ -88,7 +90,8 @@ class Profile extends Component {
             </div>
             <div
               className="col-6 col-md-12"
-              style={{ margin: "0px", padding: "0px" }}>
+              style={{ margin: "0px", padding: "0px" }}
+            >
               <div
                 className="card rounded-0 border-0"
                 style={{ backgroundColor: "#d5b8ff" }}>
@@ -98,17 +101,18 @@ class Profile extends Component {
           </div>
           <div
             className="col-sm-10 offset-sm-1"
-            style={{ padding: "0", margin: "0 auto", height: "100%" }}>
+            style={{ padding: "0", margin: "0 auto", height: "100%" }}
+          >
             <div>
-              <div className='card-body'>
-                <div className='row' style={{ margin: '0 auto' }}>
+              <div className="card-body">
+                <div className="row" style={{ margin: "0 auto" }}>
                   {/* <div className="col-sm-10 offset-sm-1"></div> */}
                   <table
                     style={{
-                      overflowX: 'auto',
+                      overflowX: "auto",
                       whiteSpace: "nowrap",
                       // display:'block',
-                      margin: '0 auto'
+                      margin: "0 auto"
                     }}
                     className="table table-hover table-stripped text-center"
                   >
@@ -136,11 +140,18 @@ class Profile extends Component {
             </div>
           </div>
         </div>
-        <div style={{ height: '50px' }}></div>
+        <div style={{ height: "50px" }} />
         <div>
           <footer
             className="footer"
-            style={{ position: "fixed", height: "55px", top: 'auto', bottom: "0", marginLeft: 'auto', marginRight: 'auto' }}
+            style={{
+              position: "fixed",
+              height: "55px",
+              top: "auto",
+              bottom: "0",
+              marginLeft: "auto",
+              marginRight: "auto"
+            }}
           >
             <MenuBawah />
           </footer>
