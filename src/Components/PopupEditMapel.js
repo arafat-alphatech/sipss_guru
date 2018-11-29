@@ -97,28 +97,6 @@ class PopupEditMapel extends React.Component {
                 />
               </div>
 
-              {/* <div
-                className="form-label-group"
-                style={{
-                  maxWidth: "500px",
-                  margin: "0 auto"
-                }}
-              >
-                <TextField
-                  required
-                  name="jadwal"
-                  type="text"
-                  label="Jadwal"
-                  defaultValue=""
-                  margin="normal"
-                  variant="outlined"
-                  style={{
-                    width: "100%"
-                  }}
-                  onChange={e => this.inputChange(e)}
-                />
-              </div> */}
-
               {/* Input Jadwal Ujian */}
               <TextField
                 required
