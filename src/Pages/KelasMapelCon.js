@@ -12,11 +12,6 @@ class KelasMapel extends Component {
     componentDidMount = () => {
         this.props.getMapelKelas(this.props.token)
     }
-    // doDeleteGuru = (id) => {
-    //   this.props.deleteGuru(id).then(()=>{
-    //     this.props.getAllGuru(this.props.token)
-    //   })
-    // }
     render() {
     const listMapelConj = this.props.listMapelConj
     return (
@@ -25,7 +20,7 @@ class KelasMapel extends Component {
         <div className="card" style={{ margin: "0 auto" }}>
         <h1 style={{ textAlign: "center", color: "#39C2C9", marginTop:'20px' }}>Penempatan Guru</h1>
         <div  style={{ margin: "20px 20px 0 auto" }}>
-        <PopupMKCon/>
+        <PopupMKCon />
         </div>
           <div className="card-body">
             <div className="row">
@@ -60,7 +55,13 @@ class KelasMapel extends Component {
                             <td className='align-middle'>{item.nama_kelas}</td>
                             <td className='align-middle'>{item.nama_mapel}</td>
                             <td title="edit data guru">
-                                <PopupEditMKCon id={item.id_guru}/>
+                                <PopupEditMKCon nip = {item.nip} 
+                                                nama = {item.nama} 
+                                                nama_kelas = {item.nama_kelas} 
+                                                nama_mapel = {item.nama_mapel}
+                                                id_kelas_old = {item.id_kelas}
+                                                id_guru_old = {item.id_guru}
+                                                id_mapel_old = {item.id_mapel}/>
                             </td>
                           </tr>
                         );
