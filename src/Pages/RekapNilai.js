@@ -69,7 +69,7 @@ class RekapNilai extends Component {
                         <th>Kode Soal</th>
                         <th>Status Koreksi</th>
                         <th>Persentase</th>
-                        <th style={{color:'blue'}}>Edit Persentase</th>
+                        {/* <th style={{color:'blue'}}>Edit Persentase</th> */}
                       </tr>
                     </thead>
                     <tbody>
@@ -78,11 +78,11 @@ class RekapNilai extends Component {
                           <tr key={key}>
                             <td>{key + 1}</td>
                             <td className='align-middle'>{item.kode_soal}</td>
-                            <td className='align-middle'><Line percent={progress} trailWidth='3' strokeWidth="4" strokeColor="#00A2E5" />{progress}%</td>
-                            <td className='align-middle'>Persentase</td>
-                            <td title="edit data guru">
+                            <td className='align-middle'><Line percent={9/10*100} trailWidth='3' strokeWidth="4" strokeColor="#00A2E5" />{progress}/{progress}</td>
+                            <td className='align-middle'><span>Persentase</span><PopupEditRekap/></td>
+                            {/* <td title="edit data guru">
                                 <PopupEditRekap/>
-                            </td>
+                            </td> */}
                           </tr>
                         );
                       })}
@@ -90,7 +90,7 @@ class RekapNilai extends Component {
                           <td></td>
                           <td></td>
                           <td></td>
-                          <td>Total: {progress}% </td>
+                          <td><strong>Total: {progress}%</strong></td>
                           <td></td>
                     </tr>
                     </tbody>
