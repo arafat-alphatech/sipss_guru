@@ -85,6 +85,11 @@ const KelasMapelCon = Loadable({
   loading: () => <Loading />
 });
 
+const ProfileGuru = Loadable({
+  loader: () => import(/* webpackChunkName: "penempatan-guru"*/ "../Pages/ProfileGuru"),
+  loading: () => <Loading />
+});
+
 const MainRoute = () => {
   return (
     <Switch>
@@ -106,6 +111,7 @@ const MainRoute = () => {
       <Route exact path="/beranda-siswa" component={AturSiswa} />      
       <Route exact path="/beranda-mapel" component={AturMataPelajaran} />
       <Route exact path="/penempatan-guru" component={KelasMapelCon} />
+      <Route exact path="/profile" component={ProfileGuru} />
       <Route component={NotMatch} />
     </Switch>
   );
