@@ -21,8 +21,9 @@ const initialState = {
   id_paket_soal: "",
   current_all_soal: [],
   token: "",
-  type: "",
-  is_login: false,
+  adminToken: "" ,
+  login_as: "",
+  is_login: "",
   current_jumlah_soal: "",
   siap_cetak:[],
   listGuru:[],
@@ -32,8 +33,7 @@ const initialState = {
   csvData : [],
   tableData : [],
   listMapelConj:[],
-  listTingkat: [{"id_tingkat":1,"nama_tingkat":"VII"},{"id_tingkat":2,"nama_tingkat":"VIII"},{"id_tingkat":3,"nama_tingkat":"IX"}],
-  adminToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NDMzMjQxNDcsIm5iZiI6MTU0MzMyNDE0NywianRpIjoiNjFkMjc5YzMtZjMwNS00YmE0LWI3NTYtYzY1ZmUzZTA1MDc2IiwiZXhwIjoxNTQ1OTE2MTQ3LCJpZGVudGl0eSI6OTk5LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MiLCJ1c2VyX2NsYWltcyI6eyJpZF9hZG1pbiI6OTk5LCJuaXAiOjE3MDAwMX19.5m0P2mTpWqlEdTWLyqHpHfupJH5EMjVxHv7ZfxQW4r4" 
+  listTingkat: [{"id_tingkat":1,"nama_tingkat":"VII"},{"id_tingkat":2,"nama_tingkat":"VIII"},{"id_tingkat":3,"nama_tingkat":"IX"}]
 };
 
 const store =
@@ -300,8 +300,9 @@ const actions = store => ({
       current_jumlah_soal: n
     });
   },
-  signInHandle: async (state, username, password) => {
-    const url = "http://13.251.97.170:5001/login";
+  signInHandle: async (state, username, password, login_as) => {
+    const endpoint = login_as === "admin" ? "admin/login": "login"
+    const url = "http://13.251.97.170:5001/" + endpoint;
     const body = {
       username: username,
       password: password
@@ -309,19 +310,34 @@ const actions = store => ({
     await axios
       .post(url, body)
       .then(response => {
-        store.setState({
-          token: response.data.token,
-          is_login: true
-        });
+        if(login_as === 'admin'){
+          store.setState({
+            adminToken: response.data.token,
+            token: "",
+            login_as: login_as,
+            is_login: true
+          });
+        }
+        else{
+          store.setState({
+            adminToken: "",
+            token: response.data.token,
+            login_as: login_as,
+            is_login: true
+          });
+        }
+        alert("Selamat datang")
       })
       .catch(err => {
-        alert("masukkan username dan password yang benar");
+        alert("Masukkan username dan password yang benar");
         console.log(err);
       });
   },
   signOutHandle: (state) => {
     store.setState({
       token: "",
+      adminToken: "",
+      login_as: "",
       is_login: false
     })    
     alert('Sampai jumpa kembali')

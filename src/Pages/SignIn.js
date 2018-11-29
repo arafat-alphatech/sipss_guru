@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
-import { withRouter} from "react-router-dom";
+import { withRouter, Redirect} from "react-router-dom";
 import "../Styles/Home.css";
 import { connect } from "unistore/react";
 import { actions } from "../store";
@@ -8,22 +8,25 @@ import { actions } from "../store";
 class SignIn extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    login_as: "guru"
   };
   
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
-
+  
   signInHandle = () => {
-    this.props.signInHandle( this.state.username, this.state.password )
-    alert('Selamat datang')
+    this.props.signInHandle( this.state.username, this.state.password, this.state.login_as )
     this.props.history.push('/')
   }
   
   render() {  
-    console.log('is_login', this.props.is_login)
+    console.log('di Signin is_login', this.props.is_login)
+
+    if(this.props.is_login == true){
+      return <Redirect to="/" />
+    }
 
     return (          
     <div className="sign-in" style={{padding:'20px'}}>
@@ -47,12 +50,12 @@ class SignIn extends Component {
               >
               <select
                   className="form-control"
-                  value=''
-                  name="id_tingkat"
+                  value={this.state.login_as}
+                  name="login_as"
                   onChange={e => this.inputChange(e)}
                 >
-                  <option>Sebagai guru</option>
-                  <option>Sebagai admin</option>
+                  <option value="guru">Sebagai guru</option>
+                  <option value="admin">Sebagai admin</option>
                   })}
                 </select>
                 <TextField
