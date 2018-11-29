@@ -8,83 +8,108 @@ import { connect } from "unistore/react";
 import { actions } from "../store";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
-import swal from 'sweetalert'
+import swal from "sweetalert";
 
-class PopupMKCon extends React.Component {
+class PopupEditMKCon extends React.Component {
   state = {
     open: false,
-    id_guru: '',
-    nip: '',
-    nama: '',
-    id_kelas: '',
-    nama_kelas: '',
-    id_mapel: '',
-    nama_mapel: ''
+    id_guru: "",
+    nip: "",
+    nama: "",
+    id_kelas: "",
+    nama_kelas: "",
+    id_mapel: "",
+    nama_mapel: ""
   };
 
-  // post siswa
-  tambahKelasMapel = () => {
+  // edit guru
+  doEditGuru = () => {
     const token = this.props.adminToken;
     const headers = {
       Authorization: "Bearer " + token
     };
-    const url = "http://13.251.97.170:5001/admin/kelasmapelconj";
+    const url = "http://13.251.97.170:5001/admin/guru/" + this.props.id;
     const data = {
-      id_guru: this.state.id_guru,
       nip: this.state.nip,
       nama: this.state.nama,
-      id_kelas: this.state.id_kelas,
-      nama_kelas: this.state.nama_kelas,
-      id_mapel: this.state.id_mapel,
-      nama_mapel: this.state.nama_mapel
+      alamat: this.state.alamat,
+      jenis_kelamin: this.state.jenis_kelamin,
+      telepon: this.state.telepon,
+      username: this.state.username,
+      password: this.state.password
     };
     axios
-      .post(url, data, { headers })
+      .put(url, data, { headers })
       .then(response => {
-        swal("Tambah data berhasil");
-        console.log("Response tambah mapel kelas: ", response);
+        swal("Edit data berhasil");
+        this.props.getAllGuru(this.props.token);
+        console.log("Response dari API: ", response);
         this.setState({ open: false });
       })
       .catch(err => {
         console.log(err);
       });
   };
-  // post siswa (end)
+  // edit guru (end)
 
+  //set state ketika ada inputan
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
     console.log(e.target.value);
   };
+  //set state ketika ada inputan (end)
 
   // Buka tutup popup
   handleClickOpen = () => {
+    const token = this.props.adminToken;
+    const headers = {
+      Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/guru-detail/" + this.props.id;
+    axios
+      .get(url, { headers })
+      .then(response => {
+        this.setState({ nip: response.data.data[0].nip });
+        this.setState({ nama: response.data.data[0].nama });
+        this.setState({ alamat: response.data.data[0].alamat });
+        this.setState({ jenis_kelamin: response.data.data[0].jenis_kelamin });
+        this.setState({ telepon: response.data.data[0].telepon });
+        this.setState({ username: response.data.data[0].username });
+        this.setState({ password: response.data.data[0].password });
+        console.log("from pop up edit guru by id", response.data.data[0]);
+      })
+      .catch(function(error) {
+        //handle error
+        console.log(error);
+      });
     this.setState({ open: true });
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({
+      open: false,
+      nip: "",
+      nama: "",
+      alamat: "",
+      jenis_kelamin: "",
+      telepon: "",
+      username: "",
+      password: ""
+    });
   };
   // Buka tutup popup (end)
 
-  componentDidMount = () => {
-    this.props.getMapelKelas(this.props.token);
-  };
-
   render() {
     const listKelas = this.props.listKelas;
-    console.log('cek statenya',this.state)
-    console.log('cek cek cek',this.props.listKelas);
     return (
       <div>
         <Button onClick={this.handleClickOpen}>
-          Tambah Data &nbsp;
           <i
-            title="tambah data siswa"
+            title="edit data"
             style={{ color: "#00e640" }}
-            className="fas fa-user-plus"
-          >
-            <span style={{ marginRight: "20px" }} />
-          </i>
+            className="fas fa-user-edit"
+            style={{ color: "blue" }}
+          />
         </Button>
         <Dialog
           open={this.state.open}
@@ -97,11 +122,10 @@ class PopupMKCon extends React.Component {
             id="alert-dialog-title"
             style={{ marginLeft: "auto", marginRight: "auto" }}
           >
-            {"Tambah Data"}
+            {"Edit Data"}
           </DialogTitle>
           <DialogContent>
             <form onSubmit={e => e.preventDefault()}>
-              
               {/* Form isi NIP */}
               <div
                 className="form-label-group"
@@ -130,7 +154,7 @@ class PopupMKCon extends React.Component {
               <select
                 style={{ maxWidth: "93%", margin: "20px 20px 10px 20px" }}
                 className="form-control"
-                value={listKelas.id_kelas}
+                value='aa'
                 name="id_kelas"
                 onChange={e => this.inputChange(e)}
                 onClick={() => this.props.getAllKelas()}
@@ -150,7 +174,7 @@ class PopupMKCon extends React.Component {
               <select
                 style={{ maxWidth: "93%", margin: "20px 20px 10px 20px" }}
                 className="form-control"
-                value={listKelas.id_kelas}
+                value='aa'
                 name="id_kelas"
                 onChange={e => this.inputChange(e)}
                 onClick={() => this.props.getAllKelas()}
@@ -170,7 +194,7 @@ class PopupMKCon extends React.Component {
               <select
                 style={{ maxWidth: "93%", margin: "20px 20px 10px 20px" }}
                 className="form-control"
-                value={listKelas.id_kelas}
+                value='aa'
                 name="id_kelas"
                 onChange={e => this.inputChange(e)}
                 onClick={() => this.props.getAllKelas()}
@@ -185,19 +209,14 @@ class PopupMKCon extends React.Component {
                 })}
               </select>
               {/* Pilih Mata Pelajaran (end) */}
-
             </form>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
               Batal
             </Button>
-            <Button
-              onClick={() => this.postNewSiswa()}
-              color="primary"
-              autoFocus
-            >
-              Tambahkan
+            <Button onClick={() => this.doEditGuru()} color="primary" autoFocus>
+              Simpan
             </Button>
           </DialogActions>
         </Dialog>
@@ -207,6 +226,6 @@ class PopupMKCon extends React.Component {
 }
 
 export default connect(
-  "is_login, adminToken, id_kelas, listKelas, listTingkat",
+  "is_login, adminToken, listKelas",
   actions
-)(PopupMKCon);
+)(PopupEditMKCon);

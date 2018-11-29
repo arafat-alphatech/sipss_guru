@@ -6,6 +6,7 @@ import PopupEditGuru from "../Components/PopupEditGuru";
 import Button from "@material-ui/core/Button";
 import swal from 'sweetalert'
 import PopupMKCon from '../Components/PopupMKCon' 
+import PopupEditMKCon from '../Components/PopupEditMKCon' 
 
 class KelasMapel extends Component {
     componentDidMount = () => {
@@ -59,7 +60,7 @@ class KelasMapel extends Component {
                             <td className='align-middle'>{item.nama_kelas}</td>
                             <td className='align-middle'>{item.nama_mapel}</td>
                             <td title="edit data guru">
-                                <PopupEditGuru id={item.id_guru}/>
+                                <PopupEditMKCon id={item.id_guru}/>
                             </td>
                           </tr>
                         );
