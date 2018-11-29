@@ -78,7 +78,7 @@ class RekapNilai extends Component {
                           <tr key={key}>
                             <td>{key + 1}</td>
                             <td className='align-middle'>{item.kode_soal}</td>
-                            <td className='align-middle'><Line percent={9/10*100} trailWidth='3' strokeWidth="4" strokeColor="#00A2E5" />{progress}/{progress}</td>
+                            <td className='align-middle'><Line percent={progress/20*100} trailWidth='3' strokeWidth="4" strokeColor="#00A2E5" />{progress}/{progress}</td>
                             <td className='align-middle'><span>Persentase</span><PopupEditRekap/></td>
                             {/* <td title="edit data guru">
                                 <PopupEditRekap/>
