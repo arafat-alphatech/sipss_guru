@@ -95,6 +95,11 @@ const RekapNilai = Loadable({
   loading: () => <Loading />
 });
 
+const ScanLJK = Loadable({
+  loader: () => import(/* webpackChunkName: "scan-ljk"*/ "../Pages/ScanLJK"),
+  loading: () => <Loading />
+});
+
 const MainRoute = () => {
   return (
     <Switch>
@@ -118,6 +123,7 @@ const MainRoute = () => {
       <Route exact path="/penempatan-guru" component={KelasMapelCon} />
       <Route exact path="/profile" component={ProfileGuru} />
       <Route exact path="/rekap-nilai" component={RekapNilai} />
+      <Route exact path="/scan-ljk" component={ScanLJK} />
       <Route component={NotMatch} />
     </Switch>
   );

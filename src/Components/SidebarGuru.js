@@ -14,7 +14,10 @@ import Face from '@material-ui/icons/Face';
 import Kelas from '@material-ui/icons/MeetingRoom';
 import Mapel from '@material-ui/icons/LibraryBooks';
 import Guru from '@material-ui/icons/PermIdentity';
-import Penempatan from '@material-ui/icons/CallSplit';
+import Logout from '@material-ui/icons/PowerSettingsNew'
+import {withRouter} from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../store";
 
 const styles = {
   list: {
@@ -33,6 +36,14 @@ class TemporaryDrawer extends React.Component {
     right: false,
   };
 
+  logout = () => {
+
+    this.props.signOutHandle()
+    localStorage.removeItem('unistorePersist')
+    this.props.history.push('/signin')
+
+  }
+
   toggleDrawer = (side, open) => () => {
     this.setState({
       [side]: open,
@@ -45,42 +56,42 @@ class TemporaryDrawer extends React.Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-            <ListItem button component={Link} to='/beranda-admin'>
+            <ListItem button component={Link} to='/'>
                 <ListItemIcon> <InboxIcon /> </ListItemIcon>
                 <ListItemText primary="Dashboard Guru" />
             </ListItem>
         </List>
         <List>
-            <ListItem button component={Link} to='/beranda-guru'>
+            <ListItem button component={Link} to='/ujian'>
                 <ListItemIcon> <Guru style={{color:'#00A2E5'}}/> </ListItemIcon>
-                <ListItemText primary="Guru" />
+                <ListItemText primary="Ujian" />
             </ListItem>
         </List>
         <List>
-            <ListItem button component={Link} to='/beranda-siswa'>
+            <ListItem button component={Link} to='/dashboard'>
                 <ListItemIcon> <Face style={{color:'#00A2E5'}}/> </ListItemIcon>
-                <ListItemText primary="Siswa" />
+                <ListItemText primary="Statistik" />
             </ListItem>
         </List>
         <List>
-            <ListItem button component={Link} to='/beranda-kelas'>
+            <ListItem button component={Link} to='#'>
                 <ListItemIcon> <Kelas style={{color:'#00A2E5'}}/> </ListItemIcon>
-                <ListItemText primary="Kelas" />
+                <ListItemText primary="Rapor" />
             </ListItem>
         </List>
         <List>
-            <ListItem button component={Link} to='/beranda-mapel'>
+            <ListItem button component={Link} to='/profile'>
                 <ListItemIcon> <Mapel style={{color:'#00A2E5'}}/> </ListItemIcon>
-                <ListItemText primary="Mata Pelajaran" />
-            </ListItem>
-        </List>
-        <List>
-            <ListItem button component={Link} to='/penempatan-guru'>
-                <ListItemIcon> <Penempatan style={{color:'#00A2E5'}}/> </ListItemIcon>
-                <ListItemText primary="Penempatan Guru" />
+                <ListItemText primary="Profile" />
             </ListItem>
         </List>
         <Divider />
+        <List>
+            <ListItem button onClick={() => this.logout()}>
+                <ListItemIcon> <Logout style={{color:'#00A2E5'}}/> </ListItemIcon>
+                <ListItemText primary="Keluar" />
+            </ListItem>
+        </List>
       </div>
     );
 
@@ -106,4 +117,4 @@ TemporaryDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TemporaryDrawer);
+export default connect("",actions)(withStyles(styles)(withRouter(TemporaryDrawer)));
