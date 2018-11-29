@@ -32,6 +32,7 @@ const initialState = {
   csvData : [],
   tableData : [],
   listMapelConj:[],
+  listRekap:[],
   listTingkat: [{"id_tingkat":1,"nama_tingkat":"VII"},{"id_tingkat":2,"nama_tingkat":"VIII"},{"id_tingkat":3,"nama_tingkat":"IX"}],
   adminToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NDMzMjQxNDcsIm5iZiI6MTU0MzMyNDE0NywianRpIjoiNjFkMjc5YzMtZjMwNS00YmE0LWI3NTYtYzY1ZmUzZTA1MDc2IiwiZXhwIjoxNTQ1OTE2MTQ3LCJpZGVudGl0eSI6OTk5LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MiLCJ1c2VyX2NsYWltcyI6eyJpZF9hZG1pbiI6OTk5LCJuaXAiOjE3MDAwMX19.5m0P2mTpWqlEdTWLyqHpHfupJH5EMjVxHv7ZfxQW4r4" 
 };
@@ -496,6 +497,24 @@ const actions = store => ({
           listMapelConj: response.data.data
         });
         console.log('data get kelas mapel', response.data.data)
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  getRekap: async state => {
+    const token = state.token        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/rekap?id_mapel="+state.id_mapel+"&id_kelas="+state.id_kelas;
+    await axios
+      .get(url, {headers})
+      .then(response => {
+        store.setState({
+          listRekap : response.data.data
+        })
+        console.log("==================", state.tableData);
       })
       .catch(err => {
         console.log(err);

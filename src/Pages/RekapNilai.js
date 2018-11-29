@@ -6,33 +6,37 @@ import { Line} from 'rc-progress';
 
 class RekapNilai extends Component {
 
-    changeStatus(){
-        this.props.getChartData().then(()=>{
-            this.props.getTableDataFromAPI()
-            this.props.getRawDataFromAPI()
-        })
-        
-    }
     componentDidMount(){
         this.props.getKelasByGuru()
+        this.props.getRekap()
     }
 
+    handlePilihMapel = () => {
+        this.props.getPaketByMapel()
+        this.props.getRekap()
+    }
+
+    handlePilihKelas = () => {
+        this.props.getRekap()
+        this.props.getRekap()
+    }
     
     render() {
-        const progress = 10;
+        const progress = 10
+        const listRekap = this.props.listRekap;
         const listMapel = this.props.listMapel;
         const listNamaKelas = this.props.listNamaKelas;
-        const listPaketSoal = this.props.listPaketSoal;
+        console.log('listRekap', listRekap)
         return (
             <div className="dashboard" style={{ marginTop: "50px", textAlign: "center" }}>
                 <div className="row">
                     <div className="col-md-3">
                     </div>
                     <div className="col-md-6">
-                        <h1>Dashboard Nilai</h1>
+                        <h1>Rekapitulasi Nilai</h1>
                         <div className="row" style={{ marginTop: "50px", marginBottom:"30px" }}>
                             <div className="col-md-6">
-                                <select className="form-control" value={listNamaKelas.id_kelas} name="id_kelas" onChange={e => this.props.setField(e)} onClick={() => this.props.getMaPel()}>
+                                <select className="form-control" value={listNamaKelas.id_kelas} name="id_kelas" onChange={e => this.props.setField(e)} onClick={() => this.handlePilihKelas()}>
                                     <option>Pilih Kelas</option>
                                     {listNamaKelas.map((item, key) => {
                                         return <option value={item.id_kelas} key={key}>{item.nama_kelas}</option>;
@@ -40,7 +44,7 @@ class RekapNilai extends Component {
                                 </select>
                             </div>
                             <div className="col-md-6">
-                                <select className="form-control" value={listMapel.id_mapel} name="id_mapel" onChange={e => this.props.setField(e)} onClick={() => this.props.getPaketByMapel()} >
+                                <select className="form-control" value={listMapel.id_mapel} name="id_mapel" onChange={e => this.props.setField(e)} onClick={() => this.handlePilihMapel()} >
                                     <option>Pilih Mata Pelajaran</option>
                                     {listMapel.map((item, key) => {
                                         return (
@@ -73,12 +77,12 @@ class RekapNilai extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {listPaketSoal.map((item, key) => {
+                      {listRekap.map((item, key) => {
                         return (
                           <tr key={key}>
-                            <td>{key + 1}</td>
+                            <td className='align-middle'>{key + 1}</td>
                             <td className='align-middle'>{item.kode_soal}</td>
-                            <td className='align-middle'><Line percent={progress/20*100} trailWidth='3' strokeWidth="4" strokeColor="#00A2E5" />{progress}/{progress}</td>
+                            <td className='align-middle'><Line percent={item.total_koreksi/item.total_siswa*100} trailWidth='3' strokeWidth="4" strokeColor="#00A2E5" />{item.total_koreksi}/{item.total_siswa}</td>
                             <td className='align-middle'><span>Persentase</span><PopupEditRekap/></td>
                             {/* <td title="edit data guru">
                                 <PopupEditRekap/>
@@ -109,6 +113,6 @@ class RekapNilai extends Component {
 }
 
 export default connect(
-    "listMapel,listNamaKelas,listPaketSoal",
+    "listRekap, listMapel, listNamaKelas, listPaketSoal",
     actions
 )(RekapNilai);
