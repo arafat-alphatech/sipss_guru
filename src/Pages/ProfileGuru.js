@@ -99,6 +99,7 @@ class Profile extends Component {
               </div>
             </div>
           </div>
+          <button>edit</button>
           <div
             className="col-sm-10 offset-sm-1"
             style={{ padding: "0", margin: "0 auto", height: "100%" }}
