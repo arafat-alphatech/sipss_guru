@@ -14,6 +14,7 @@ import Face from '@material-ui/icons/Face';
 import Kelas from '@material-ui/icons/MeetingRoom';
 import Mapel from '@material-ui/icons/LibraryBooks';
 import Guru from '@material-ui/icons/PermIdentity';
+import Penempatan from '@material-ui/icons/CallSplit';
 
 const styles = {
   list: {
@@ -71,6 +72,12 @@ class TemporaryDrawer extends React.Component {
             <ListItem button component={Link} to='/beranda-mapel'>
                 <ListItemIcon> <Mapel style={{color:'#00A2E5'}}/> </ListItemIcon>
                 <ListItemText primary="Mata Pelajaran" />
+            </ListItem>
+        </List>
+        <List>
+            <ListItem button component={Link} to='/penempatan-guru'>
+                <ListItemIcon> <Penempatan style={{color:'#00A2E5'}}/> </ListItemIcon>
+                <ListItemText primary="Penempatan Guru" />
             </ListItem>
         </List>
         <Divider />
