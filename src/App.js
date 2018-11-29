@@ -18,10 +18,13 @@ class App extends Component {
     return (
       <div>
         {
-          this.props.login_as === "admin" ? 
-          <Sidebar />
-          : 
-          <SidebarGuru/> 
+          this.props.location.pathname !== '/signin' ?
+            this.props.login_as === "admin" ? 
+            <Sidebar />
+            : 
+            <SidebarGuru/> 
+          :
+          ""
         }
         <MainRoute />
       </div>

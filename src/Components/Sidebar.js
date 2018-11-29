@@ -15,6 +15,11 @@ import Kelas from '@material-ui/icons/MeetingRoom';
 import Mapel from '@material-ui/icons/LibraryBooks';
 import Guru from '@material-ui/icons/PermIdentity';
 import Penempatan from '@material-ui/icons/CallSplit';
+import Logout from '@material-ui/icons/PowerSettingsNew'
+import {withRouter} from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../store";
+
 
 const styles = {
   list: {
@@ -33,6 +38,14 @@ class TemporaryDrawer extends React.Component {
     right: false,
   };
 
+  logout = () => {
+
+    this.props.signOutHandle()
+    localStorage.removeItem('unistorePersist')
+    this.props.history.push('/signin')
+
+  }
+
   toggleDrawer = (side, open) => () => {
     this.setState({
       [side]: open,
@@ -47,7 +60,7 @@ class TemporaryDrawer extends React.Component {
         <List>
             <ListItem button component={Link} to='/beranda-admin'>
                 <ListItemIcon> <InboxIcon /> </ListItemIcon>
-                <ListItemText primary="Dashboard" />
+                <ListItemText primary="Dashboard Admin" />
             </ListItem>
         </List>
         <List>
@@ -81,6 +94,12 @@ class TemporaryDrawer extends React.Component {
             </ListItem>
         </List>
         <Divider />
+        <List>
+            <ListItem button onClick={() => this.logout()}>
+                <ListItemIcon> <Logout style={{color:'#00A2E5'}}/> </ListItemIcon>
+                <ListItemText primary="Keluar" />
+            </ListItem>
+        </List>
       </div>
     );
 
@@ -106,4 +125,4 @@ TemporaryDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TemporaryDrawer);
+export default connect("",actions)(withStyles(styles)(withRouter(TemporaryDrawer)));
