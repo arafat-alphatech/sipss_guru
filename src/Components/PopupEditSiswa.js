@@ -41,6 +41,7 @@ class PopupEditSiswa extends React.Component {
       .put(url, data, { headers })
       .then(response => {
         swal("Edit Siswa berhasil");
+        this.props.getAllSiswa(this.props.token);
         console.log("Response dari API: ", response);
         this.setState({ open: false });
       })

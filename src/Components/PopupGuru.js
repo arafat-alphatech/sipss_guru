@@ -42,6 +42,7 @@ class Popup extends React.Component {
       .post(url, data, { headers })
       .then(response => {
         swal("Tambah guru berhasil");
+        this.props.getAllGuru(this.props.token)
         console.log("Response dari API: ", response);
         this.setState({ open: false });
       })
@@ -97,29 +98,6 @@ class Popup extends React.Component {
           </DialogTitle>
           <DialogContent>
             <form onSubmit={e => e.preventDefault()}>
-              <div
-                className="form-label-group"
-                style={{
-                  marginRight: "auto",
-                  marginLeft: "auto",
-                  maxWidth: "500px"
-                }}
-              >
-                <TextField
-                  required
-                  name="username"
-                  type="text"
-                  label="Username"
-                  defaultValue=""
-                  margin="normal"
-                  variant="outlined"
-                  style={{
-                    width: "100%"
-                  }}
-                  onChange={e => this.inputChange(e)}
-                />
-              </div>
-
               <div
                 className="form-label-group"
                 style={{
@@ -219,6 +197,28 @@ class Popup extends React.Component {
                   name="telepon"
                   type="text"
                   label="Telepon"
+                  defaultValue=""
+                  margin="normal"
+                  variant="outlined"
+                  style={{
+                    width: "100%"
+                  }}
+                  onChange={e => this.inputChange(e)}
+                />
+              </div>
+              <div
+                className="form-label-group"
+                style={{
+                  marginRight: "auto",
+                  marginLeft: "auto",
+                  maxWidth: "500px"
+                }}
+              >
+                <TextField
+                  required
+                  name="username"
+                  type="text"
+                  label="Username"
                   defaultValue=""
                   margin="normal"
                   variant="outlined"

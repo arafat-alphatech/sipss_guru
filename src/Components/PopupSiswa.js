@@ -39,6 +39,7 @@ class PopupSiswa extends React.Component {
       .post(url, data, { headers })
       .then(response => {
         swal("Tambah siswa berhasil");
+        this.props.getAllSiswa(this.props.token);
         console.log("Response dari API: ", response);
         this.setState({ open: false });
       })

@@ -42,6 +42,7 @@ class PopupEditGuru extends React.Component {
       .put(url, data, { headers })
       .then(response => {
         swal("Edit guru berhasil");
+        this.props.getAllGuru(this.props.token)
         console.log("Response dari API: ", response);
         this.setState({ open: false });
       })

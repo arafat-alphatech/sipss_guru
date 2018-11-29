@@ -3,7 +3,6 @@ import { connect } from "unistore/react";
 import { actions } from "../store";
 import { Link } from "react-router-dom";
 import Chart from '../Components/Graph';
-import SimpleTable from '../Components/Table';
 import { CSVLink } from "react-csv";
 
 class Dashboard extends Component {
@@ -15,12 +14,15 @@ class Dashboard extends Component {
         })
         
     }
+    componentDidMount(){
+        console.log(">>>>>>><<<<<<<")
+        this.props.getKelasByGuru()
+    }
    
     render() {
         const listMapel = this.props.listMapel;
         const listNamaKelas = this.props.listNamaKelas;
         const listPaketSoal = this.props.listPaketSoal;
-        const tableData = this.props.tableData;
         return (
             <div className="dashboard" style={{ marginTop: "50px", textAlign: "center" }}>
                 <div className="row">
@@ -70,7 +72,6 @@ class Dashboard extends Component {
                     </div>
                     <div className="col-md-8">
                         <Chart labels={this.props.labels} data={this.props.data}/>
-                        {/* <SimpleTable/> */}
                         <CSVLink style={{marginTop:"30px"}} className="btn btn-primary" data={this.props.csvData}>Get Raw Data</CSVLink>
                     </div>
                     <div className="col-md-2">
