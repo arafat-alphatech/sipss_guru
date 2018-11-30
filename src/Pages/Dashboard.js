@@ -30,9 +30,9 @@ class Dashboard extends Component {
                     <div className="col-md-3">
                     </div>
                     <div className="col-md-6">
-                        <h1>Dashboard Nilai</h1>
-                        <div className="row" style={{ marginTop: "50px", marginBottom:"30px" }}>
-                            <div className="col-md-4">
+                        <h1 style={{color:'#00A2E5'}}>Statistik Nilai</h1>
+                        <div className="row" style={{ marginTop: "50px", marginBottom:"30px", marginLeft:'10px', marginRight:'10px' }}>
+                            <div className="col-md-4" style={{marginBottom:'10px'}}>
                                 <select className="form-control" value={listNamaKelas.id_kelas} name="id_kelas" onChange={e => this.props.setField(e)} onClick={() => this.props.getMaPel()}>
                                     <option>Pilih Kelas</option>
                                     {listNamaKelas.map((item, key) => {
@@ -40,7 +40,7 @@ class Dashboard extends Component {
                                     })}
                                 </select>
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-4" style={{marginBottom:'10px'}}>
                                 <select className="form-control" value={listMapel.id_mapel} name="id_mapel" onChange={e => this.props.setField(e)} onClick={() => this.props.getPaketByMapel()} >
                                     <option>Pilih Mata Pelajaran</option>
                                     {listMapel.map((item, key) => {
@@ -52,7 +52,7 @@ class Dashboard extends Component {
                             </div>
                             <div className="col-md-4">
                                 <select className="form-control" value={listPaketSoal.id_mapel} name="id_paket_soal" onChange={e => this.props.setField(e)} >
-                                    <option>Pilih Paket Soal</option>
+                                    <option>Pilih Kode Paket Soal</option>
                                     {listPaketSoal.map((item, key) => {
                                         return (
                                             <option key={key} value={item.id_paket_soal}>{item.kode_soal}</option>
@@ -62,7 +62,7 @@ class Dashboard extends Component {
                             </div>
                         </div>
                         <Link className="btn btn-primary" onClick={() => this.changeStatus()} to='#'>
-                            Show Chart
+                            Lihat Statistik
                         </Link>
                     </div>
                     <div className="col-md-3">
@@ -80,7 +80,19 @@ class Dashboard extends Component {
 
                     </div>
                 </div>
-                <MenuBawah/>            
+                 {/* footer */}
+        <footer
+          className="footer"
+          style={{
+            position: "fixed",
+            height: "55px",
+            bottom: "0",
+            width: "100%"
+          }}
+        >
+          <MenuBawah />
+        </footer>
+        {/* footer (end) */}          
             </div>
         )
     }

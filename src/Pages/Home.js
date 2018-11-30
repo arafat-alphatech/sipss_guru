@@ -5,23 +5,52 @@ import { actions } from "../store";
 import { Link } from "react-router-dom";
 import MenuBawah from "../Components/MenuBawah";
 import '../Styles/Home.css'
+import axios from 'axios'
 
 class Home extends Component {
-  // componentDidMount = () => {
-  //   this.props.getKelas();
-  //   this.props.getMaPel();
-  // };
+  state = {
+    biodata: [],
+    listData: []
+  };
+
+  getProfile = () => {
+    const token = this.props.token;
+    const headers = {
+      Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/profile";
+    axios
+      .get(url, { headers })
+      .then((response) => {
+        this.setState({
+          biodata: response.data.biodata,
+          listData: response.data.data
+        });
+        console.log("from profile guru", response.data);
+      })
+      .catch(function (error) {
+        //handle error
+        console.log(error);
+      });
+  }
+
+  componentDidMount() {
+    this.getProfile()
+  }
 
   render() {
     const listNamaKelas = this.props.listNamaKelas;
     const listMapel = this.props.listMapel;
     const listTingkat = this.props.listTingkat;
+    const biodata = this.state.biodata;
+    const image = biodata.foto;
+    console.log('isi bio', biodata)
     return (
       <div className='Site'>
         <h1
           style={{
             textAlign: "center",
-            color: "#39C2C9",
+            color: "#00A2E5",
             marginTop: "20px",
             marginBottom: "20px"
           }}
@@ -34,11 +63,12 @@ class Home extends Component {
         <div style={{ textAlign: "center" }}>
           <img
             style={{ width: "100px", height: "100px" }}
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Tom_Cruise_by_Gage_Skidmore.jpg/220px-Tom_Cruise_by_Gage_Skidmore.jpg"
+            // src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Tom_Cruise_by_Gage_Skidmore.jpg/220px-Tom_Cruise_by_Gage_Skidmore.jpg"
+            src={image}            
             alt="..."
             className="img-thumbnail"
           />
-          <p style={{ marginTop: "10px" }}>Tom Cruise, S.Pd</p>
+          <p style={{ marginTop: "10px" }}>{biodata.nama}</p>
         </div>
         {/* Section Data Guru (end) */}
 
@@ -150,9 +180,9 @@ class Home extends Component {
                 maxWidth: "800px",
                 marginBottom: "10px"
               }}
-              to="/"
+              to="/rekap-nilai"
             >
-              Tambah Mata Pelajaran
+              Rapor
             </Link>
             <br />
             {/* Button Menu Rapor (end) */}
@@ -194,6 +224,6 @@ class Home extends Component {
 }
 
 export default connect(
-  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat",
+  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat, token",
   actions
 )(Home);
