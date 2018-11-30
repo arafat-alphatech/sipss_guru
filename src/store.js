@@ -384,7 +384,7 @@ const actions = store => ({
     await axios
     .delete(url,{headers})
     .then(response => {
-      alert("Delete Guru is Success!")
+      swal("Sukses","Berhasil hapus data!","success")
     })
     .catch(err => {
       console.log(err);
@@ -417,7 +417,7 @@ const actions = store => ({
     await axios
     .delete(url,{headers})
     .then(response => {
-      alert("Delete Siswa is Success!")
+      swal("Sukses","Delete Siswa is Success!","success")
     })
     .catch(err => {
       console.log(err);
@@ -450,7 +450,7 @@ const actions = store => ({
     await axios
     .delete(url,{headers})
     .then(response => {
-      alert("Delete Mapel is Success!")
+      swal("Sukses","Delete data berhasil!", "success")
     })
     .catch(err => {
       console.log(err);
@@ -495,7 +495,7 @@ const actions = store => ({
         store.setState({
           dataGuru: response.data,
         });
-        alert("Tambah guru berhasil");
+        swal("Sukses","Tambah guru berhasil","success");
         console.log("Response dari API: ", response);
       })
       .catch(err => {

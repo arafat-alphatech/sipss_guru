@@ -162,7 +162,7 @@ class Ujian extends Component {
             position: "fixed",
             height: "55px",
             bottom: "0",
-            width: "500px"
+            width: "100%"
           }}
         >
           <MenuBawah />
