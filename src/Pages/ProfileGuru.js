@@ -89,6 +89,7 @@ class Profile extends Component {
           >
             <div>
               <div className="card-body">
+                <h4 style={{textAlign:"center"}}>Jadwal Mengajar</h4>
                 <div className="row" style={{ margin: "0 auto" }}>
                   {/* <div className="col-sm-10 offset-sm-1"></div> */}
                   <table

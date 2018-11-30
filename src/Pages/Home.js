@@ -172,21 +172,6 @@ class Home extends Component {
             <br />
             {/* Button Menu Jadwal (end) */}
 
-            {/* Button Menu Rapor */}
-            <Link
-              className="btn btn-primary"
-              style={{
-                minWidth: "300px",
-                maxWidth: "800px",
-                marginBottom: "10px"
-              }}
-              to="/rekap-nilai"
-            >
-              Rapor
-            </Link>
-            <br />
-            {/* Button Menu Rapor (end) */}
-
             {/* Button Mata Pelajaran */}
             <Link
               className="btn btn-primary"

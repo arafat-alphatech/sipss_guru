@@ -9,10 +9,42 @@ import swal from 'sweetalert'
 import MenuBawah from '../Components/MenuBawah'
 
 class ReviewSoal extends Component {
+  state = {
+    mapel_review : "",
+    kelas_review : "",
+    paket_review : ""
+  };
   componentDidMount = () => {
     const id = this.props.match.params.id
     this.props.getSoalSiapCetak(id).then(()=>{
       this.props.checkJumlahSoal()
+      this.getHeaderPdf()
+    })
+  };
+  getHeaderPdf =()=>{
+    const id_mapel = parseInt(this.props.id_mapel);
+    const id_kelas = parseInt(this.props.id_kelas);
+    const id_paket = parseInt(this.props.id_paket_soal);
+    this.props.listMapel.map((item,key)=>{
+      if(item.id_mapel == id_mapel){
+        this.setState({
+          mapel_review : item['mapel.nama_mapel']
+        })
+      }
+    })
+    this.props.listNamaKelas.map((item,key)=>{
+      if(item.id_kelas == id_kelas){
+        this.setState({
+          kelas_review: item.nama_kelas
+        })
+      }
+    })
+    this.props.listUjian.map((item,key)=>{
+      if(item.id_paket_soal == id_paket){
+        this.setState({
+          paket_review: item['paket_soal.kode_soal']
+        })
+      }
     })
     
   };
@@ -37,6 +69,11 @@ class ReviewSoal extends Component {
       <div>
         {/* ===============soal perulangan sebanyak soal yang sudah ada========= */}
         <div id="divToPrint">
+          <div className="header-pdf" style={{marginTop:"10px",marginLeft:"20px",textAlign:"left"}}>
+            <h2>Ujian {this.state.mapel_review}</h2>
+            <h4>KELAS: {this.state.kelas_review}</h4>
+            <h4>KODE SOAL: {this.state.paket_review}</h4>
+          </div>
           {daftar_soal.map((item, key) => {
             return (
               <div key={key} className="card mb-3" style={{ margin: "20px" }} >
@@ -104,6 +141,6 @@ class ReviewSoal extends Component {
   }
 }
   export default connect(
-  "siap_cetak,current_jumlah_soal,jumlah_soal",
+  "siap_cetak,current_jumlah_soal,jumlah_soal,listMapel,id_mapel,listNamaKelas,id_kelas,listUjian,id_paket_soal",
   actions
 )(ReviewSoal);
