@@ -32,6 +32,7 @@ class ScanLJK extends Component {
             if(response.data.http_code == 200){
                 const { nama_siswa, total_nilai } = response.data.data
                 alert("Nama Siswa: " + nama_siswa + "Nilai: " + total_nilai)
+                swal("Good job!", "You clicked the button!", "success")
             }
             // data siswa udah pernah discan sebelumnya
             if(response.data.http_code == 400){
