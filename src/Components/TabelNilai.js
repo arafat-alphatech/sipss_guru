@@ -16,7 +16,7 @@ class TableNilai extends Component {
                     className="table table-hover table-stripped text-center"
                 >
                     <thead>
-                        <tr style={{ color: "#39C2C9" }}>
+                        <tr style={{ color: "#00A2E5" }}>
                             <th>No</th>
                             <th>Nomor Induk Siswa</th>
                             <th>Nama Siswa</th>

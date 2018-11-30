@@ -12,12 +12,12 @@ class Intro extends Component {
     return (
       <div>
         {/* <h1
-          style={{ textAlign: "center", color: "#39C2C9", marginTop: "20px" }}
+          style={{ textAlign: "center", color: "#00A2E5", marginTop: "20px" }}
         >
           Home
         </h1> */}
         {/* Banner */}
-        <div className="card rounded-0 text-center" style={{backgroundColor:'#39C2C9', color:'white'}}>
+        <div className="card rounded-0 text-center" style={{backgroundColor:'#00A2E5', color:'white'}}>
           {/* <div className="card-header">Featured</div> */}
           <div className="card-body">
             <h5 className="card-title">Selamat Datang di SIPS</h5>
@@ -65,7 +65,7 @@ class Intro extends Component {
                       padding: "0px",
                       margin: "0px",
                       textAlign: "center",
-                      color: "#39C2C9"
+                      color: "#00A2E5"
                     }}
                   >
                     Ujian
@@ -108,7 +108,7 @@ class Intro extends Component {
                       padding: "0px",
                       margin: "0px",
                       textAlign: "center",
-                      color: "#39C2C9"
+                      color: "#00A2E5"
                     }}
                   >
                     Statistik
@@ -124,6 +124,7 @@ class Intro extends Component {
           style={{ width: "100%", margin: "0px", marginBottom: "0px" }}
         >
           <div className="col-6">
+          <Link to="/rekap-nilai">
             <div
               className="card"
               style={{
@@ -151,13 +152,14 @@ class Intro extends Component {
                     padding: "0px",
                     margin: "0px",
                     textAlign: "center",
-                    color: "#39C2C9"
+                    color: "#00A2E5"
                   }}
                 >
                   Rapor
                 </h5>
               </div>
             </div>
+              </Link>
           </div>
           <div className="col-6">
           <Link to="/profile">
@@ -188,7 +190,7 @@ class Intro extends Component {
                     padding: "0px",
                     margin: "0px",
                     textAlign: "center",
-                    color: "#39C2C9"
+                    color: "#00A2E5"
                   }}
                   >
                   Profile
@@ -198,7 +200,7 @@ class Intro extends Component {
                   </Link>
           </div>
         </div>
-        <div style={{marginTop:'30px'}}></div>
+        <div style={{marginTop:'40px'}}></div>
         <footer
           className="footer"
           style={{
