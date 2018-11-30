@@ -142,8 +142,8 @@ const actions = store => ({
           jumlah_soal: response.data.jumlah_soal,
           id_paket_soal: id_paket_soal
         });
-        console.log("Soal Siap Cetak: ", response.data.data);
-        console.log("Target jumlah soal: ",response.data.jumlah_soal)
+        // console.log("Soal Siap Cetak: ", response.data.data);
+        // console.log("Target jumlah soal: ",response.data.jumlah_soal)
       })
       .catch(err => {
         console.log(err);

@@ -4,8 +4,12 @@ import { connect } from "unistore/react";
 import { actions } from "../store";
 
 class RiwayatUjian extends Component {
+    state = {
+        listDisabled: []
+    }
+
     checkSoal = (id_paket_soal) => {
-        console.log("id_paket_soal",id_paket_soal)
+        // console.log("id_paket_soal",id_paket_soal)
         this.props.getSoalSiapCetak(id_paket_soal).then(() => {
             this.props.checkJumlahSoal()
             let next_soal = this.props.current_jumlah_soal + 1
@@ -16,7 +20,35 @@ class RiwayatUjian extends Component {
             }
         })
     } 
+
+    checkLJK = () => {
+        var disabled = false
+        this.props.listUjian.map((item, key) => {
+            let data = this.state.listDisabled
+            this.props.getSoalSiapCetak(item.id_paket_soal).then(() => {
+                this.props.checkJumlahSoal()
+                if(this.props.current_jumlah_soal < this.props.jumlah_soal){
+                    // belum selesai
+                    data.push(true)
+                } else {
+                    // sudah selesai
+                    data.push(false)
+                }
+            })
+            this.setState({
+                listDisabled: data
+            })
+        })
+
+        return disabled
+    }
+  
+    componentDidMount = () => {
+        this.checkLJK()
+    }
+
     render() {
+        console.log(this.state)
         return (
             <div className="card-body">
                 <h5 style={{ textAlign: "center", marginBottom: "20px" }}>
@@ -43,6 +75,9 @@ class RiwayatUjian extends Component {
                 </div>
 
                 {this.props.listUjian.map((item, key) => {
+                    let disabled = this.state.listDisabled[key] == undefined ? true : this.state.listDisabled[key]
+                    let title = disabled == true ? "Selesaikan terlebih dahulu soal yang di buat" : "Cetak LJK"
+                    let url_download =  disabled == true ? "#" : "http://13.251.97.170:5001/build?id_paket_soal=" + item.id_paket_soal + "&id_kelas=" + item.id_kelas
                     return (
                         <div className='row'
                             style={{ marginBottom: '10px' }}
@@ -53,7 +88,7 @@ class RiwayatUjian extends Component {
                                     style={{ color: '#39C2C9' }}
                                     onClick={() => this.checkSoal(item.id_paket_soal)}
                                 >
-                                    {item["paket_soal.kode_soal"]}-{item.id_paket_soal}
+                                    {item["paket_soal.kode_soal"]}
                                 </Link>
                             </div>
                             <div className='col-7'>
@@ -64,18 +99,17 @@ class RiwayatUjian extends Component {
                                         </Link>
                                     </div>
                                     <div className='col-6'>
-                                        <a
-                                            href={
-                                                "http://13.251.97.170:5001/build?id_paket_soal=" +
-                                                item.id_paket_soal +
-                                                "&id_kelas=" +
-                                                item.id_kelas
-                                            }
-                                        > 
-                                        <button style={{ minWidth: '80px' }} className="btn btn-primary" disabled={false}>
-                                        LJK
+                                        <button style={{ minWidth: '80px' }} className="btn btn-primary" disabled={ disabled } title= {title}>
+                                            <a
+                                                href={ url_download }
+                                                style= {{
+                                                    textDecoration: "none",
+                                                    color: "white"
+                                                }}
+                                            > 
+                                                LJK
+                                            </a>
                                         </button>
-                                        </a>
                                     </div>
                                 </div>
                             </div>
