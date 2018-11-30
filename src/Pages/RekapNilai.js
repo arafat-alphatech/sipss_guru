@@ -30,7 +30,7 @@ class RekapNilai extends Component {
     return (
       <div
         className="dashboard"
-        style={{ marginTop: "50px", textAlign: "center" }}
+        style={{ marginTop: "30px", textAlign: "center" }}
       >
         <div className="row">
           <div className="col-md-6">
@@ -38,7 +38,7 @@ class RekapNilai extends Component {
             <div
               className="row"
               style={{
-                marginTop: "50px",
+                marginTop: "30px",
                 marginBottom: "30px",
                 marginLeft: "auto"
               }}

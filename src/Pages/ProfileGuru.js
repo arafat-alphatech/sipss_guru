@@ -4,7 +4,7 @@ import MenuBawah from '../Components/MenuBawah';
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import axios from 'axios'
-import Button from "@material-ui/core/Button";
+import swal from 'sweetalert'
 
 class Profile extends Component {
   state = {
@@ -44,13 +44,13 @@ class Profile extends Component {
     const image = biodata.foto;
     return (
       <div style={{ padding: "0px", margin: "0px" }}>
-        <div className="container" style={{ width: "100%", padding: "0px" }}>
+        <div className="container" style={{ width: "101%", padding: "0px", }}>
           <div
             className="row"
-            style={{ padding: "0", margin: "0 auto", height: "100%" }}
+            style={{ padding: "0", margin: "0 auto", height: "100%", width:'100%', borderColor:'#00A2E5' }}
           >
-            <div className="col-4" style={{ margin: "0px", padding: "0px" }}>
-              <div className="card rounded-0 border-0">
+            <div className="col-4" style={{ margin: "0px", padding: "0px", backgroundColor:'#00A2E5' }}>
+              <div className="card rounded-0 border-0" style={{backgroundColor:'#00A2E5', color:'white'}}>
                 <div className="card-body">
                   <img
                     className="rounded-circle"
@@ -60,46 +60,28 @@ class Profile extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-8" style={{ margin: "0px", padding: "0px" }}>
-              <div className="card rounded-0 border-0">
+            <div className="col-8" style={{ margin: "0px", padding: "0px"}}>
+              <div className="card rounded-0 border-0" style={{backgroundColor:'#00A2E5', color:'white'}}>
                 <div className="card-body">
                   <p>NIP : {biodata.nip}</p>
                   <p>Nama : {biodata.nama}</p>
                   <p>Alamat: {biodata.alamat} </p>
-                  <p>Jenis kelamin: {biodata.jenis_kelamin} </p>
+                  {/* <p>Jenis kelamin: {biodata.jenis_kelamin} </p> */}
                   <p>Telepon: {biodata.telepon}</p>
+                  <p>Username: {biodata.username}</p>
                 </div>
               </div>
             </div>
+          <button className='btn btn-primary'
+          style={{marginTop:'10px', marginLeft:'auto'}}
+          onClick= {()=> swal("Ketik password baru:", {
+            content: "input",
+          })
+          .then((value) => {
+            swal(`Password baru anda: ${value}`);
+          }) } >
+          Ganti Password </button><span style={{marginRight:'20px'}}></span>
           </div>
-          <div
-            className="row"
-            style={{ padding: "0", margin: "0 auto", height: "100%" }}
-          >
-            <div
-              className="col-6 col-md-12"
-              style={{ margin: "0px", padding: "0px" }}
-            >
-              <div
-                className="card rounded-0 border-0"
-                style={{ backgroundColor: "#22a7f0" }}>
-                <div className="card-body" style={{ color: 'white' }}>
-                  Username :{biodata.username}
-                </div>
-              </div>
-            </div>
-            <div
-              className="col-6 col-md-12"
-              style={{ margin: "0px", padding: "0px" }}
-            >
-              <div
-                className="card rounded-0 border-0"
-                style={{ backgroundColor: "#d5b8ff" }}>
-                <div className="card-body" style={{ color: 'white' }}>Password : {biodata.password}</div>
-              </div>
-            </div>
-          </div>
-          <button>edit</button>
           <div
             className="col-sm-10 offset-sm-1"
             style={{ padding: "0", margin: "0 auto", height: "100%" }}
@@ -118,7 +100,7 @@ class Profile extends Component {
                     className="table table-hover table-stripped text-center"
                   >
                     <thead>
-                      <tr>
+                      <tr style={{color:'#00A2E5'}}>
                         <th>No</th>
                         <th>Kelas</th>
                         <th>Mata Pelajaran</th>
@@ -127,7 +109,7 @@ class Profile extends Component {
                     <tbody>
                       {listData.map((item, key) => {
                         return (
-                          <tr key={key}>
+                          <tr key={key} >
                             <td>{key+1}</td>
                             <td>{item.kelas}</td>
                             <td>{item.mapel}</td>
@@ -141,19 +123,12 @@ class Profile extends Component {
             </div>
           </div>
         </div>
-        <div style={{ height: "50px" }} />
+        <div style={{height:'40px'}}></div>
         <div>
-          <footer
+        <footer
             className="footer"
-            style={{
-              position: "fixed",
-              height: "55px",
-              top: "auto",
-              bottom: "0",
-              marginLeft: "auto",
-              marginRight: "auto"
-            }}
-          >
+            style={{ position: "fixed", width:"100%", height: "55px", top:'auto', bottom: "0", marginLeft:'auto', marginRight:'auto'}}
+            >
             <MenuBawah />
           </footer>
         </div>

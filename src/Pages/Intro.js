@@ -17,7 +17,7 @@ class Intro extends Component {
           Home
         </h1> */}
         {/* Banner */}
-        <div className="card rounded-0 text-center" style={{backgroundColor:'#00A2E5', color:'white'}}>
+        <div className="card rounded-0 text-center" style={{backgroundColor:'#00A2E5', color:'white', width:'105%'}}>
           {/* <div className="card-header">Featured</div> */}
           <div className="card-body">
             <h5 className="card-title">Selamat Datang di SIPS</h5>
@@ -30,7 +30,7 @@ class Intro extends Component {
         {/* Banner (end) */}
         <div
           className="row container-fluid"
-          style={{ width: "100%", margin: "0px" }}
+          style={{ width: "100%", margin: "0px", marginLeft:'10px' }}
         >
           <div className="col-6">
             <Link to="/ujian">
@@ -121,7 +121,7 @@ class Intro extends Component {
 
         <div
           className="row container-fluid"
-          style={{ width: "100%", margin: "0px", marginBottom: "0px" }}
+          style={{ width: "100%", margin: "0px", marginBottom: "0px", marginLeft:'10px'}}
         >
           <div className="col-6">
           <Link to="/rekap-nilai">
