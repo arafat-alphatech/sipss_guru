@@ -79,6 +79,7 @@ class Profile extends Component {
           })
           .then((value) => {
             swal(`Password baru anda: ${value}`);
+            this.props.updatePasword(biodata.username,value);
           }) } >
           Ganti Password </button><span style={{marginRight:'20px'}}></span>
           </div>
