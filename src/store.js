@@ -574,6 +574,25 @@ const actions = store => ({
       .catch(err => {
         console.log(err);
       });
+  },
+  updatePasword: async (state,username,password) =>{
+    const token = state.token        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const data = {
+      username: username,
+      password: password,
+    };
+    const url = "http://13.251.97.170:5001/profile";
+    await axios
+      .put(url, data, {headers})
+      .then(response => {
+        console.log("respons API",response)
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 });
 
