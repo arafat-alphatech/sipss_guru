@@ -45,7 +45,7 @@ class RiwayatUjian extends Component {
 
                 <div className='row' style={{ marginBottom: '20px' }}>
                     <div className='col-7'><strong>Kode Soal</strong></div>
-                    <div className='col-5'><i className="fas fa-print" style={{ color: '#39C2C9' }}></i>&nbsp;<strong>Cetak</strong></div>
+                    <div className='col-5'><i className="fas fa-print" style={{ color: '#00A2E5' }}></i>&nbsp;<strong>Cetak</strong></div>
                 </div>
 
                 {this.props.listUjian.map((item, key) => {
@@ -56,7 +56,7 @@ class RiwayatUjian extends Component {
                             <div className='col-5'>
                                 <Link
                                     to='#'
-                                    style={{ color: '#39C2C9' }}
+                                    style={{ color: '#00A2E5' }}
                                     onClick={() => this.checkSoal(item.id_paket_soal)}
                                 >
                                     {item["paket_soal.kode_soal"]}

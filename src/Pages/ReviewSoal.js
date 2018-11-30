@@ -19,7 +19,7 @@ class ReviewSoal extends Component {
   printDocument() {
     const {current_jumlah_soal, jumlah_soal} = this.props
     if (current_jumlah_soal < jumlah_soal) {
-      let gakIso = "Soal tidak bisa dicetak karena belum selesai! soal sekarang "+current_jumlah_soal+ " target soal " + jumlah_soal
+      let gakIso = "Soal tidak bisa dicetak karena belum selesai! \n Soal sekarang : "+current_jumlah_soal+ "\n Target soal: " + jumlah_soal
       swal({title:'Maaf',text: gakIso, icon:'warning', dangerMode:true})
     }
     else {
@@ -61,7 +61,7 @@ class ReviewSoal extends Component {
 
         {/* ===================menu di bawah=============================== */}
         <Link
-          className='btn btn-danger'
+          className='btn btn-primary'
           style={{
             minWidth: "320px",
             maxWidth: "800px",
@@ -74,7 +74,7 @@ class ReviewSoal extends Component {
         </Link>
         <br></br>
         <Link
-          className='btn btn-primary'
+          className='btn btn-danger'
           style={{
             minWidth: "320px",
             maxWidth: "800px",
@@ -86,20 +86,18 @@ class ReviewSoal extends Component {
           Back
         </Link>
 
-        {/* Footer */}
-        <div style={{marginTop:'80px'}}></div>
+        <div style={{marginTop:'40px'}}></div>
         <footer
           className="footer"
           style={{
-            position: "fixed",
             height: "55px",
             bottom: "0",
-            width: "500px"
+            width: "100%",
+            position:'fixed'
           }}
         >
           <MenuBawah />
         </footer>
-        {/* Footer (end) */}
 
       </div>
     );

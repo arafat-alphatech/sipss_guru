@@ -39,7 +39,7 @@ class Ujian extends Component {
             textAlign: "center",
             marginBottom: "20px",
             marginTop: "20px",
-            color: "#39C2C9"
+            color: "#00A2E5"
           }}
         >
           Tambah Ujian
