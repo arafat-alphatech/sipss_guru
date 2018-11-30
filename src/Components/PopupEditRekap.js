@@ -50,12 +50,22 @@ class PopupEditRekap extends React.Component {
   // Buka tutup popup
 
   handleClickOpen = () => {
-    this.setState({ 
-      open: true,
-      id_kelas : this.props.id_kelas,
-      id_paket_soal : this.props.id_paket_soal,
-      persen: this.state.persen
-    });
+    const token = this.props.adminToken;
+    const headers = {
+      Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/admin/mapel-detail/" + this.props.id;
+    axios
+      .get(url, { headers })
+      .then(response => {
+        this.setState({ nama_mapel: response.data.data[0].nama_mapel });
+        console.log("from pop up edit mapel by id", response.data.data[0]);
+      })
+      .catch(function(error) {
+        //handle error
+        console.log(error);
+      });
+    this.setState({ open: true });
   };
 
   handleClose = () => {
