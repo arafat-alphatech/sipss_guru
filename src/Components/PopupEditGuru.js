@@ -41,7 +41,7 @@ class PopupEditGuru extends React.Component {
     axios
       .put(url, data, { headers })
       .then(response => {
-        swal("Edit guru berhasil");
+        swal("Sukses", "Edit guru berhasil", "success");
         this.props.getAllGuru(this.props.token)
         console.log("Response dari API: ", response);
         this.setState({ open: false });
