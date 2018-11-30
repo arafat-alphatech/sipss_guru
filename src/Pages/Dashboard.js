@@ -17,7 +17,8 @@ class Dashboard extends Component {
         
     }
     componentDidMount(){
-        this.props.getKelasByGuru()
+        this.props.getKelasByGuru();
+        this.props.kosongTableDashboard()
     }
    
     render() {

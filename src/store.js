@@ -36,6 +36,8 @@ const initialState = {
   tableData : [],
   listMapelConj:[],
   listRekap:[],
+  listRapor:[],
+  totalPersen:0,
   listTingkat: [{"id_tingkat":1,"nama_tingkat":"VII"},{"id_tingkat":2,"nama_tingkat":"VIII"},{"id_tingkat":3,"nama_tingkat":"IX"}]
 };
 
@@ -533,6 +535,41 @@ const actions = store => ({
           listRekap : response.data.data
         })
         console.log("==================", state.tableData);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  kosongRapor:async state =>{
+    store.setState({
+      listRekap:[],
+      listRapor:[],
+      totalPersen:0
+    })
+  },
+  kosongTableDashboard:async state =>{
+    store.setState({
+      tableData:[]
+    })
+  },
+  nambahPersen:async(state,per) =>{
+    store.setState({
+      totalPersen: state.totalPersen + per
+    })
+  },
+  SummaryRapor: async state =>{
+    const token = state.token        
+    const headers = {
+        Authorization: "Bearer " + token
+    };
+    const url = "http://13.251.97.170:5001/scoring-persen?id_mapel="+state.id_mapel+"&id_kelas="+state.id_kelas;
+    await axios
+      .get(url, {headers})
+      .then(response => {
+        store.setState({
+          listRapor : response.data.data
+        })
+        console.log("==================", state.listRapor);
       })
       .catch(err => {
         console.log(err);
