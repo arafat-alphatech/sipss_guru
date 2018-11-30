@@ -40,6 +40,10 @@ class PopupMKCon extends React.Component {
       })
       .catch(err => {
         console.log(err);
+        if(err.response.status == "500"){
+          swal("Data tidak boleh duplikat");
+          this.handleClose()
+        }
       });
   };
   // post siswa (end)
