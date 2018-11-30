@@ -5,6 +5,7 @@ import { withRouter, Redirect} from "react-router-dom";
 import { connect } from "unistore/react";
 import { actions } from "../store";
 import axios from 'axios'
+import swal from 'sweetalert'
 
 class ScanLJK extends Component {
 

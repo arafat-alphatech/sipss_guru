@@ -204,7 +204,8 @@ class Intro extends Component {
           style={{
             height: "55px",
             bottom: "0",
-            width: "100%"
+            width: "100%",
+            position:'fixed'
           }}
         >
           <MenuBawah />

@@ -10,6 +10,7 @@ class TableNilai extends Component {
                     style={{
                         overflowX: "auto",
                         whiteSpace: "nowrap",
+                        display:'block',
                         margin: "0 auto",
                     }}
                     className="table table-hover table-stripped text-center"

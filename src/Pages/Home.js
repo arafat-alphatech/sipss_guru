@@ -182,7 +182,7 @@ class Home extends Component {
         <div>
         <footer
             className="footer"
-            style={{ position: "fixed", height: "55px", top:'auto', bottom: "0", marginLeft:'auto', marginRight:'auto'}}
+            style={{ position: "fixed", width:"100%", height: "55px", top:'auto', bottom: "0", marginLeft:'auto', marginRight:'auto'}}
             >
             <MenuBawah />
           </footer>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Chart from '../Components/Graph';
 import { CSVLink } from "react-csv";
 import TabelNilai from "../Components/TabelNilai"
+import MenuBawah from '../Components/MenuBawah'
 
 class Dashboard extends Component {
 
@@ -67,7 +68,7 @@ class Dashboard extends Component {
                     <div className="col-md-3">
                     </div>
                 </div>
-                <div className="row" style={{ marginTop: "50px" }}>
+                <div className="row" style={{ marginTop: "50px", marginLeft:'10px' }}>
                     <div className="col-md-2">
                     </div>
                     <div className="col-md-8">
@@ -78,7 +79,8 @@ class Dashboard extends Component {
                     <div className="col-md-2">
 
                     </div>
-                </div>              
+                </div>
+                <MenuBawah/>            
             </div>
         )
     }
