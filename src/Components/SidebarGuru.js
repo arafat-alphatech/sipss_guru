@@ -74,7 +74,7 @@ class TemporaryDrawer extends React.Component {
             </ListItem>
         </List>
         <List>
-            <ListItem button component={Link} to='#'>
+            <ListItem button component={Link} to='/rekap-nilai'>
                 <ListItemIcon> <Kelas style={{color:'#00A2E5'}}/> </ListItemIcon>
                 <ListItemText primary="Rapor" />
             </ListItem>
