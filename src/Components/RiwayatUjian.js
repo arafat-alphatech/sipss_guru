@@ -2,10 +2,15 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "unistore/react";
 import { actions } from "../store";
+import ButtonLJK from "../Components/ButtonLJK"
 
 class RiwayatUjian extends Component {
+    state = {
+        listDisabled: []
+    }
+
     checkSoal = (id_paket_soal) => {
-        console.log("id_paket_soal",id_paket_soal)
+        // console.log("id_paket_soal",id_paket_soal)
         this.props.getSoalSiapCetak(id_paket_soal).then(() => {
             this.props.checkJumlahSoal()
             let next_soal = this.props.current_jumlah_soal + 1
@@ -16,6 +21,7 @@ class RiwayatUjian extends Component {
             }
         })
     } 
+  
     render() {
         return (
             <div className="card-body">
@@ -53,7 +59,7 @@ class RiwayatUjian extends Component {
                                     style={{ color: '#39C2C9' }}
                                     onClick={() => this.checkSoal(item.id_paket_soal)}
                                 >
-                                    {item["paket_soal.kode_soal"]}-{item.id_paket_soal}
+                                    {item["paket_soal.kode_soal"]}
                                 </Link>
                             </div>
                             <div className='col-7'>
@@ -64,18 +70,7 @@ class RiwayatUjian extends Component {
                                         </Link>
                                     </div>
                                     <div className='col-6'>
-                                        <a
-                                            href={
-                                                "http://13.251.97.170:5001/build?id_paket_soal=" +
-                                                item.id_paket_soal +
-                                                "&id_kelas=" +
-                                                item.id_kelas
-                                            }
-                                        > 
-                                        <button style={{ minWidth: '80px' }} className="btn btn-primary" disabled={false}>
-                                        LJK
-                                        </button>
-                                        </a>
+                                        <ButtonLJK paket_soal={item.id_paket_soal} kelas={item.id_kelas} />
                                     </div>
                                 </div>
                             </div>
