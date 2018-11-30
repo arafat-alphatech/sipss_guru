@@ -18,7 +18,7 @@ class Home extends Component {
     const headers = {
       Authorization: "Bearer " + token
     };
-    const url = "http://13.251.97.170:5001/profile";
+    const url = "https://sipss-api.online/profile";
     axios
       .get(url, { headers })
       .then((response) => {
@@ -44,7 +44,7 @@ class Home extends Component {
     const listTingkat = this.props.listTingkat;
     const biodata = this.state.biodata;
     const image = biodata.foto;
-    console.log('isi bio', biodata)
+    // console.log('isi bio', biodata)
     return (
       <div className='Site'>
         <h1
