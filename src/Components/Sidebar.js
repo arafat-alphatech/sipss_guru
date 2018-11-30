@@ -59,7 +59,7 @@ class TemporaryDrawer extends React.Component {
       <div className={classes.list}>
         <List>
             <ListItem button component={Link} to='/beranda-admin'>
-                <ListItemIcon> <InboxIcon /> </ListItemIcon>
+                <ListItemIcon> <InboxIcon style={{color:'#00A2E5'}}/> </ListItemIcon>
                 <ListItemText primary="Dashboard Admin" />
             </ListItem>
         </List>
@@ -96,7 +96,7 @@ class TemporaryDrawer extends React.Component {
         <Divider />
         <List>
             <ListItem button onClick={() => this.logout()}>
-                <ListItemIcon> <Logout style={{color:'#00A2E5'}}/> </ListItemIcon>
+                <ListItemIcon> <Logout style={{color:'#f22613'}}/> </ListItemIcon>
                 <ListItemText primary="Keluar" />
             </ListItem>
         </List>
@@ -105,7 +105,7 @@ class TemporaryDrawer extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.toggleDrawer('left', true)}><i className="fas fa-bars"></i></Button>
+        <Button onClick={this.toggleDrawer('left', true)}><i className="fas fa-bars" style={{color:'#00A2E5', fontSize:'large'}}></i></Button>
         <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
           <div
             tabIndex={0}

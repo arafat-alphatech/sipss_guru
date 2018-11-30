@@ -17,7 +17,8 @@ class Dashboard extends Component {
         
     }
     componentDidMount(){
-        this.props.getKelasByGuru()
+        this.props.getKelasByGuru();
+        this.props.kosongTableDashboard()
     }
    
     render() {
@@ -25,13 +26,15 @@ class Dashboard extends Component {
         const listNamaKelas = this.props.listNamaKelas;
         const listPaketSoal = this.props.listPaketSoal;
         return (
-            <div className="dashboard" style={{ marginTop: "50px", textAlign: "center" }}>
+            <div>
+
+            <div className="dashboard" style={{ marginTop: "30px", textAlign: "center" }}>
                 <div className="row">
                     <div className="col-md-3">
                     </div>
                     <div className="col-md-6">
                         <h1 style={{color:'#00A2E5'}}>Statistik Nilai</h1>
-                        <div className="row" style={{ marginTop: "50px", marginBottom:"30px", marginLeft:'10px', marginRight:'10px' }}>
+                        <div className="row" style={{ marginTop: "30px", marginBottom:"30px", marginLeft:'10px', marginRight:'10px' }}>
                             <div className="col-md-4" style={{marginBottom:'10px'}}>
                                 <select className="form-control" value={listNamaKelas.id_kelas} name="id_kelas" onChange={e => this.props.setField(e)} onClick={() => this.props.getMaPel()}>
                                     <option>Pilih Kelas</option>
@@ -46,8 +49,8 @@ class Dashboard extends Component {
                                     {listMapel.map((item, key) => {
                                         return (
                                             <option key={key} value={item.id_mapel}>{item['mapel.nama_mapel']}</option>
-                                        );
-                                    })}
+                                            );
+                                        })}
                                 </select>
                             </div>
                             <div className="col-md-4">
@@ -56,7 +59,7 @@ class Dashboard extends Component {
                                     {listPaketSoal.map((item, key) => {
                                         return (
                                             <option key={key} value={item.id_paket_soal}>{item.kode_soal}</option>
-                                        );
+                                            );
                                     })}
                                 </select>
                             </div>
@@ -84,15 +87,16 @@ class Dashboard extends Component {
         <footer
           className="footer"
           style={{
-            position: "fixed",
-            height: "55px",
-            bottom: "0",
-            width: "100%"
-          }}
-        >
+              position: "fixed",
+              height: "55px",
+              bottom: "0",
+              width: "100%"
+            }}
+            >
           <MenuBawah />
         </footer>
         {/* footer (end) */}          
+            </div>
             </div>
         )
     }

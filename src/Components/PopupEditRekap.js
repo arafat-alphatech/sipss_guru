@@ -13,7 +13,9 @@ import swal from 'sweetalert';
 class PopupEditRekap extends React.Component {
   state = {
     open: false,
-    nama_mapel: ""
+    id_kelas:"",
+    id_paket_soal:"",
+    persen:""
   };
 
   inputChange = e => {
@@ -21,22 +23,23 @@ class PopupEditRekap extends React.Component {
     console.log(e.target.value);
   };
 
-  // Edit Mapel
-  doEditMapel = () => {
-    const token = this.props.adminToken;
+  doSetPersen = () => {
+    const token = this.props.token;
     const headers = {
       Authorization: "Bearer " + token
     };
-    const url = "http://13.251.97.170:5001/admin/mapel/" +this.props.id;
+    const url = "http://13.251.97.170:5001/scoring-persen";
     const data = {
-      nama_mapel: this.state.nama_mapel
+      id_paket_soal: this.state.id_paket_soal,
+      id_kelas: parseInt(this.state.id_kelas),
+      persen: parseInt(this.state.persen) 
     };
     axios
-      .put(url, data, { headers })
+      .post(url, data, { headers })
       .then(response => {
-        swal("Edit Mapel berhasil");
-        this.props.getAllMapel(this.props.token)
-        console.log("Response dari API: ", response);
+        swal("Edit Persentase berhasil");
+        this.props.nambahPersen(data.persen)
+        console.log("respon API edit persen: ", response);
         this.setState({ open: false });
       })
       .catch(err => {
@@ -106,10 +109,10 @@ class PopupEditRekap extends React.Component {
               >
                 <TextField
                   required
-                  name="persentase_nilai"
+                  name="persen"
                   type="text"
-                  label={"Persentase Nilai: "+this.state.nama_mapel}
-                  defaultValue={this.state.nama_mapel}
+                  label={"Persentase Nilai: "}
+                  defaultValue={this.state.persen}
                   margin="normal"
                   variant="outlined"
                   style={{
@@ -124,7 +127,7 @@ class PopupEditRekap extends React.Component {
             <Button onClick={this.handleClose} color="primary">
               Batal
             </Button>
-            <Button onClick={() => this.doEditMapel()}color="primary" autoFocus>
+            <Button onClick={() => this.doSetPersen()}color="primary" autoFocus>
               Simpan
             </Button>
           </DialogActions>
@@ -135,6 +138,6 @@ class PopupEditRekap extends React.Component {
 }
 
 export default connect(
-  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat, adminToken",
+  "id_kelas, listMapel, listNamaKelas, id_mapel, is_login, listTingkat, token",
   actions
 )(PopupEditRekap);

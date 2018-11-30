@@ -46,13 +46,13 @@ class Home extends Component {
     const image = biodata.foto;
     // console.log('isi bio', biodata)
     return (
-      <div className='Site'>
+      <div className='Site' style={{marginLeft:'10px'}}>
         <h1
           style={{
             textAlign: "center",
             color: "#00A2E5",
             marginTop: "20px",
-            marginBottom: "20px"
+            marginBottom: "20px",
           }}
         >
           {" "}
@@ -120,7 +120,7 @@ class Home extends Component {
           style={{ marginLeft: "10px", marginRight: "10px" }}
         >
           <div className="card-body">
-            <h5 className="card-title">Mata Pelajaran</h5>
+            {/* <h5 className="card-title">listMapel.item.</h5> */}
 
             {/* Piih Mata Pelajaran */}
             <div style={{ marginBottom: "10px" }}>
@@ -202,10 +202,6 @@ class Home extends Component {
           </div>
           {/* Button Mata Pelajaran (end) */}
 
-
-         
-        
-        
         </div>
         {/* div card Kelas (end) */}
         <div style={{height:'50px'}}></div>

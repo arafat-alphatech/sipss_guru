@@ -9,15 +9,18 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import Face from '@material-ui/icons/Face';
-import Kelas from '@material-ui/icons/MeetingRoom';
-import Mapel from '@material-ui/icons/LibraryBooks';
-import Guru from '@material-ui/icons/PermIdentity';
+import DashboardIcon from '@material-ui/icons/Home';
+import Stats from '@material-ui/icons/Assessment';
+import Rekaps from '@material-ui/icons/ChromeReaderMode';
+import Profil from '@material-ui/icons/AccountCircle';
+import Ujian from '@material-ui/icons/FormatListNumbered';
 import Logout from '@material-ui/icons/PowerSettingsNew'
 import {withRouter} from "react-router-dom";
 import { connect } from "unistore/react";
 import { actions } from "../store";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 const styles = {
   list: {
@@ -57,38 +60,38 @@ class TemporaryDrawer extends React.Component {
       <div className={classes.list}>
         <List>
             <ListItem button component={Link} to='/'>
-                <ListItemIcon> <InboxIcon /> </ListItemIcon>
-                <ListItemText primary="Dashboard Guru" />
+                <ListItemIcon> <DashboardIcon style={{color:'#00A2E5'}}/> </ListItemIcon>
+                <ListItemText primary="Home" />
             </ListItem>
         </List>
         <List>
             <ListItem button component={Link} to='/ujian'>
-                <ListItemIcon> <Guru style={{color:'#00A2E5'}}/> </ListItemIcon>
+                <ListItemIcon> <Ujian style={{color:'#00A2E5'}}/> </ListItemIcon>
                 <ListItemText primary="Ujian" />
             </ListItem>
         </List>
         <List>
             <ListItem button component={Link} to='/dashboard'>
-                <ListItemIcon> <Face style={{color:'#00A2E5'}}/> </ListItemIcon>
+                <ListItemIcon> <Stats style={{color:'#00A2E5'}}/> </ListItemIcon>
                 <ListItemText primary="Statistik" />
             </ListItem>
         </List>
         <List>
             <ListItem button component={Link} to='/rekap-nilai'>
-                <ListItemIcon> <Kelas style={{color:'#00A2E5'}}/> </ListItemIcon>
-                <ListItemText primary="Rapor" />
+                <ListItemIcon> <Rekaps style={{color:'#00A2E5'}}/> </ListItemIcon>
+                <ListItemText primary="Rekap Nilai" />
             </ListItem>
         </List>
         <List>
             <ListItem button component={Link} to='/profile'>
-                <ListItemIcon> <Mapel style={{color:'#00A2E5'}}/> </ListItemIcon>
-                <ListItemText primary="Profile" />
+                <ListItemIcon> <Profil style={{color:'#00A2E5'}}/> </ListItemIcon>
+                <ListItemText primary="Profil" />
             </ListItem>
         </List>
         <Divider />
         <List>
             <ListItem button onClick={() => this.logout()}>
-                <ListItemIcon> <Logout style={{color:'#00A2E5'}}/> </ListItemIcon>
+                <ListItemIcon> <Logout style={{color:'#f22613'}}/> </ListItemIcon>
                 <ListItemText primary="Keluar" />
             </ListItem>
         </List>
@@ -97,7 +100,19 @@ class TemporaryDrawer extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.toggleDrawer('left', true)}><i className="fas fa-bars"></i></Button>
+        <AppBar position="static">
+        <Toolbar style={{backgroundColor:'#00A2E5', width:'105%'}}>
+          {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+            <MenuIcon />
+          </IconButton> */}
+          {/* <Button color="inherit">Login</Button> */}
+        <Button onClick={this.toggleDrawer('left', true)}><i className="fas fa-bars" style={{color:'white', fontSize:'large'}}></i></Button>
+          <Typography variant="h6" color="inherit" className={classes.grow} style={{marginLeft:'auto'}}>
+            SIPPS
+          </Typography>
+        </Toolbar>
+      </AppBar>
+        {/* <Button onClick={this.toggleDrawer('left', true)}><i className="fas fa-bars" style={{color:'#00A2E5', fontSize:'large'}}></i></Button> */}
         <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
           <div
             tabIndex={0}

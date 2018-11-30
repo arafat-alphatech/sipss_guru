@@ -1,36 +1,42 @@
 import React, { Component } from "react";
 import { connect } from "unistore/react";
 import { actions } from "../store";
+import { Link } from "react-router-dom";
 import PopupEditRekap from "../Components/PopupEditRekap";
 import { Line } from "rc-progress";
-import MenuBawah from '../Components/MenuBawah'
+import MenuBawah from '../Components/MenuBawah';
+import TabelNilai from "../Components/TabelNilai";
+import { CSVLink } from "react-csv";
 
 class RekapNilai extends Component {
   componentDidMount() {
     this.props.getKelasByGuru();
-    this.props.getRekap();
-  }
-
+    this.props.kosongRapor()
+  };
+  handlePilihKelas = () => {
+    this.props.getMaPel();
+  };
   handlePilihMapel = () => {
     this.props.getPaketByMapel();
-    this.props.getRekap();
+  };
+  doRekap(){
+    this.props.getRekap()
+  };
+  doSummary(){
+    this.props.SummaryRapor()
   };
 
-  handlePilihKelas = () => {
-    this.props.getRekap();
-    this.props.getRekap();
-  };
+
 
   render() {
     const progress = 10;
     const listRekap = this.props.listRekap;
     const listMapel = this.props.listMapel;
     const listNamaKelas = this.props.listNamaKelas;
-    console.log("listRekap", listRekap);
     return (
       <div
         className="dashboard"
-        style={{ marginTop: "50px", textAlign: "center" }}
+        style={{ marginTop: "30px", textAlign: "center" }}
       >
         <div className="row">
           <div className="col-md-6">
@@ -38,7 +44,7 @@ class RekapNilai extends Component {
             <div
               className="row"
               style={{
-                marginTop: "50px",
+                marginTop: "30px",
                 marginBottom: "30px",
                 marginLeft: "auto"
               }}
@@ -81,6 +87,9 @@ class RekapNilai extends Component {
                 </select>
               </div>
             </div>
+            <Link className="btn btn-primary" onClick={() => this.doRekap()} to='#'>
+                Atur Nilai
+            </Link>
           </div>
               </div>
           <div className="card-body">
@@ -123,12 +132,9 @@ class RekapNilai extends Component {
                               {item.total_koreksi}/{item.total_siswa}
                             </td>
                             <td className="align-middle">
-                              <PopupEditRekap />
-                              20%
+                              <PopupEditRekap id_paket_soal={item.id_paket_soal} id_kelas={item.id_kelas}/>
+                              {/* 20% */}
                             </td>
-                            {/* <td title="edit data guru">
-                                <PopupEditRekap/>
-                            </td> */}
                           </tr>
                         );
                       })}
@@ -137,13 +143,18 @@ class RekapNilai extends Component {
                         <td />
                         <td />
                         <td>
-                          <strong>Total: {progress}%</strong>
+                          <strong>Total: {this.props.totalPersen}%</strong>
                         </td>
                         <td />
                       </tr>
                     </tbody>
                   </table>
                 </div>
+                <Link style={{marginTop:"20px",marginBottom:"20px"}} className="btn btn-primary" onClick={() => this.doSummary()} to='#'>
+                  Lihat Rekap Nilai
+                </Link>
+                <TabelNilai tableData={this.props.listRapor}/>
+                <CSVLink style={{marginTop:"30px"}} className="btn btn-primary" data={this.props.listRapor}>Download CSV</CSVLink>
             </div>
           </div>
           
@@ -163,6 +174,6 @@ class RekapNilai extends Component {
 }
 
 export default connect(
-  "listRekap, listMapel, listNamaKelas, listPaketSoal",
+  "listRekap, listMapel, listNamaKelas, listPaketSoal, listRapor, totalPersen",
   actions
 )(RekapNilai);
