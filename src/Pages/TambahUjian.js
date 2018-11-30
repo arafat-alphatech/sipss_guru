@@ -6,6 +6,7 @@ import { Link, Redirect } from "react-router-dom";
 import "../Styles/Home.css";
 import RiwayatUjian from '../Components/RiwayatUjian'
 import MenuBawah from "../Components/MenuBawah";
+import swal from 'sweetalert'
 
 class Ujian extends Component {
   componentWillMount() {
@@ -28,7 +29,7 @@ class Ujian extends Component {
     } = this.props;
     // console.log(listUjian)
     if (id_kelas === "" || id_mapel === "") {
-      alert("Pilih kelas dan mata pelajaran dahulu");
+      swal("Pilih kelas dan mata pelajaran dahulu"," ","info");
       return <Redirect to="/ujian" />;
     }
     return (

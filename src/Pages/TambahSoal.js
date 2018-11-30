@@ -3,6 +3,7 @@ import { actions } from "../store";
 import { connect } from "unistore/react";
 import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
+import swal from 'sweetalert'
 //Import untuk component2 editor soal
 import {
   EditorState,
@@ -160,7 +161,7 @@ class HalamanEdit extends Component {
       optionE === "" ||
       jawaban === ""
     ) {
-      alert("Pastikan semua kolom terisi");
+      swal({title:"Maaf",text:"Pastikan semua kolom terisi",icon:"warning",dangerMode:true}  );
       // this.props.history.push('#')
       console.log(this.state);
     } else {
@@ -185,7 +186,7 @@ class HalamanEdit extends Component {
         axios
           .put(url, data, {headers})
           .then(response => {
-            alert("Berhasil mengubah soal");
+            swal("Sukses","Berhasil mengubah soal","success");
             this.props.editSoal(no_soal, data)
             // this.setState(this.InitialState);
             const route = "/post-soal/" + id_paket_soal + "/" + (parseInt(no_soal) + 1);
@@ -202,7 +203,7 @@ class HalamanEdit extends Component {
         axios
           .post(url, data, {headers})
           .then(response => {
-            alert("Berhasil menambah soal");
+            swal("Sukses","Berhasil menambah soal","success");
             this.props.addNewSoal(data);
             this.setState(this.InitialState);
             console.log("Res post new soal", response);
@@ -212,7 +213,7 @@ class HalamanEdit extends Component {
 
               this.props.history.push(route);
             } else {
-              alert("selesai membuat soal:)");
+              swal("Sukses","selesai membuat soal","success");
               const route = "/";
               this.props.history.push(route);
             }

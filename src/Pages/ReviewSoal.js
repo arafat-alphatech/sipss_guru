@@ -4,6 +4,7 @@ import { connect } from "unistore/react";
 import { Link } from 'react-router-dom';
 import '../Styles/Home.css';
 import jsPDF from 'jspdf';
+import swal from 'sweetalert'
 
 import MenuBawah from '../Components/MenuBawah'
 
@@ -18,10 +19,11 @@ class ReviewSoal extends Component {
   printDocument() {
     const {current_jumlah_soal, jumlah_soal} = this.props
     if (current_jumlah_soal < jumlah_soal) {
-      alert("Soal tidak bisa dicetak karena belum selesai! soal sekarang "+current_jumlah_soal+ " target soal " + jumlah_soal)
+      let gakIso = "Soal tidak bisa dicetak karena belum selesai! soal sekarang "+current_jumlah_soal+ " target soal " + jumlah_soal
+      swal({title:'Maaf',text: gakIso, icon:'warning', dangerMode:true})
     }
     else {
-      alert("mulai download soal")
+      swal("Sukses","mulai download soal",'success')
       const input = document.getElementById('divToPrint');
       const pdf = new jsPDF("portrait", "mm", "a4");
       pdf.fromHTML(input, 10, 10, {'width': 180 } );

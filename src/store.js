@@ -3,6 +3,8 @@ import devtools from "unistore/devtools";
 import axios from "axios";
 import persistStore from "unissist";
 import localStorageAdapter from "unissist/integrations/localStorageAdapter";
+import swal from 'sweetalert'
+import bye from './bye.gif'
 
 const initialState = {
   id_kelas: "",
@@ -197,7 +199,7 @@ const actions = store => ({
           current_all_soal: [],
           siap_cetak: []
         });
-        alert("Tambah ujian berhasil");
+        swal("Sukses","Tambah ujian berhasil","success");
         console.log("Response dari API: ", response);
       })
       .catch(err => {
@@ -327,10 +329,10 @@ const actions = store => ({
             is_login: true
           });
         }
-        alert("Selamat datang")
+        swal("Selamat datang"," ","success")
       })
       .catch(err => {
-        alert("Masukkan username dan password yang benar");
+        swal({ title:"Maaf", text:"Masukkan username dan password yang benar", icon:'warning', dangerMode:true});
         console.log(err);
       });
   },
@@ -340,8 +342,8 @@ const actions = store => ({
       adminToken: "",
       login_as: "",
       is_login: false
-    })    
-    alert('Sampai jumpa kembali')
+    })
+    swal({title:"Sampai jumpa kembali", icon:bye})
   },
   editSoal: (state, no_soal, data) => {
     let cur_soal = state.current_all_soal;
