@@ -55,36 +55,6 @@ const Intro = Loadable({
   loading: () => <Loading />
 });
 
-const BerandaAdmin = Loadable({
-  loader: () => import(/* webpackChunkName: "beranda-admin"*/ "../Pages/BerandaAdmin"),
-  loading: () => <Loading />
-});
-
-const AturGuru = Loadable({
-  loader: () => import(/* webpackChunkName: "atur-guru"*/ "../Pages/AturGuru"),
-  loading: () => <Loading />
-});
-
-const AturKelas = Loadable({
-  loader: () => import(/* webpackChunkName: "atur-kelas"*/ "../Pages/AturKelas"),
-  loading: () => <Loading />
-});
-
-const AturSiswa = Loadable({
-  loader: () => import(/* webpackChunkName: "atur-siswa"*/ "../Pages/AturSiswa"),
-  loading: () => <Loading />
-});
-
-const AturMataPelajaran = Loadable({
-  loader: () => import(/* webpackChunkName: "atur-mata-pelajaran"*/ "../Pages/AturMataPelajaran"),
-  loading: () => <Loading />
-});
-
-const KelasMapelCon = Loadable({
-  loader: () => import(/* webpackChunkName: "penempatan-guru"*/ "../Pages/KelasMapelCon"),
-  loading: () => <Loading />
-});
-
 const ProfileGuru = Loadable({
   loader: () => import(/* webpackChunkName: "penempatan-guru"*/ "../Pages/ProfileGuru"),
   loading: () => <Loading />
@@ -115,12 +85,6 @@ const MainRoute = () => {
       <Route exact path="/" component={Intro} />
       <Route exact path="/loading" component={Loading} />
       <Route exact path="/dashboard" component={Dashboard} />
-      <Route exact path="/beranda-admin" component={BerandaAdmin} />
-      <Route exact path="/beranda-guru" component={AturGuru} />
-      <Route exact path="/beranda-kelas" component={AturKelas} />      
-      <Route exact path="/beranda-siswa" component={AturSiswa} />      
-      <Route exact path="/beranda-mapel" component={AturMataPelajaran} />
-      <Route exact path="/penempatan-guru" component={KelasMapelCon} />
       <Route exact path="/profile" component={ProfileGuru} />
       <Route exact path="/rekap-nilai" component={RekapNilai} />
       <Route exact path="/scan-ljk" component={ScanLJK} />

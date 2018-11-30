@@ -8,8 +8,7 @@ import { actions } from "../store";
 class SignIn extends Component {
   state = {
     username: "",
-    password: "",
-    login_as: "guru"
+    password: ""
   };
   
   inputChange = e => {
@@ -17,23 +16,15 @@ class SignIn extends Component {
   };
   
   signInHandle = () => {
-    this.props.signInHandle( this.state.username, this.state.password, this.state.login_as )
-    if(this.state.login_as === "admin"){
-      this.props.history.push('/beranda-admin')
-    }else{
-      this.props.history.push('/')
-    }
+    this.props.signInHandle( this.state.username, this.state.password)
+    this.props.history.push('/')
   }
   
   render() {  
-    console.log('di Signin is_login', this.props.is_login)
+    // console.log('di Signin is_login', this.props.is_login)
 
     if(this.props.is_login == true){
-      if(this.props.login_as === "admin"){
-        return <Redirect to="/beranda-admin" />
-      }else{
-        return <Redirect to="/" />
-      }
+      return <Redirect to="/" />
     }
 
     return (          
@@ -56,16 +47,6 @@ class SignIn extends Component {
                     margin: "0 auto"
                 }}
               >
-              <select
-                  className="form-control"
-                  value={this.state.login_as}
-                  name="login_as"
-                  onChange={e => this.inputChange(e)}
-                >
-                  <option value="guru">Sebagai guru</option>
-                  <option value="admin">Sebagai admin</option>
-                  })}
-                </select>
                 <TextField
                   required
                   name="username"

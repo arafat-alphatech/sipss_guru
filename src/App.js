@@ -10,7 +10,7 @@ class App extends Component {
 
   render() {
     if(this.props.is_login !== ""){
-      console.log("is_login", this.props.is_login)
+      // console.log("is_login", this.props.is_login)
       if (this.props.is_login === false && this.props.location.pathname !== '/signin') {
         return <Redirect to="/signin" />;
       }

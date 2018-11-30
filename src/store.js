@@ -23,8 +23,6 @@ const initialState = {
   id_paket_soal: "",
   current_all_soal: [],
   token: "",
-  adminToken: "" ,
-  login_as: "",
   is_login: "",
   current_jumlah_soal: "",
   siap_cetak:[],
@@ -173,7 +171,7 @@ const actions = store => ({
           current_all_soal: response.data.data,
           jumlah_soal: response.data.jumlah_soal
         });
-        console.log("hasil get api current soal: ", response.data);
+        // console.log("hasil get api current soal: ", response.data);
       })
       .catch(err => {
         console.log(err);
@@ -305,9 +303,8 @@ const actions = store => ({
       current_jumlah_soal: n
     });
   },
-  signInHandle: async (state, username, password, login_as) => {
-    const endpoint = login_as === "admin" ? "admin/login": "login"
-    const url = "http://13.251.97.170:5001/" + endpoint;
+  signInHandle: async (state, username, password) => {
+    const url = "http://13.251.97.170:5001/login";
     const body = {
       username: username,
       password: password
@@ -315,22 +312,10 @@ const actions = store => ({
     await axios
       .post(url, body)
       .then(response => {
-        if(login_as === 'admin'){
           store.setState({
-            adminToken: response.data.token,
-            token: "",
-            login_as: login_as,
-            is_login: true
-          });
-        }
-        else{
-          store.setState({
-            adminToken: "",
             token: response.data.token,
-            login_as: login_as,
             is_login: true
           });
-        }
         swal("Selamat datang"," ","success")
       })
       .catch(err => {
@@ -341,8 +326,6 @@ const actions = store => ({
   signOutHandle: (state) => {
     store.setState({
       token: "",
-      adminToken: "",
-      login_as: "",
       is_login: false
     })
     swal({title:"Sampai jumpa kembali", icon:bye})
@@ -358,169 +341,6 @@ const actions = store => ({
     store.setState({
       current_all_soal: cur_soal
     });
-  },
-  getAllGuru: async (state) => {
-    const token = state.adminToken        
-    const headers = {
-        Authorization: "Bearer " + token
-    };
-    const url = "http://13.251.97.170:5001/admin/guru";
-    await axios
-      .get(url,{headers})
-      .then(response => {
-        store.setState({
-          listGuru: response.data.data
-        });
-        console.log('data get guru from store', response.data.data)
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  },
-  deleteGuru : async (state,id) => {
-    const token = state.adminToken        
-    const headers = {
-        Authorization: "Bearer " + token
-    };
-    const url = "http://13.251.97.170:5001/admin/guru/"+id;
-    await axios
-    .delete(url,{headers})
-    .then(response => {
-      swal("Sukses","Berhasil hapus data!","success")
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  },
-  getAllSiswa: async (state) => {
-    const token = state.adminToken        
-    const headers = {
-        Authorization: "Bearer " + token
-    };
-    const url = "http://13.251.97.170:5001/admin/siswa";
-    await axios
-      .get(url,{headers})
-      .then(response => {
-        store.setState({
-          listSiswa: response.data.data
-        });
-        console.log('data get siswa', response.data.data)
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  },
-  deleteSiswa : async (state,id) => {
-    const token = state.adminToken        
-    const headers = {
-        Authorization: "Bearer " + token
-    };
-    const url = "http://13.251.97.170:5001/admin/siswa/"+id;
-    await axios
-    .delete(url,{headers})
-    .then(response => {
-      swal("Sukses","Delete Siswa is Success!","success")
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  },
-  getAllMapel: async (state) => {
-    const token = state.adminToken        
-    const headers = {
-        Authorization: "Bearer " + token
-    };
-    const url = "http://13.251.97.170:5001/admin/mapel";
-    await axios
-      .get(url,{headers})
-      .then(response => {
-        store.setState({
-          listAllMapel: response.data.data
-        });
-        console.log('Response dari API', response.data.data)
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  },
-  deleteMapel : async (state,id) => {
-    const token = state.adminToken        
-    const headers = {
-        Authorization: "Bearer " + token
-    };
-    const url = "http://13.251.97.170:5001/admin/mapel/"+id;
-    await axios
-    .delete(url,{headers})
-    .then(response => {
-      swal("Sukses","Delete data berhasil!", "success")
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  },
-  getAllKelas: async (state) => {
-    const token = state.adminToken        
-    const headers = {
-        Authorization: "Bearer " + token
-    };
-    const url = "http://13.251.97.170:5001/admin/kelas";
-    await axios
-      .get(url,{headers})
-      .then(response => {
-        store.setState({
-          listKelas: response.data.data
-        });
-        console.log('data get kelas', response.data.data)
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  },
-  postNewGuru: async state => {
-    const token = state.adminToken        
-    const headers = {
-        Authorization: "Bearer " + token
-    };
-    const url = "http://13.251.97.170:5001/admin/guru";
-    const data = {
-      nip: state.nip,
-      nama: state.nama,
-      alamat: state.alamat,
-      jenis_kelamin: state.jenis_kelamin,
-      telepon: state.telepon,
-      username: state.username,
-      password: state.password
-    };
-    await axios
-      .post(url, data,{headers})
-      .then(response => {
-        store.setState({
-          dataGuru: response.data,
-        });
-        swal("Sukses","Tambah guru berhasil","success");
-        console.log("Response dari API: ", response);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  },
-  getMapelKelas: async (state) => {
-    const token = state.adminToken        
-    const headers = {
-        Authorization: "Bearer " + token
-    };
-    const url = "http://13.251.97.170:5001/admin/kelasmapelconj";
-    await axios
-      .get(url,{headers})
-      .then(response => {
-        store.setState({
-          listMapelConj: response.data.data
-        });
-        console.log('data get kelas mapel', response.data.data)
-      })
-      .catch(err => {
-        console.log(err);
-      });
   },
   getRekap: async state => {
     const token = state.token        
