@@ -28,17 +28,11 @@ class ButtonLJK extends Component {
     let url_download =  disabled == true ? "#" : "http://13.251.97.170:5001/build?id_paket_soal=" + this.props.paket_soal + "&id_kelas=" + this.props.kelas
     
     return (
-        <button style={{ minWidth: '80px' }} className="btn btn-primary" disabled={ disabled } title= {title}>
-            <a
-                href={ url_download }
-                style= {{
-                    textDecoration: "none",
-                    color: "white"
-                }}
-            > 
+        <a href={ url_download } style= {{ textDecoration: "none", color: "white" }}> 
+            <button style={{ minWidth: '80px' }} className="btn btn-primary" disabled={ disabled } title= {title}>
                 LJK
-            </a>
-        </button>
+            </button>
+        </a>
     )
   }
 }
