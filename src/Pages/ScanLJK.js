@@ -9,16 +9,6 @@ import swal from 'sweetalert'
 
 class ScanLJK extends Component {
 
-    state = {
-        displayScanner: false
-      }
-    
-    showScanner(){
-    this.setState({
-        displayScanner: !this.state.displayScanner
-    })
-    }
-
     onTakePhoto (data_uri) {
         const url = "https://sipss-api.online/build"
         const body = {
@@ -29,23 +19,44 @@ class ScanLJK extends Component {
         .post(url, body)
         .then((response) => {
             // berhasil scan nilai
+
             if(response.data.http_code == 200){
                 const { nama_siswa, total_nilai } = response.data.data
-                alert("Nama Siswa: " + nama_siswa + "Nilai: " + total_nilai)
-                swal("Good job!", "You clicked the button!", "success")
+                swal({
+                    title: "Berhasil",
+                    text: "Nama siswa: " + nama_siswa + "\nNilai: " + total_nilai,
+                    icon: "success",
+                    });
+                
             }
             // data siswa udah pernah discan sebelumnya
             if(response.data.http_code == 400){
-                alert(response.data.data.message)
+                swal({
+                    title: "Gagal",
+                    text: response.data.data.message,
+                    icon: "warning",
+                    dangerMode: "true"
+                    });
             }
             // opencv tidak dapat scan jawaban
             if(response.data.http_code == 404){
-                alert(response.data.data.message)
+                swal({
+                    title: "Gagal",
+                    text: response.data.data.message,
+                    icon: "warning",
+                    dangerMode: "true"
+                    });
+                
             }
             // console.log(response.data)
         })
         .catch((err) => {
-            alert(err)
+            swal({
+                title: "Error",
+                text: err,
+                icon: "warning",
+                dangerMode: "true"
+                });
         })
     }
 
