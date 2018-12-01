@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import MainRoute from "./Routes/MainRoute";
-import Sidebar from "./Components/Sidebar";
 import SidebarGuru from "./Components/SidebarGuru";
 import { connect } from "unistore/react";
 import { actions } from "./store";
@@ -17,15 +16,8 @@ class App extends Component {
     }
     return (
       <div>
-        {
-          this.props.location.pathname !== '/signin' ?
-            this.props.login_as === "admin" ? 
-            <Sidebar />
-            : 
-            <SidebarGuru/> 
-          :
-          ""
-        }
+        
+        <SidebarGuru/> 
         <MainRoute />
       </div>
     );
