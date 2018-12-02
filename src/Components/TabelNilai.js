@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Media from "react-media";
+import '../Styles/Home.css'
 
 class TableNilai extends Component {
   render() {

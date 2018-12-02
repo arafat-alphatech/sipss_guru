@@ -21,6 +21,8 @@ import { actions } from "../store";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import logoSIPPS from '../logoSIPSS.png'
+import Media from 'react-media'
 
 const styles = {
   list: {
@@ -106,10 +108,8 @@ class TemporaryDrawer extends React.Component {
             <MenuIcon />
           </IconButton> */}
           {/* <Button color="inherit">Login</Button> */}
-        <Button onClick={this.toggleDrawer('left', true)}><i className="fas fa-bars" style={{color:'white', fontSize:'large'}}></i></Button>
-          <Typography variant="h6" color="inherit" className={classes.grow} style={{marginLeft:'auto'}}>
-            SIPPS Logo
-          </Typography>
+        <Button onClick={this.toggleDrawer('left', true)}><i className="fas fa-bars" style={{color:'white', fontSize:'large'}}></i></Button>         
+        <img className="logo-navbar" src={logoSIPPS}/>
         </Toolbar>
       </AppBar>
         {/* <Button onClick={this.toggleDrawer('left', true)}><i className="fas fa-bars" style={{color:'#00A2E5', fontSize:'large'}}></i></Button> */}

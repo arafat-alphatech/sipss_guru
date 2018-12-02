@@ -46,11 +46,11 @@ class RekapNilai extends Component {
           className="text-center"
           style={{ marginTop: "100px", marginBottom: "20px" }}
         >
-          <h1 className="text-center" style={{ color: "#00A2E5" }}>
-            Rekapitulasi Nilai
-          </h1>
 
           <div className="card shadow" style={{ margin: "0 20px" }}>
+          <h1 className="text-center" style={{ color: "#00A2E5", marginTop:'25px' }}>
+            Rekapitulasi Nilai
+          </h1>
             <div className="row">
               <div className="col-md-10 offset-1">
                 <div className="card-body">
@@ -101,7 +101,7 @@ class RekapNilai extends Component {
                         Atur Bobot Nilai
                       </Link>
                     </div>
-                  </div>
+                  </div>  
                   <div className="row">
                     <table
                       style={{
