@@ -17,7 +17,7 @@ class Intro extends Component {
           Home
         </h1> */}
         {/* Banner */}
-        <div className="card rounded-0 text-center" style={{backgroundColor:'#00A2E5', color:'white', width:'105%'}}>
+        <div className="card rounded-0 text-center" style={{background:'linear-gradient(60deg, #00A2E5, #00B4DB)', color:'white', width:'105%'}}>
           {/* <div className="card-header">Featured</div> */}
           <div className="card-body">
             <h5 className="card-title">Selamat Datang di SIPS</h5>

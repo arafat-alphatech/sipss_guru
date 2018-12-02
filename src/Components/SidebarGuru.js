@@ -99,16 +99,16 @@ class TemporaryDrawer extends React.Component {
     );
 
     return (
-      <div>
-        <AppBar position="static">
-        <Toolbar style={{backgroundColor:'#00A2E5', width:'105%'}}>
+      <div style={{marginBottom:'70px'}}>
+        <AppBar position="fixed">
+        <Toolbar style={{background:'linear-gradient(60deg,  #00A2E5, #00B4DB)', width:'100'}}>
           {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton> */}
           {/* <Button color="inherit">Login</Button> */}
         <Button onClick={this.toggleDrawer('left', true)}><i className="fas fa-bars" style={{color:'white', fontSize:'large'}}></i></Button>
           <Typography variant="h6" color="inherit" className={classes.grow} style={{marginLeft:'auto'}}>
-            SIPPS
+            SIPPS Logo
           </Typography>
         </Toolbar>
       </AppBar>

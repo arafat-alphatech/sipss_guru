@@ -16,7 +16,7 @@ class App extends Component {
     }
     return (
       <div>
-        {this.props.location.pathname !== '/signin' ? <SidebarGuru/> : ''}
+        {(this.props.location.pathname !== '/signin' && this.props.location.pathname !== '/' && this.props.location.pathname !== '/loading' ) ? <SidebarGuru/> : ''}
         <MainRoute />
       </div>
     );

@@ -4,8 +4,8 @@ import { connect } from "unistore/react";
 import { actions } from "../store";
 import { Link } from "react-router-dom";
 import MenuBawah from "../Components/MenuBawah";
-import '../Styles/Home.css'
-import axios from 'axios'
+import "../Styles/Home.css";
+import axios from "axios";
 
 class Home extends Component {
   state = {
@@ -21,21 +21,21 @@ class Home extends Component {
     const url = "http://13.251.97.170:5001/profile";
     axios
       .get(url, { headers })
-      .then((response) => {
+      .then(response => {
         this.setState({
           biodata: response.data.biodata,
           listData: response.data.data
         });
         console.log("from profile guru", response.data);
       })
-      .catch(function (error) {
+      .catch(function(error) {
         //handle error
         console.log(error);
       });
-  }
+  };
 
   componentDidMount() {
-    this.getProfile()
+    this.getProfile();
   }
 
   render() {
@@ -46,101 +46,114 @@ class Home extends Component {
     const image = biodata.foto;
     // console.log('isi bio', biodata)
     return (
-      <div className='Site' style={{marginLeft:'10px'}}>
+      <div className="Site" style={{ marginLeft: "10px" }}>
         <h1
           style={{
             textAlign: "center",
             color: "#00A2E5",
             marginTop: "20px",
-            marginBottom: "20px",
+            marginBottom: "20px"
           }}
         >
           {" "}
           Pilih Kelas
         </h1>
 
-        {/* Section Data Guru */}
+        {/* Section Foto + Nama Guru */}
         <div style={{ textAlign: "center" }}>
           <img
-            style={{ width: "100px", height: "100px" }}
+            style={{ width: "150px", height: "150px" }}
             // src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Tom_Cruise_by_Gage_Skidmore.jpg/220px-Tom_Cruise_by_Gage_Skidmore.jpg"
-            src={image}            
+            src={image}
             alt="..."
             className="img-thumbnail"
           />
           <p style={{ marginTop: "10px" }}>{biodata.nama}</p>
         </div>
-        {/* Section Data Guru (end) */}
+        {/* Section Foto + Nama Guru (end) */}
 
-        {/* Piih Tingkat Kelas */}
-        <div style={{ margin: "10px" }}>
-          <select
-            className="form-control"
-            value={listTingkat.id_tingkat}
-            name="id_tingkat"
-            onChange={e => this.props.setField(e)}
-            onClick={() => this.props.getKelas()}
-          >
-            <option>Tingkat Kelas</option>
-            {listTingkat.map((item, key) => {
-              return (
-                <option value={item.id_tingkat} key={key}>
-                  {item.nama_tingkat}
-                </option>
-              );
-            })}
-          </select>
+        <div className="row">
+          <div className="col-md-6 offset-md-3">
+            <div className="row">
+
+              <div className="col-md-4">
+                {/* Piih Tingkat Kelas */}
+                <div style={{ margin: "10px" }}>
+                  <select
+                    className="form-control"
+                    value={listTingkat.id_tingkat}
+                    name="id_tingkat"
+                    onChange={e => this.props.setField(e)}
+                    onClick={() => this.props.getKelas()}
+                  >
+                    <option>Tingkat Kelas</option>
+                    {listTingkat.map((item, key) => {
+                      return (
+                        <option value={item.id_tingkat} key={key}>
+                          {item.nama_tingkat}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+                {/* Pilih Kelas (end) */}
+              </div>
+
+              <div className="col-md-4">
+                {/* Piih Nama Kelas */}
+                <div style={{ margin: "10px" }}>
+                  <select
+                    className="form-control"
+                    value={listNamaKelas.id_kelas}
+                    name="id_kelas"
+                    onChange={e => this.props.setField(e)}
+                    onClick={() => this.props.getMaPel()}
+                  >
+                    <option>Nama Kelas</option>
+                    {listNamaKelas.map((item, key) => {
+                      return (
+                        <option value={item.id_kelas} key={key}>
+                          {item.nama_kelas}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+                {/* Pilih Nama Kelas (end) */}
+              </div>
+
+              <div className="col-md-4">
+                {/* Piih Mata Pelajaran */}
+                <div style={{ margin: "10px" }}>
+                  <select
+                    className="form-control"
+                    value={listMapel.id_mapel}
+                    name="id_mapel"
+                    onChange={e => this.props.setField(e)}
+                  >
+                    <option>Mata Pelajaran</option>
+                    {listMapel.map((item, key) => {
+                      return (
+                        <option key={key} value={item.id_mapel}>
+                          {item["mapel.nama_mapel"]}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+                {/* Pilih Mata Pelajaran (end) */}
+              </div>
+              
+            </div>
+          </div>
         </div>
-        {/* Pilih Kelas (end) */}
 
-             {/* Piih Nama Kelas */}
-             <div style={{ margin: "10px" }}>
-          <select
-            className="form-control"
-            value={listNamaKelas.id_kelas}
-            name="id_kelas"
-            onChange={e => this.props.setField(e)}
-            onClick={() => this.props.getMaPel()}
-          >
-            <option>Nama Kelas</option>
-            {listNamaKelas.map((item, key) => {
-              return (
-                <option value={item.id_kelas} key={key}>
-                  {item.nama_kelas}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-        {/* Pilih Nama Kelas (end) */}
-
-        {/* div Card Kelas */}
         <div
           className="card mb-3"
           style={{ marginLeft: "10px", marginRight: "10px" }}
         >
           <div className="card-body">
             {/* <h5 className="card-title">listMapel.item.</h5> */}
-
-            {/* Piih Mata Pelajaran */}
-            <div style={{ marginBottom: "10px" }}>
-              <select
-                className="form-control"
-                value={listMapel.id_mapel}
-                name="id_mapel"
-                onChange={e => this.props.setField(e)}
-              >
-                <option>Pilih Mata Pelajaran</option>
-                {listMapel.map((item, key) => {
-                  return (
-                    <option key={key} value={item.id_mapel}>
-                      {item["mapel.nama_mapel"]}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-            {/* Pilih Mata Pelajaran (end) */}
 
             {/* Button Menu Ujian */}
             <Link
@@ -186,19 +199,25 @@ class Home extends Component {
             </Link>
           </div>
           {/* Button Mata Pelajaran (end) */}
-
         </div>
         {/* div card Kelas (end) */}
-        <div style={{height:'50px'}}></div>
+        <div style={{ height: "50px" }} />
         <div>
-        <footer
+          <footer
             className="footer"
-            style={{ position: "fixed", width:"100%", height: "55px", top:'auto', bottom: "0", marginLeft:'auto', marginRight:'auto'}}
-            >
+            style={{
+              position: "fixed",
+              width: "100%",
+              height: "55px",
+              top: "auto",
+              bottom: "0",
+              marginLeft: "auto",
+              marginRight: "auto"
+            }}
+          >
             <MenuBawah />
           </footer>
         </div>
-         
       </div>
     );
   }
