@@ -6,7 +6,10 @@ import { actions } from "../store";
 
 class Intro extends Component {
   render() {
-    if ((this.props.is_login === false || this.props.is_login === "") && this.props.location.pathname !== '/signin') {
+    if (
+      this.props.is_login === false &&
+      this.props.location.pathname !== "/signin"
+    ) {
       return <Redirect to={{ pathname: "/signin" }} />;
     }
     return (
@@ -17,20 +20,27 @@ class Intro extends Component {
           Home
         </h1> */}
         {/* Banner */}
-        <div className="card rounded-0 text-center" style={{backgroundColor:'#00A2E5', color:'white', width:'105%'}}>
+        <div
+          className="card rounded-0 text-center"
+          style={{
+            background: "linear-gradient(60deg,  #00A2E5, #00B4DB)",
+            color: "white",
+            width: "105%"
+          }}
+        >
           {/* <div className="card-header">Featured</div> */}
           <div className="card-body">
             <h5 className="card-title">Selamat Datang di SIPS</h5>
             <p className="card-text">
-              Permudah proses penilaian dengan SIPS, mulai hidup lebih produktif ! 
+              Permudah proses penilaian dengan SIPS, mulai hidup lebih produktif
+              !
             </p>
-
           </div>
         </div>
         {/* Banner (end) */}
         <div
           className="row container-fluid"
-          style={{ width: "100%", margin: "0px", marginLeft:'10px' }}
+          style={{ width: "100%", margin: "0px", marginLeft: "10px" }}
         >
           <div className="col-6">
             <Link to="/ujian">
@@ -121,93 +131,202 @@ class Intro extends Component {
 
         <div
           className="row container-fluid"
-          style={{ width: "100%", margin: "0px", marginBottom: "0px", marginLeft:'10px'}}
+          style={{
+            width: "100%",
+            margin: "0px",
+            marginBottom: "0px",
+            marginLeft: "10px"
+          }}
         >
           <div className="col-6">
-          <Link to="/rekap-nilai">
-            <div
-              className="card"
-              style={{
-                minWidth: "120px",
-                maxWidth: "100%",
-                margin: "20px",
-                marginLeft: "0px",
-                marginRight: "0px",
-                padding: "10px"
-              }}
-            >
-              <img
-                className="card-img-top"
-                src="https://i.ibb.co/hWPJS61/summary-icon.png"
-                alt="Card-cap"
-                style={{ width: "120px", height: "100px" }}
-              />
+            <Link to="/rekap-nilai">
               <div
-                className="card-body"
-                style={{ padding: "0px", margin: "0px", marginBottom: "10px" }}
+                className="card"
+                style={{
+                  minWidth: "120px",
+                  maxWidth: "100%",
+                  margin: "20px",
+                  marginLeft: "0px",
+                  marginRight: "0px",
+                  padding: "10px"
+                }}
               >
-                <h5
-                  className="card-title"
+                <img
+                  className="card-img-top"
+                  src="https://i.ibb.co/hWPJS61/summary-icon.png"
+                  alt="Card-cap"
+                  style={{ width: "120px", height: "100px" }}
+                />
+                <div
+                  className="card-body"
                   style={{
                     padding: "0px",
                     margin: "0px",
-                    textAlign: "center",
-                    color: "#00A2E5"
+                    marginBottom: "10px"
                   }}
                 >
-                  Rapor
-                </h5>
+                  <h5
+                    className="card-title"
+                    style={{
+                      padding: "0px",
+                      margin: "0px",
+                      textAlign: "center",
+                      color: "#00A2E5"
+                    }}
+                  >
+                    Rapor
+                  </h5>
+                </div>
               </div>
-            </div>
-              </Link>
+            </Link>
           </div>
           <div className="col-6">
-          <Link to="/profile">
-            <div
-              className="card"
-              style={{
-                minWidth: "120px",
-                maxWidth: "100%",
-                margin: "20px",
-                marginLeft: "0px",
-                marginRight: "0px",
-                padding: "10px"
-              }}
-              >
-              <img
-                className="card-img-top"
-                src="https://i.ibb.co/rZNGTsV/storyblocks-teacher-in-the-classroom-with-students-vector-illustration-design-Bd-YUS3o9m-thumb.jpg"
-                alt="Card-cap"
-                style={{ maxWidth: "140px", height: "100px" }}
-                />
+            <Link to="/profile">
               <div
-                className="card-body"
-                style={{ padding: "0px", margin: "0px", marginBottom: "10px" }}
-                >
-                <h5
-                  className="card-title"
+                className="card"
+                style={{
+                  minWidth: "120px",
+                  maxWidth: "100%",
+                  margin: "20px",
+                  marginLeft: "0px",
+                  marginRight: "0px",
+                  padding: "10px"
+                }}
+              >
+                <img
+                  className="card-img-top"
+                  src="https://i.ibb.co/rZNGTsV/storyblocks-teacher-in-the-classroom-with-students-vector-illustration-design-Bd-YUS3o9m-thumb.jpg"
+                  alt="Card-cap"
+                  style={{ maxWidth: "140px", height: "100px" }}
+                />
+                <div
+                  className="card-body"
                   style={{
                     padding: "0px",
                     margin: "0px",
-                    textAlign: "center",
-                    color: "#00A2E5"
+                    marginBottom: "10px"
                   }}
+                >
+                  <h5
+                    className="card-title"
+                    style={{
+                      padding: "0px",
+                      margin: "0px",
+                      textAlign: "center",
+                      color: "#00A2E5"
+                    }}
                   >
-                  Profile
-                </h5>
+                    Profile
+                  </h5>
+                </div>
               </div>
-            </div>
-                  </Link>
+            </Link>
           </div>
         </div>
-        <div style={{marginTop:'40px'}}></div>
+
+        <div
+          className="row container-fluid"
+          style={{
+            width: "100%",
+            margin: "0px",
+            marginBottom: "0px",
+            marginLeft: "10px"
+          }}
+        >
+          <div className="col-6">
+            <Link to="/rekap-nilai">
+              <div
+                className="card"
+                style={{
+                  minWidth: "120px",
+                  maxWidth: "100%",
+                  margin: "20px",
+                  marginLeft: "0px",
+                  marginRight: "0px",
+                  padding: "10px"
+                }}
+              >
+                <img
+                  className="card-img-top"
+                  src="http://3.bp.blogspot.com/-p29CGVu_22Q/VcEIostZOQI/AAAAAAAAgZc/lpFp91hkPzw/s1600/CameraNext.png"
+                  alt="Card-cap"
+                  style={{ width: "120px", height: "100px" }}
+                />
+                <div
+                  className="card-body"
+                  style={{
+                    padding: "0px",
+                    margin: "0px",
+                    marginBottom: "10px"
+                  }}
+                >
+                  <h5
+                    className="card-title"
+                    style={{
+                      padding: "0px",
+                      margin: "0px",
+                      textAlign: "center",
+                      color: "#00A2E5"
+                    }}
+                  >
+                    Scan
+                  </h5>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className="col-6">
+            <Link to="/profile">
+              <div
+                className="card"
+                style={{
+                  minWidth: "120px",
+                  maxWidth: "100%",
+                  margin: "20px",
+                  marginLeft: "0px",
+                  marginRight: "0px",
+                  padding: "10px"
+                }}
+              >
+                <img
+                  className="card-img-top"
+                  src="https://i.ibb.co/rZNGTsV/storyblocks-teacher-in-the-classroom-with-students-vector-illustration-design-Bd-YUS3o9m-thumb.jpg"
+                  alt="Card-cap"
+                  style={{ maxWidth: "140px", height: "100px" }}
+                />
+                <div
+                  className="card-body"
+                  style={{
+                    padding: "0px",
+                    margin: "0px",
+                    marginBottom: "10px"
+                  }}
+                >
+                  <h5
+                    className="card-title"
+                    style={{
+                      padding: "0px",
+                      margin: "0px",
+                      textAlign: "center",
+                      color: "#00A2E5"
+                    }}
+                  >
+                    Nanti gak tau apa in isinya
+                  </h5>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+
+        <div style={{ marginTop: "40px" }} />
         <footer
           className="footer"
           style={{
             height: "55px",
             bottom: "0",
             width: "100%",
-            position:'fixed'
+            position: "fixed"
           }}
         >
           <MenuBawah />

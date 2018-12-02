@@ -29,7 +29,7 @@ class ButtonLJK extends Component {
     
     return (
         <a href={ url_download } style= {{ textDecoration: "none", color: "white" }}> 
-            <button style={{ minWidth: '80px' }} className="btn btn-primary" disabled={ disabled } title= {title}>
+            <button style={{}} className="btn btn-primary" disabled={ disabled } title= {title}>
                 LJK
             </button>
         </a>
