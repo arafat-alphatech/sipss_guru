@@ -4,7 +4,7 @@ import Media from "react-media";
 class TableNilai extends Component {
   render() {
     return (
-      <div className="tabelnilai" style={{ marginTop: "30px" }}>
+      <div className="tabelnilai" style={{ marginTop: "30px", display: this.props.display ? "none": "block" }}>
         <Media query="(max-width: 499px)">
           {matches =>
             matches ? (
