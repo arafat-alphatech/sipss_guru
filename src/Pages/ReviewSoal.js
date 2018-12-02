@@ -97,6 +97,7 @@ class ReviewSoal extends Component {
         </div>
 
         {/* ===================menu di bawah=============================== */}
+        <div className='text-center'>
         <Link
           className='btn btn-primary'
           style={{
@@ -106,10 +107,12 @@ class ReviewSoal extends Component {
           }}
           to='#'
           onClick={() => this.printDocument()}
-        >
+          >
           Cetak
         </Link>
-        <br></br>
+          </div>
+
+        <div className='text-center'>
         <Link
           className='btn btn-danger'
           style={{
@@ -119,9 +122,10 @@ class ReviewSoal extends Component {
             marginTop: "0px"
           }}
           to='/tambah-ujian'
-        >
+          >
           Back
         </Link>
+          </div>
 
         <div style={{marginTop:'40px'}}></div>
         <footer

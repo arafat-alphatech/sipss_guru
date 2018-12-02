@@ -24,7 +24,7 @@ class RiwayatUjian extends Component {
   
     render() {
         return (
-            <div className="card-body">
+            <div className="card-body shadow">
                 <h5 style={{ textAlign: "center", marginBottom: "20px" }}>
                     Riwayat Ujian
                 </h5>
@@ -65,7 +65,7 @@ class RiwayatUjian extends Component {
                             <div className='col-7'>
                                 <div className='row'>
                                     <div className='col-6'>
-                                        <Link style={{ minWidth: '80px' }} className="btn btn-primary" to={"/review/"+item.id_paket_soal} >
+                                        <Link style={{ }} className="btn btn-primary" to={"/review/"+item.id_paket_soal} >
                                         Soal
                                         </Link>
                                     </div>
