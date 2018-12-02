@@ -298,13 +298,18 @@ class HalamanEdit extends Component {
           </div>
           {/* Edit Pilihan Jawaban (end) */}
 
+        {/* Kumpulan Button Navigasi */}
+
+        <div className='row'>
+              <div className='col-lg-6 text-center'>
           {/* Piih Jawaban Benar */}
-          <div style={{ margin: "20px" }}>
+          <div style={{ margin: "20px"}}>
             <select
               name="jawaban"
               className="form-control"
               onChange={e => this.onJawabanChange(e)}
               value={this.state.jawaban}
+              style={{fontWeight:'bold'}}
             >
               <option>Pilih Jawaban Benar</option>
               {choice.map((item, key) => {
@@ -316,10 +321,9 @@ class HalamanEdit extends Component {
               })}
             </select>
           </div>
-        </form>
-        {/* Pilih Jawaban Benar (end) */}
-
-        {/* Kumpulan Button Navigasi */}
+              
+              </div>
+              <div className='col-lg-6'>
         <Link
           className="btn btn-primary"
           to="#"
@@ -328,15 +332,13 @@ class HalamanEdit extends Component {
         >
           Simpan dan Lanjutkan
         </Link>
-        <br />
-        <Link
-          className="btn btn-primary"
-          style={{ minWidth: "320px", margin: "20px", marginBottom: "0px" }}
-          to="/tambah-ujian"
-        >
-          Kembali ke Menu Sebelumnya
-        </Link>
-        {/* Kumpulan Button Navigasi (end) */}
+              
+              </div>
+        </div>
+
+
+        </form>
+        {/* Pilih Jawaban Benar (end) */}
 
         {/* Navigasi Soal */}
         <div style={{ margin: "20px" }}>
@@ -357,6 +359,18 @@ class HalamanEdit extends Component {
           </select>
         </div>
         {/* Navigasi Soal (end) */}
+        
+        <div className='text-center'>
+        <Link
+          className="btn btn-danger"
+          style={{ minWidth: "320px", margin: "20px", marginBottom: "0px" }}
+          to="/tambah-ujian"
+          >
+          Kembali ke Menu Sebelumnya
+        </Link>
+        {/* Kumpulan Button Navigasi (end) */}
+          </div>
+
 
         {/* Footer */}
         <div style={{marginTop:'80px'}}></div>
