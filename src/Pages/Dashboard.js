@@ -134,8 +134,7 @@ class Dashboard extends Component {
           </div>
 
           <div className="row" style={{ marginTop: "0px", marginLeft: "10px", display: this.state.hilang }}>
-            <div className="col-sm-2" />
-            <div className="col-sm-8">
+            <div className="col-sm-8 offset-2">
               <Chart labels={this.props.labels} data={this.props.data} />
               <div className='text-center'>
               <TabelNilai tableData={this.props.tableData} />
@@ -148,7 +147,6 @@ class Dashboard extends Component {
                 Unduh data .csv
               </CSVLink>
             </div>
-            <div className="col-sm-2" />
           </div>
           {/* footer */}
           <div style={{ marginBottom: "80px" }} />
