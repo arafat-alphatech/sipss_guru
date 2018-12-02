@@ -275,48 +275,7 @@ class Intro extends Component {
               </div>
             </Link>
           </div>
-          <div className="col-6">
-            <Link to="/profile">
-              <div
-                className="card"
-                style={{
-                  minWidth: "120px",
-                  maxWidth: "100%",
-                  margin: "20px",
-                  marginLeft: "0px",
-                  marginRight: "0px",
-                  padding: "10px"
-                }}
-              >
-                <img
-                  className="card-img-top"
-                  src="https://i.ibb.co/rZNGTsV/storyblocks-teacher-in-the-classroom-with-students-vector-illustration-design-Bd-YUS3o9m-thumb.jpg"
-                  alt="Card-cap"
-                  style={{ maxWidth: "140px", height: "100px" }}
-                />
-                <div
-                  className="card-body"
-                  style={{
-                    padding: "0px",
-                    margin: "0px",
-                    marginBottom: "10px"
-                  }}
-                >
-                  <h5
-                    className="card-title"
-                    style={{
-                      padding: "0px",
-                      margin: "0px",
-                      textAlign: "center",
-                      color: "#00A2E5"
-                    }}
-                  >
-                    Nanti gak tau apa in isinya
-                  </h5>
-                </div>
-              </div>
-            </Link>
-          </div>
+       
         </div>
 
         <div style={{ marginTop: "40px" }} />
