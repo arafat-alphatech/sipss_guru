@@ -154,7 +154,8 @@ class Home extends Component {
         >
           <div className="card-body">
             {/* <h5 className="card-title">listMapel.item.</h5> */}
-
+            
+            <div>
             {/* Button Menu Ujian */}
             <Link
               className="btn btn-primary"
@@ -167,9 +168,10 @@ class Home extends Component {
             >
               Ujian
             </Link>
-            <br />
+            </div>
             {/* Button Menu Ujian (End) */}
 
+            <div>              
             {/* Button Menu Jadwal */}
             <Link
               className="btn btn-primary"
@@ -179,12 +181,13 @@ class Home extends Component {
                 marginBottom: "10px"
               }}
               to="/"
-            >
+              >
               Jadwal
             </Link>
-            <br />
+              </div>
             {/* Button Menu Jadwal (end) */}
-
+              
+            <div>
             {/* Button Mata Pelajaran */}
             <Link
               className="btn btn-primary"
@@ -197,6 +200,7 @@ class Home extends Component {
             >
               Bantuan
             </Link>
+            </div>
           </div>
           {/* Button Mata Pelajaran (end) */}
         </div>

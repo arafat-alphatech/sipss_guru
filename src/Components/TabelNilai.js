@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import Media from "react-media";
+import '../Styles/Home.css'
 
 class TableNilai extends Component {
   render() {
     return (
-      <div className="tabelnilai" style={{ marginTop: "30px", display: this.props.display ? "none": "block" }}>
+      <div className="tabelnilai" style={{ marginTop: "30px", marginLeft:'20px', marginRight:'20px' ,display: this.props.display ? "none": "block" }}>
         <Media query="(max-width: 499px)">
           {matches =>
             matches ? (
@@ -15,6 +16,7 @@ class TableNilai extends Component {
                   display: "block",
                   margin: "0 auto"
                 }}
+                id='rekap'
                 className="table table-hover table-stripped text-center"
               >
                 <thead>
@@ -45,6 +47,7 @@ class TableNilai extends Component {
                   whiteSpace: "nowrap",
                   margin: "0 auto"
                 }}
+                id='rekap'
                 className="table table-hover table-stripped text-center"
               >
                 <thead>

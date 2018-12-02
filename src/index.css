@@ -13,9 +13,21 @@ code {
     monospace;
 }
 
+.logo-navbar{
+  margin-left: auto;
+  height: 45px;
+  width: auto;
+}
+
 /* setting footbar hilang ketika layar besar */
 @media only screen and (min-width: 600px) {
   .footer {
     display: none
+  }
+
+  .logo-navbar{
+    margin: 0 auto;
+    height: 55px;
+    width: auto;
   }
 }
