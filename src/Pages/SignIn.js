@@ -4,11 +4,22 @@ import { withRouter, Redirect} from "react-router-dom";
 import "../Styles/Home.css";
 import { connect } from "unistore/react";
 import { actions } from "../store";
+import { InputAdornment, withStyles } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton'
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+
+const styles = theme => ({
+  eye: {
+    cursor: 'pointer',
+  },
+});
 
 class SignIn extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    showPassword: false
   };
   
   inputChange = e => {
@@ -19,15 +30,22 @@ class SignIn extends Component {
     this.props.signInHandle( this.state.username, this.state.password)
     this.props.history.push('/')
   }
+
+  handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  };
   
   render() {  
+    const { classes } = this.props;
     // console.log('di Signin is_login', this.props.is_login)
 
     if(this.props.is_login == true){
       return <Redirect to="/" />
     }
 
-    return (          
+    console.log(this.state)
+
+    return (
     <div className="sign-in" style={{padding:'20px'}}>
         <div className="card mb-3"
             style={{ 
@@ -73,7 +91,7 @@ class SignIn extends Component {
                 <TextField
                   required
                   name="password"
-                  type="password"
+                  type={this.state.showPassword ? 'text' : 'password'}
                   label="Password"
                   defaultValue=""
                   margin="normal"
@@ -82,6 +100,16 @@ class SignIn extends Component {
                     width: "100%"
                   }}
                   onChange={e => this.inputChange(e)}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton 
+                          className={classes.eye}
+                          onClick={this.handleClickShowPassword } 
+                          >{this.state.showPassword ? <Visibility /> : <VisibilityOff />} </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
                 />
               </div>
 
@@ -107,7 +135,4 @@ class SignIn extends Component {
   }
 }
 
-export default connect(
-  "token, is_login, login_as",
-  actions
-)(withRouter(SignIn));
+export default connect("token, is_login, login_as",actions)(withStyles(styles)(withRouter(SignIn)));

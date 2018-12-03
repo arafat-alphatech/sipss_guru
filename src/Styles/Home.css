@@ -58,3 +58,9 @@
   height: 0;
   visibility: hidden;
 }
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  /* background-color: #4FC3F7; */
+  background-color: rgb(4, 166, 236);
+  color: white;  
+}

@@ -15,12 +15,13 @@ class PopupEditRekap extends React.Component {
     open: false,
     id_kelas:"",
     id_paket_soal:"",
-    persen:""
+    persen:"",
+    persen_old:"",
+    n_click : 0
   };
 
   inputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
 
   doSetPersen = () => {
@@ -35,12 +36,30 @@ class PopupEditRekap extends React.Component {
       persen: parseInt(this.state.persen) 
     };
     axios
-      .post(url, data, { headers })
-      .then(response => {
-        swal("Edit Persentase berhasil");
-        this.props.nambahPersen(data.persen)
-        console.log("respon API edit persen: ", response);
-        this.setState({ open: false });
+    .post(url, data, { headers })
+    .then(response => {
+      swal("Edit Persentase berhasil");
+      console.log("respon API edit persen: ", response);
+        if (this.state.n_click == 0){
+          this.setState({
+            persen_old : this.state.persen
+          })
+          this.props.nambahPersen(parseInt(this.state.persen_old))
+        }
+        else{
+          if(this.state.persen_old == this.state.persen){
+          }
+          else{
+            this.props.nambahPersen(parseInt(this.state.persen)-parseInt(this.state.persen_old))
+            this.setState({
+              persen_old :this.state.persen
+            })
+          }
+        }
+        this.setState({ 
+          n_click : this.state.n_click+1,
+          open: false
+         });
       })
       .catch(err => {
         console.log(err);
@@ -50,22 +69,12 @@ class PopupEditRekap extends React.Component {
   // Buka tutup popup
 
   handleClickOpen = () => {
-    const token = this.props.adminToken;
-    const headers = {
-      Authorization: "Bearer " + token
-    };
-    const url = "https://sipss-api.online/admin/mapel-detail/" + this.props.id;
-    axios
-      .get(url, { headers })
-      .then(response => {
-        this.setState({ nama_mapel: response.data.data[0].nama_mapel });
-        console.log("from pop up edit mapel by id", response.data.data[0]);
-      })
-      .catch(function(error) {
-        //handle error
-        console.log(error);
-      });
-    this.setState({ open: true });
+    this.setState({ 
+      open: true,
+      id_kelas : this.props.id_kelas,
+      id_paket_soal : this.props.id_paket_soal,
+      persen: this.state.persen
+    });
   };
 
   handleClose = () => {

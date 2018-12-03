@@ -8,17 +8,40 @@ import TabelNilai from "../Components/TabelNilai";
 import MenuBawah from "../Components/MenuBawah";
 import Button from "@material-ui/core/Button";
 import "../Styles/Home.css";
+import Switch from "@material-ui/core/Switch";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import purple from "@material-ui/core/colors/purple";
+import blue from "@material-ui/core/colors/blue";
+import Media from "react-media";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: purple,
+    secondary: blue
+  },
+  status: {
+    danger: "orange"
+  }
+});
 
 class Dashboard extends Component {
   changeStatus() {
     this.props.getChartData().then(() => {
       this.props.getTableDataFromAPI();
       this.props.getRawDataFromAPI();
+      this.setState({
+        hilang: this.state.hilang=='none' ? 'block'  : 'none'
+      })
     });
   }
   componentDidMount() {
     this.props.getKelasByGuru();
     this.props.kosongTableDashboard();
+  }
+
+  state = {
+    hilang: 'none'
   }
 
   render() {
@@ -104,19 +127,17 @@ class Dashboard extends Component {
                 onClick={() => this.changeStatus()}
                 to="#"
               >
-                Lihat Statistik
+                {this.state.hilang == 'none' ? 'Lihat' : 'Sembunyikan'} Statistik
               </Link>
             </div>
             <div className="col-md-3" style={{ marginBottom: "20px" }} />
           </div>
 
-          <div className="row" style={{ marginTop: "0px", marginLeft: "10px" }}>
-            <div className="col-sm-2" />
-            <div className="col-sm-8">
+          <div className="row" style={{ marginTop: "0px", marginLeft: "10px", display: this.state.hilang }}>
+            <div className="col-sm-8 offset-2">
               <Chart labels={this.props.labels} data={this.props.data} />
               <div className='text-center'>
               <TabelNilai tableData={this.props.tableData} />
-              <h1>aaaaaaaaa</h1>
               </div>
               <CSVLink
                 style={{ marginTop: "30px" }}
@@ -126,7 +147,6 @@ class Dashboard extends Component {
                 Unduh data .csv
               </CSVLink>
             </div>
-            <div className="col-sm-2" />
           </div>
           {/* footer */}
           <div style={{ marginBottom: "80px" }} />
